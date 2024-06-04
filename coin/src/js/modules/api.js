@@ -14,12 +14,23 @@ export default class API {
     });
     const data = await response.json();
 
-    localStorage.setItem('coin-auth-token', data.token);
+    localStorage.setItem('coin-auth-token', data.payload.token);
 
     return true;
   }
 
   static logout() {
     localStorage.removeItem('coin-auth-token');
+  }
+
+  static async getAccountList() {
+    const token = localStorage.getItem('coin-auth-token');
+    const response = await fetch(`${process.env.SERVER}/accounts`, {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data.payload;
   }
 }

@@ -43,4 +43,5 @@ export default function createAuthFormView(container, { onAuthSubmit }) {
   );
 
   mount(container, form);
+  return form;
 }
