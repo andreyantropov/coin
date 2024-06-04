@@ -240,5 +240,9 @@ body {
 }
 
 .accoutn__date {
+  font-family: var(--second-family);
+  font-size: 13px;
   font-weight: 400;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
 }

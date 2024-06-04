@@ -20,20 +20,36 @@ logoutBtn.addEventListener('click', (e) => {
   router.navigate('/auth');
 });
 
+const checkAuth = (done) => {
+  const isAuthenticated = localStorage.getItem('coin-auth-token');
+
+  if (!isAuthenticated) {
+    router.navigate('/auth');
+  } else {
+    done();
+  }
+};
+
+const checkNotAuth = (done) => {
+  const isAuthenticated = localStorage.getItem('coin-auth-token');
+
+  if (isAuthenticated) {
+    router.navigate('/');
+  } else {
+    done();
+  }
+};
+
 router
-  .on('/', async () => {
-    if (!isAuth()) {
-      router.navigate('/auth');
-    } else {
+  .on('/', () => {
+    checkAuth(async () => {
       nav.style.display = 'block';
       main.innerHTML = '';
       createAccountsSectionView(main, await API.getAccountList());
-    }
+    });
   })
   .on('/auth', () => {
-    if (isAuth()) {
-      router.navigate('/');
-    } else {
+    checkNotAuth(() => {
       nav.style.display = 'none';
       main.innerHTML = '';
       createAuthFormView(main, {
@@ -41,10 +57,6 @@ router
           if (await API.login(login, password)) router.navigate('/');
         },
       });
-    }
+    });
   })
   .resolve();
-
-function isAuth() {
-  return localStorage.getItem('coin-auth-token');
-}
