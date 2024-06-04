@@ -5,6 +5,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/js/index.js',
@@ -26,6 +27,7 @@ module.exports = {
         { from: 'src/assets/fonts', to: 'fonts' },
       ]
     }),
+    new Dotenv(),
   ],
   module: {
     rules: [
