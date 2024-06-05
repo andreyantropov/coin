@@ -34,13 +34,21 @@ export default class API {
     return data.payload;
   }
 
-  static async getBankList() {
+  static async createAccount() {
     const token = localStorage.getItem('coin-auth-token');
-    const response = await fetch(`${process.env.SERVER}/banks`, {
+    const response = await fetch(`${process.env.SERVER}/create-account`, {
+      method: 'POST',
       headers: {
+        'Content-Type': 'application/json',
         Authorization: `Basic ${token}`,
       },
     });
+    const data = await response.json();
+    return data.payload;
+  }
+
+  static async getBankList() {
+    const response = await fetch(`${process.env.SERVER}/banks`);
     const data = await response.json();
     return data.payload;
   }

@@ -1,16 +1,71 @@
 import { el, mount } from 'redom';
 import Account from './account.js';
 
-export default function createAccountsSectionView(container, accountList) {
-    const items = accountList.map(element => {
-        const account = new Account({ ...element, id: element.account, onClick: () => {} });
-        return account.createElement();
+export default function createAccountsSectionView(
+  container,
+  accountList,
+  { onSortSelectChange, onNewBtnClick }
+) {
+  const ul = el('ul', { class: 'accounts__list list-reset' });
+
+  const title = el('h2', 'Ваши счета', { class: 'accounts__title title' });
+  const select = el(
+    'select',
+    {
+      class: 'accounts__select control control_select',
+      onchange: () => {
+        sortAndRenderAccounts(ul, accountList, select.value);
+      },
+    },
+    [
+      el('option', 'По номеру', { class: 'option' }),
+      el('option', 'По балансу', {
+        class: 'option',
+        selected: true,
+      }),
+      el('option', 'По последней транзакции', { class: 'option' }),
+    ]
+  );
+  const newBtn = el('button', '+ Создать новый счет', {
+    class: 'accounts__new-btn primary-btn btn-reset',
+    onclick: async () => {
+      await onNewBtnClick();
+      sortAndRenderAccounts(ul, accountList, select.value);
+    },
+  });
+  const topMenu = el('div', { class: 'accounts__menu' }, [
+    title,
+    select,
+    newBtn,
+  ]);
+
+  const wrapper = el('div', { class: 'accounts__wrapper' }, [topMenu, ul]);
+  const accountContainer = el(
+    'div',
+    { class: 'accounts__container container' },
+    [wrapper]
+  );
+  const section = el('section', { class: 'accounts' }, [accountContainer]);
+
+  sortAndRenderAccounts(ul, accountList, select.value);
+
+  mount(container, section);
+  return section;
+
+  function renderAccounts(container, accountList) {
+    container.innerHTML = '';
+    accountList.forEach((element) => {
+      const account = new Account({
+        ...element,
+        id: element.account,
+        onClick: () => {},
+      });
+      mount(container, account.createElement());
     });
-    const ul = el('ul', { class: 'accounts__list list-reset' }, [ ...items ]);
-    const wrapper = el('div', { class: 'accounts__wrapper' }, [ ul ]);
-    const accountContainer = el('div', { class: 'accounts__container container' }, [ wrapper ]);
-    const section = el('section', { class: 'accounts' }, [ accountContainer ]);
-    
-    mount(container, section);
-    return section;
+  }
+
+  function sortAndRenderAccounts(container, accountList, sortOption = '') {
+    onSortSelectChange(sortOption);
+    renderAccounts(container, accountList);
+  }
 }

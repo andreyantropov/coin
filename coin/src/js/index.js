@@ -52,7 +52,39 @@ router
     checkAuth(async () => {
       nav.style.display = 'block';
       main.innerHTML = '';
-      createAccountsSectionView(main, await API.getAccountList());
+
+      let accountList = await API.getAccountList();
+      createAccountsSectionView(main, accountList, {
+        onSortSelectChange: (sortOption) => {
+          switch (sortOption) {
+            case 'По номеру':
+              accountList.sort((a, b) => a.account - b.account);
+              break;
+            case 'По балансу':
+              accountList.sort((a, b) => a.balance - b.balance);
+              break;
+            case 'По последней транзакции':
+              accountList.sort((a, b) => {
+                if (!a.transactions[0] && !b.transactions[0]) {
+                  return 0;
+                } else if (!a.transactions[0]) {
+                  return -1;
+                } else if (!b.transactions[0]) {
+                  return 1;
+                } else {
+                  return new Date(a.transactions[0].date) - new Date(b.transactions[0].date);
+                }
+              });
+              break;
+            default:
+              break;
+          }
+        },
+        onNewBtnClick: async () => {
+          const newAccount = await API.createAccount();
+          accountList.push(newAccount);
+        },
+      });
     });
   })
   .on('/banks', () => {

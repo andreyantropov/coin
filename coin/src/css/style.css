@@ -97,6 +97,20 @@ body {
   color: var(--text-secondary-color);
 }
 
+.control_select {
+  min-width: 300px;
+}
+
+.title {
+  margin: 0;
+  margin-bottom: 50px;
+  font-family: var(--second-family);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
+}
+
 .header {
   margin-bottom: 60px;
   background-color: var(--primary-color);
@@ -188,6 +202,22 @@ body {
   max-width: 33%;
 }
 
+.accounts__menu {
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+}
+
+.accounts__title {
+  display: inline-block;
+  margin: 0;
+  margin-right: 30px;
+}
+
+.accounts__select {
+  margin-right: auto;
+}
+
 .accounts__list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -243,16 +273,6 @@ body {
   font-family: var(--second-family);
   font-size: 13px;
   font-weight: 400;
-  letter-spacing: -0.02em;
-  color: var(--text-primary-color);
-}
-
-.banks__title {
-  margin: 0;
-  margin-bottom: 50px;
-  font-family: var(--second-family);
-  font-size: 34px;
-  font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary-color);
 }
