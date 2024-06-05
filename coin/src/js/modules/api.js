@@ -33,4 +33,15 @@ export default class API {
     const data = await response.json();
     return data.payload;
   }
+
+  static async getBankList() {
+    const token = localStorage.getItem('coin-auth-token');
+    const response = await fetch(`${process.env.SERVER}/banks`, {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data.payload;
+  }
 }

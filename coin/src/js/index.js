@@ -6,13 +6,20 @@ import Navigo from 'navigo';
 import API from './modules/api.js';
 import createAuthFormView from './modules/create-auth-form-view.js';
 import createAccountsSectionView from './modules/create-accounts-section-view.js';
+import createMapSectionView from './modules/create-map-section-view.js';
 
 const router = new Navigo(null, true);
 
 const nav = document.getElementById('nav');
+const banksBtn = document.getElementById('banks-btn');
 const logoutBtn = document.getElementById('logout-btn');
 const main = document.getElementById('main');
 
+banksBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+
+  router.navigate('/banks');
+});
 logoutBtn.addEventListener('click', (e) => {
   e.preventDefault();
 
@@ -46,6 +53,13 @@ router
       nav.style.display = 'block';
       main.innerHTML = '';
       createAccountsSectionView(main, await API.getAccountList());
+    });
+  })
+  .on('/banks', () => {
+    checkAuth(async () => {
+      nav.style.display = 'block';
+      main.innerHTML = '';
+      createMapSectionView(main, await API.getBankList());
     });
   })
   .on('/auth', () => {

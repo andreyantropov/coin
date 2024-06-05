@@ -7,6 +7,7 @@
   <title>
     <%= htmlWebpackPlugin.options.title %>
   </title>
+  <script src="https://api-maps.yandex.ru/v3/?apikey=ce1ed5b3-c3a8-43cc-a92e-8247fe5ac5c6&lang=ru_RU" defer></script>
 </head>
 
 <body>
@@ -20,7 +21,7 @@
         <nav class="header__nav nav" id="nav">
           <ul class="nav__list list-reset">
             <li class="nav__item">
-              <a href="#" class="nav__link">Банкоматы</a>
+              <a href="/banks" class="nav__link" id="banks-btn">Банкоматы</a>
             </li>
             <li class="nav__item">
               <a href="/" class="nav__link">Счета</a>

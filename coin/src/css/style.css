@@ -246,3 +246,23 @@ body {
   letter-spacing: -0.02em;
   color: var(--text-primary-color);
 }
+
+.banks__title {
+  margin: 0;
+  margin-bottom: 50px;
+  font-family: var(--second-family);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
+}
+
+.banks__map {
+  width: 75vw;
+  height: 75vh;
+}
+
+.marker {
+  width: 32px;
+  height: 32px;
+}
