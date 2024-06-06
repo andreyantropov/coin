@@ -4,7 +4,7 @@ import Account from './account.js';
 export default function createAccountsSectionView(
   container,
   accountList,
-  { onSortSelectChange, onNewBtnClick }
+  { onAccauntBtnClick, onSortSelectChange, onNewBtnClick }
 ) {
   const ul = el('ul', { class: 'accounts__list list-reset' });
 
@@ -14,7 +14,7 @@ export default function createAccountsSectionView(
     {
       class: 'accounts__select control control_select',
       onchange: () => {
-        sortAndRenderAccounts(ul, accountList, select.value);
+        sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
       },
     },
     [
@@ -30,7 +30,7 @@ export default function createAccountsSectionView(
     class: 'accounts__new-btn primary-btn btn-reset',
     onclick: async () => {
       await onNewBtnClick();
-      sortAndRenderAccounts(ul, accountList, select.value);
+      sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
     },
   });
   const topMenu = el('div', { class: 'accounts__menu' }, [
@@ -47,25 +47,25 @@ export default function createAccountsSectionView(
   );
   const section = el('section', { class: 'accounts' }, [accountContainer]);
 
-  sortAndRenderAccounts(ul, accountList, select.value);
+  sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
 
   mount(container, section);
   return section;
 
-  function renderAccounts(container, accountList) {
+  function renderAccounts(container, accountList, onClick) {
     container.innerHTML = '';
     accountList.forEach((element) => {
       const account = new Account({
         ...element,
         id: element.account,
-        onClick: () => {},
+        onClick: () => { onClick(element.account) },
       });
       mount(container, account.createElement());
     });
   }
 
-  function sortAndRenderAccounts(container, accountList, sortOption = '') {
+  function sortAndRenderAccounts(container, accountList, onClick, sortOption = '') {
     onSortSelectChange(sortOption);
-    renderAccounts(container, accountList);
+    renderAccounts(container, accountList, onClick);
   }
 }

@@ -7,6 +7,7 @@ import API from './modules/api.js';
 import createAuthFormView from './modules/create-auth-form-view.js';
 import createAccountsSectionView from './modules/create-accounts-section-view.js';
 import createMapSectionView from './modules/create-map-section-view.js';
+import createAccountDataSectionView from './modules/create-account-data-section-view.js';
 
 const router = new Navigo(null, true);
 
@@ -55,6 +56,7 @@ router
 
       let accountList = await API.getAccountList();
       createAccountsSectionView(main, accountList, {
+        onAccauntBtnClick: (id) => { router.navigate(`/accounts/${id}`); },
         onSortSelectChange: (sortOption) => {
           switch (sortOption) {
             case 'По номеру':
@@ -85,6 +87,22 @@ router
           accountList.push(newAccount);
         },
       });
+    });
+  })
+  .on('/accounts/:id', (data) => {
+    checkAuth(async () => {
+      const id = data.data.id;
+
+      nav.style.display = 'block';
+      main.innerHTML = '';
+      createAccountDataSectionView(main, await API.getAccount(id), { 
+        onBackBtnClick: () => {
+          router.navigate('/');
+        },
+        onTransactionsTableClick: () => {
+          alert('Я пока еще не написан');
+        }
+       })
     });
   })
   .on('/banks', () => {

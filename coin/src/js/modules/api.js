@@ -34,6 +34,17 @@ export default class API {
     return data.payload;
   }
 
+  static async getAccount(id) {
+    const token = localStorage.getItem('coin-auth-token');
+    const response = await fetch(`${process.env.SERVER}/account/${id}`, {
+      headers: {
+        Authorization: `Basic ${token}`,
+      },
+    });
+    const data = await response.json();
+    return data.payload;
+  }
+
   static async createAccount() {
     const token = localStorage.getItem('coin-auth-token');
     const response = await fetch(`${process.env.SERVER}/create-account`, {

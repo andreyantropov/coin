@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "dependencies": {
+    "chart.js": "^4.4.3",
     "creditcard.js": "^3.0.33",
     "maska": "^2.1.11",
     "navigo": "^8.11.1",
