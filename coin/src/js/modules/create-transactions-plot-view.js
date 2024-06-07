@@ -15,7 +15,6 @@ export default function createTransactionsPlotView(
 ) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
-  // Фильтруем транзакции за последние 6 месяцев
   const lastSixMonthsTransactions = transactionList.filter((transaction) => {
     const date = new Date(transaction.date);
     const sixMonthsAgo = new Date();
@@ -23,13 +22,11 @@ export default function createTransactionsPlotView(
     return date >= sixMonthsAgo;
   });
 
-  // Группируем транзакции по месяцам
   const groupedTransactions = groupTransactionsByMonth(
     lastSixMonthsTransactions
   );
   const balanceList = balanceByMonth(balance, groupedTransactions);
 
-  // Подготавливаем данные для графика
   const labels = balanceList.map((item) => item.month);
   const data = balanceList.map((item) => item.amount);
 
@@ -50,7 +47,6 @@ export default function createTransactionsPlotView(
     },
   };
 
-  // Создаем график с помощью Chart.js
   const chartCanvas = el('canvas', { class: 'account-data__plot plot' });
   const myChart = new Chart(chartCanvas, {
     type: 'bar',
@@ -67,6 +63,8 @@ export default function createTransactionsPlotView(
       ],
     },
     options: {
+      responsive: true,
+      maintainAspectRatio: false,
       scales: {
         y: {
           position: 'right',
@@ -111,11 +109,10 @@ export default function createTransactionsPlotView(
   mount(container, chartCanvas);
   return chartCanvas;
 
-  // Функция для группировки транзакций по месяцам
   function groupTransactionsByMonth(transactionList) {
     const groupedTransactions = [];
     const today = new Date();
-  
+
     for (let i = 0; i < 6; i++) {
       const month = today.toLocaleString('default', { month: 'long' });
       groupedTransactions.push({
@@ -124,12 +121,11 @@ export default function createTransactionsPlotView(
       });
       today.setMonth(today.getMonth() - 1);
     }
-  
+
     transactionList.forEach((transaction) => {
       const date = new Date(transaction.date);
       const month = date.toLocaleString('default', { month: 'long' });
-  
-      // Find the matching month object in the array
+
       const monthIndex = groupedTransactions.findIndex(
         (item) => item.month === month
       );

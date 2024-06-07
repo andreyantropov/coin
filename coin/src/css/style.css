@@ -13,6 +13,7 @@
   --text-primary-color: #000;
   --text-secondary-color: #374151;
   --text-muted-color: #6b7280;
+  --text-table-color: rgba(0, 82, 255, 0.1);
   --background-color: #f3f4f6;
   --light-color: #fff;
 }
@@ -350,21 +351,21 @@ body {
   gap: 30px;
 }
 
-.account-data__transaction {
+.account-data__transaction-form {
   grid-area: transaction-form;
 }
 
 .account-data__plot {
   grid-area: transaction-plot;
+  width: 100% !important;
+  height: 320px !important;
 }
 
-.plot {
-  padding: 32px;
-  border-radius: 50px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+.account-data__table {
+  grid-area: transaction-table;
 }
 
-.transaction {
+.transaction-form {
   display: grid;
   grid-template-columns: 200px 1fr;
   grid-template-rows: repeat(4, auto);
@@ -380,7 +381,7 @@ body {
   background-color: var(--background-color);
 }
 
-.transaction__title {
+.transaction-form__title {
   grid-area: transaction-title;
   margin: 0;
   font-family: var(--second-family);
@@ -390,27 +391,101 @@ body {
   color: var(--text-primary-color);
 }
 
-.transaction__label {
+.transaction-form__label {
   justify-self: end;
 }
 
-.transaction__label_account {
+.transaction-form__label_account {
   grid-area: transaction-account-lbl;
 }
 
-.transaction__control_account {
+.transaction-form__control_account {
   grid-area: transaction-account-input;
 }
 
-.transaction__label_amount {
+.transaction-form__label_amount {
   grid-area: transaction-amount-lbl;
 }
 
-.transaction__control_amount {
+.transaction-form__control_amount {
   grid-area: transaction-amount-input;
 }
 
-.transaction__submit-btn {
+.transaction-form__submit-btn {
   grid-area: transaction-submit-btn;
   max-width: 50%;
+}
+
+.plot {
+  padding: 32px;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.table {
+  padding: 32px;
+  border-radius: 56px;
+  background-color: var(--background-color);
+}
+
+.table__table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table__title {
+  font-family: var(--second-family);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
+}
+
+.table__thead {
+  width: 100%;
+  background-color: var(--primary-color);
+}
+
+.table__tr {
+  border-bottom: 2px solid var(--text-table-color);
+}
+
+.table__thead .table__tr {
+  border: none;
+}
+
+.table__th {
+  padding: 20px 20px;
+  border: none;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 120%;
+  letter-spacing: -0.01em;
+  color: var(--light-color);
+  text-align: left;
+}
+
+.table__th_from {
+  border-radius: 15px 0 0 15px;
+}
+
+.table__th_date {
+  border-radius: 0 15px 15px 0;
+}
+
+.table__td {
+  padding: 20px 20px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  letter-spacing: -0.01em;
+  color: var(--text-secondary-color);
+}
+
+.transaction__data_positive {
+  color: var(--success-color);
+}
+
+.transaction__data_negative {
+  color: var(--danger-color);
 }

@@ -4,10 +4,10 @@ export default function createTransactionFormView(container, { onTransactionSubm
   const form = el(
     'form',
     [
-      el('h2', 'Новый перевод', { class: 'transaction__title' }),
-      el('label', 'Номер счета получателя', { class: 'transaction__label transaction__label_account label' }),
+      el('h3', 'Новый перевод', { class: 'transaction-form__title' }),
+      el('label', 'Номер счета получателя', { class: 'transaction-form__label transaction-form__label_account label' }),
       el('input', {
-        class: 'transaction__control transaction__control_account control',
+        class: 'transaction-form__control transaction-form__control_account control',
         id: 'transaction-account',
         type: 'text',
         placeholder: 'Счет получателя',
@@ -15,10 +15,10 @@ export default function createTransactionFormView(container, { onTransactionSubm
         required: true,
       }),
       el('label', 'Сумма перевода', {
-        class: 'transaction__label transaction__label_amount label',
+        class: 'transaction-form__label transaction-form__label_amount label',
       }),
       el('input', {
-        class: 'transaction__control transaction__control_amount control',
+        class: 'transaction-form__control transaction-form__control_amount control',
         id: 'transaction-amount',
         type: 'text',
         placeholder: 'Сумма',
@@ -26,11 +26,11 @@ export default function createTransactionFormView(container, { onTransactionSubm
         required: true,
       }),
       el('button', 'Отправить', {
-        class: 'transaction__submit-btn primary-btn btn-reset',
+        class: 'transaction-form__submit-btn primary-btn btn-reset',
       }),
     ],
     {
-      class: 'transaction account-data__transaction',
+      class: 'transaction-form account-data__transaction-form',
       onsubmit: (e) => {
         e.preventDefault();
 

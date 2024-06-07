@@ -1,6 +1,7 @@
 import { el, mount } from 'redom';
 import createTransactionFormView from './create-transaction-form-view.js';
 import createTransactionsPlotView from './create-transactions-plot-view.js';
+import createTransactionsHistoryTableView from './create-transactions-history-table-view.js';
 
 export default function createAccountDataSectionView(
   container,
@@ -36,6 +37,7 @@ export default function createAccountDataSectionView(
   const content = el('div', { class: 'account-data__content' });
   const transactionForm = createTransactionFormView(content, { onTransactionSubmit: () => { alert('Транзакция') } });
   const transactionsPlot = createTransactionsPlotView(content, account.balance, account.transactions);
+  const transactionsHistoryTable = createTransactionsHistoryTableView(content, account.transactions);
 
   const wrapper = el('div', { class: 'account-data__wrapper' }, [primaryDataContainer, content]);
   const accountContainer = el(
