@@ -1,7 +1,7 @@
-import { el, mount } from 'redom';
+import { el } from 'redom';
 import Marker from './marker';
 
-export default function createMapSectionView(container, markerList) {
+export default function createMapSectionView({ markerList }) {
   const title = el('h2', 'Карта банкоматов', { class: 'banks__title title' });
   const map = el('div', { class: 'banks__map map', id: 'map' });
   const wrapper = el('div', { class: 'banks__wrapper' }, [title, map]);
@@ -12,7 +12,6 @@ export default function createMapSectionView(container, markerList) {
 
   initMap(map, markerList);
 
-  mount(container, section);
   return section;
 }
 

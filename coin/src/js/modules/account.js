@@ -1,4 +1,5 @@
 import { el } from 'redom';
+import { formatDate, formatMoney } from './utils';
 
 export default class Account {
   constructor({ id, balance, transactions, onClick }) {
@@ -23,9 +24,12 @@ export default class Account {
   createElement() {
     const li = el(
       'li',
+      {
+        class: 'accounts__item account',
+      },
       [
         el('h3', this._id, { class: 'account__title' }),
-        el('span', this._balance, { class: 'account__balance' }),
+        el('span', formatMoney(this._balance), { class: 'account__balance' }),
         el('div', { class: 'account__container' }, [
           el('div', { class: 'account__transaction' }, [
             el('h4', 'Последняя транзакция', { class: 'account__subtitle' }),
@@ -39,9 +43,6 @@ export default class Account {
           }),
         ]),
       ],
-      {
-        class: 'accounts__item account',
-      }
     );
     return li;
   }
@@ -49,10 +50,6 @@ export default class Account {
   getLastTransactionFormattedDate() {
     if (!this._transactions.length) return '';
 
-    const date = new Date(this._transactions[0].date);
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    const formattedDate = date.toLocaleDateString('ru-RU', options);
-
-    return formattedDate;
+    return formatDate(this._transactions[0].date);
   }
 }

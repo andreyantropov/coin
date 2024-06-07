@@ -1,8 +1,19 @@
 import { el, mount } from 'redom';
 
-export default function createAuthFormView(container, { onAuthSubmit }) {
+export default function createAuthFormView({ onAuthSubmit }) {
   const form = el(
     'form',
+    {
+      class: 'auth',
+      onsubmit: (e) => {
+        e.preventDefault();
+
+        const login = document.getElementById('auth-login').value.trim();
+        const password = document.getElementById('auth-password').value.trim();
+
+        onAuthSubmit(login, password);
+      },
+    },
     [
       el('h2', 'Вход в аккаунт', { class: 'auth__title' }),
       el('label', 'Логин', { class: 'auth__label auth__label_login label' }),
@@ -29,19 +40,7 @@ export default function createAuthFormView(container, { onAuthSubmit }) {
         class: 'auth__submit-btn primary-btn btn-reset',
       }),
     ],
-    {
-      class: 'auth',
-      onsubmit: (e) => {
-        e.preventDefault();
-
-        const login = document.getElementById('auth-login').value.trim();
-        const password = document.getElementById('auth-password').value.trim();
-
-        onAuthSubmit(login, password);
-      },
-    }
   );
 
-  mount(container, form);
   return form;
 }

@@ -1,8 +1,19 @@
-import { el, mount } from 'redom';
+import { el } from 'redom';
 
-export default function createTransactionFormView(container, { onTransactionSubmit }) {
+export default function createTransactionFormView({ cssClass, onTransactionSubmit }) {
   const form = el(
     'form',
+    {
+      class: `${cssClass} transaction-form`,
+      onsubmit: (e) => {
+        e.preventDefault();
+
+        const account = document.getElementById('auth-account').value.trim();
+        const amount = document.getElementById('auth-amount').value.trim();
+
+        onTransactionSubmit(account, amount);
+      },
+    },
     [
       el('h3', 'Новый перевод', { class: 'transaction-form__title' }),
       el('label', 'Номер счета получателя', { class: 'transaction-form__label transaction-form__label_account label' }),
@@ -29,19 +40,7 @@ export default function createTransactionFormView(container, { onTransactionSubm
         class: 'transaction-form__submit-btn primary-btn btn-reset',
       }),
     ],
-    {
-      class: 'transaction-form account-data__transaction-form',
-      onsubmit: (e) => {
-        e.preventDefault();
-
-        const account = document.getElementById('auth-account').value.trim();
-        const amount = document.getElementById('auth-amount').value.trim();
-
-        onTransactionSubmit(account, amount);
-      },
-    }
   );
 
-  mount(container, form);
   return form;
 }

@@ -1,4 +1,4 @@
-import { el, mount } from 'redom';
+import { el } from 'redom';
 import {
   Chart,
   CategoryScale,
@@ -7,18 +7,17 @@ import {
   BarElement,
   Title,
 } from 'chart.js';
+import { chartAreaBorder } from './chart-plugins';
 
 export default function createTransactionsPlotView(
-  container,
-  balance,
-  transactionList
+  { cssClass, balance, transactionList, monthCount, onClick, }
 ) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
   const lastSixMonthsTransactions = transactionList.filter((transaction) => {
     const date = new Date(transaction.date);
     const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - 6);
+    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - monthCount);
     return date >= sixMonthsAgo;
   });
 
@@ -30,24 +29,7 @@ export default function createTransactionsPlotView(
   const labels = balanceList.map((item) => item.month);
   const data = balanceList.map((item) => item.amount);
 
-  const chartAreaBorder = {
-    id: 'chartAreaBorder',
-    beforeDraw(chart, args, options) {
-      const {
-        ctx,
-        chartArea: { left, top, width, height },
-      } = chart;
-      ctx.save();
-      ctx.strokeStyle = options.borderColor;
-      ctx.lineWidth = options.borderWidth;
-      ctx.setLineDash(options.borderDash || []);
-      ctx.lineDashOffset = options.borderDashOffset;
-      ctx.strokeRect(left, top, width, height);
-      ctx.restore();
-    },
-  };
-
-  const chartCanvas = el('canvas', { class: 'account-data__plot plot' });
+  const chartCanvas = el('canvas', { class: `${cssClass} plot`, onclick: () => { onClick(); } });
   const myChart = new Chart(chartCanvas, {
     type: 'bar',
     data: {
@@ -106,14 +88,13 @@ export default function createTransactionsPlotView(
     plugins: [chartAreaBorder],
   });
 
-  mount(container, chartCanvas);
   return chartCanvas;
 
   function groupTransactionsByMonth(transactionList) {
     const groupedTransactions = [];
     const today = new Date();
 
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < monthCount; i++) {
       const month = today.toLocaleString('default', { month: 'long' });
       groupedTransactions.push({
         amount: 0,

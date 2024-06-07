@@ -1,4 +1,5 @@
 import { el } from 'redom';
+import { formatDate, formatMoney } from './utils';
 
 export default class Transaction {
   constructor({ amount, date, from, to }) {
@@ -28,19 +29,13 @@ export default class Transaction {
     const tr = el('tr', { class: 'table__tr transaction' }, [
       el('td', this._from, { class: 'table__td transaction__data' }),
       el('td', this._to, { class: 'table__td transaction__data' }),
-      el('td', this._amount, {
+      el('td', formatMoney(this._amount), {
         class: `table__td transaction__data ${this._amount > 0 ? 'transaction__data_positive' : 'transaction__data_negative'}`,
       }),
-      el('td', this.formatDate(this._date), {
+      el('td', formatDate(this._date), {
         class: 'table__td transaction__data',
       }),
     ]);
     return tr;
-  }
-
-  formatDate(inputDate) {
-    const date = new Date(inputDate);
-    const options = { day: 'numeric', month: 'long', year: 'numeric' };
-    return date.toLocaleDateString('ru-RU', options);
   }
 }

@@ -2,9 +2,7 @@ import { el, mount } from 'redom';
 import Account from './account.js';
 
 export default function createAccountsSectionView(
-  container,
-  accountList,
-  { onAccauntBtnClick, onSortSelectChange, onNewBtnClick }
+  { accountList, onAccauntBtnClick, onSortSelectChange, onNewBtnClick }
 ) {
   const ul = el('ul', { class: 'accounts__list list-reset' });
 
@@ -49,7 +47,6 @@ export default function createAccountsSectionView(
 
   sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
 
-  mount(container, section);
   return section;
 
   function renderAccounts(container, accountList, onClick) {

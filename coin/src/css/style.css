@@ -288,7 +288,7 @@ body {
   height: 32px;
 }
 
-.account-data__primary-data {
+.account-data__account-details {
   display: grid;
   grid-template-columns: 1fr 200px;
   grid-template-rows: repeat(2, auto);
@@ -299,16 +299,16 @@ body {
   margin-bottom: 30px;
 }
 
-.account-data__title {
+.account-details__title {
   grid-area: account-title;
   margin: 0;
 }
 
-.account-data__back-btn {
+.account-details__back-btn {
   grid-area: account-back-btn;
 }
 
-.account-data__number {
+.account-details__number {
   grid-area: account-number;
   font-family: var(--second-family);
   font-size: 34px;
@@ -317,14 +317,14 @@ body {
   color: var(--text-primary-color);
 }
 
-.account-data__balance-container {
+.balance__container {
   grid-area: account-balance;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.account-data__balance-title {
+.balance__title {
   margin: 0;
   font-family: var(--second-family);
   font-size: 20px;
@@ -333,7 +333,7 @@ body {
   color: var(--text-primary-color);
 }
 
-.account-data__balance-value {
+.balance__value {
   font-family: var(--second-family);
   font-size: 20px;
   font-weight: 400;
@@ -431,14 +431,17 @@ body {
 .table__table {
   width: 100%;
   border-collapse: collapse;
+  caption-side: top;
 }
 
-.table__title {
+.table__caption {
+  margin-bottom: 30px;
   font-family: var(--second-family);
   font-size: 20px;
   font-weight: 700;
   letter-spacing: -0.02em;
   color: var(--text-primary-color);
+  text-align: left;
 }
 
 .table__thead {

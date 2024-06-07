@@ -8,6 +8,7 @@ import createAuthFormView from './modules/create-auth-form-view.js';
 import createAccountsSectionView from './modules/create-accounts-section-view.js';
 import createMapSectionView from './modules/create-map-section-view.js';
 import createAccountDataSectionView from './modules/create-account-data-section-view.js';
+import { mount } from 'redom';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 
@@ -42,7 +43,8 @@ router
         main.innerHTML = '';
 
         let accountList = await API.getAccountList();
-        createAccountsSectionView(main, accountList, {
+        const section = createAccountsSectionView({
+          accountList: accountList,
           onAccauntBtnClick: (id) => {
             router.navigate(`/accounts/${id}`);
           },
@@ -79,6 +81,7 @@ router
             accountList.push(newAccount);
           },
         });
+        mount(main, section);
       });
     },
     '/accounts/:id': ({ data }) => {
@@ -87,7 +90,8 @@ router
 
         nav.style.display = 'block';
         main.innerHTML = '';
-        createAccountDataSectionView(main, await API.getAccount(id), {
+        const section = createAccountDataSectionView({
+          account: await API.getAccount(id),
           onBackBtnClick: () => {
             router.navigate('/');
           },
@@ -95,6 +99,7 @@ router
             router.navigate(`/account/${id}/history`);
           },
         });
+        mount(main, section);
       });
     },
     '/accounts/:id/history': ({ data }) => {
@@ -107,18 +112,22 @@ router
       checkAuth(async () => {
         nav.style.display = 'block';
         main.innerHTML = '';
-        createMapSectionView(main, await API.getBankList());
+        const section = createMapSectionView({
+          markerList: await API.getBankList(),
+        });
+        mount(main, section);
       });
     },
     '/auth': () => {
       checkNotAuth(() => {
         nav.style.display = 'none';
         main.innerHTML = '';
-        createAuthFormView(main, {
+        const section = createAuthFormView({
           onAuthSubmit: async (login, password) => {
             if (await API.login(login, password)) router.navigate('/');
           },
         });
+        mount(main, section);
       });
     },
     '/logout': () => {
