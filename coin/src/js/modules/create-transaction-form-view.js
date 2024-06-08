@@ -1,6 +1,6 @@
 import { el } from 'redom';
 
-export default function createTransactionFormView({ cssClass, onTransactionSubmit }) {
+export default function createTransactionFormView({ cssClass, id, onSubmit }) {
   const form = el(
     'form',
     {
@@ -8,10 +8,10 @@ export default function createTransactionFormView({ cssClass, onTransactionSubmi
       onsubmit: (e) => {
         e.preventDefault();
 
-        const account = document.getElementById('auth-account').value.trim();
-        const amount = document.getElementById('auth-amount').value.trim();
+        const to = document.getElementById('transaction-account').value.trim();
+        const amount = document.getElementById('transaction-amount').value.trim();
 
-        onTransactionSubmit(account, amount);
+        onSubmit(id, to, amount);
       },
     },
     [

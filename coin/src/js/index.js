@@ -96,6 +96,9 @@ router
           onBackBtnClick: () => {
             router.navigate('/');
           },
+          onTransactionFormSubmit: async (from, to, amount) => {
+            await API.transferFunds(from, to, amount);
+          },
           onTransactionsTableClick: () => {
             router.navigate(`/history/${id}`);
           },

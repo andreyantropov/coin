@@ -5,11 +5,11 @@ import createTransactionsHistoryTableView from './create-transactions-history-ta
 import createAccountDetailsView from './create-account-details-view.js';
 
 export default function createAccountDataSectionView(
-  { account, onBackBtnClick, onTransactionsTableClick }
+  { account, onBackBtnClick, onTransactionFormSubmit, onTransactionsTableClick }
 ) {
   const details = createAccountDetailsView({ cssClass: 'account-data__account-details', title: 'Просмотр счёта', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
 
-  const transactionForm = createTransactionFormView({ cssClass: 'account-data__transaction-form', onTransactionSubmit: () => { alert('Транзакция') } });
+  const transactionForm = createTransactionFormView({ cssClass: 'account-data__transaction-form', id: account.account, onSubmit: onTransactionFormSubmit });
   const plot = createBalancePlotView({ cssClass: 'account-data__plot', balance: account.balance, transactionList: account.transactions, monthCount: 6, onClick: onTransactionsTableClick, });
   const table = createTransactionsHistoryTableView({ cssClass: 'account-data__table', transactionList: account.transactions, onClick: onTransactionsTableClick, });
   const content = el('div', { class: 'account-data__content' }, [ transactionForm, plot, table ]);

@@ -58,6 +58,24 @@ export default class API {
     return data.payload;
   }
 
+  static async transferFunds(from, to, amount) {
+    const token = localStorage.getItem('coin-auth-token');
+    const response = await fetch(`${process.env.SERVER}/transfer-funds`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${token}`,
+      },
+      body: JSON.stringify({
+        from: from,
+        to: to,
+        amount: amount,
+      }),
+    });
+    const data = await response.json();
+    return data.payload;
+  }
+
   static async getBankList() {
     const response = await fetch(`${process.env.SERVER}/banks`);
     const data = await response.json();
