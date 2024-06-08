@@ -288,7 +288,7 @@ body {
   height: 32px;
 }
 
-.account-data__account-details {
+.account-details {
   display: grid;
   grid-template-columns: 1fr 200px;
   grid-template-rows: repeat(2, auto);
@@ -491,4 +491,16 @@ body {
 
 .transaction__data_negative {
   color: var(--danger-color);
+}
+
+.history__content {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 320px 320px auto;
+  gap: 30px;
+}
+
+.history__plot {
+  width: 100% !important;
+  height: 320px !important;
 }

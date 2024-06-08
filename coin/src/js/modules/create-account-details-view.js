@@ -1,8 +1,8 @@
 import { el } from 'redom';
 import { formatMoney } from './utils';
 
-export default function createAccountDetailsView({ cssClass, id, balance, onBackBtnClick }) {
-  const title = el('h2', 'Просмотр счёта', {
+export default function createAccountDetailsView({ cssClass, title, id, balance, onBackBtnClick }) {
+  const titleEl = el('h2', title, {
     class: 'account-details__title title',
   });
   const backBtn = el('button', '<- Вернуться назад', {
@@ -25,7 +25,7 @@ export default function createAccountDetailsView({ cssClass, id, balance, onBack
   const primaryDataContainer = el(
     'div',
     { class: `${cssClass} account-details` },
-    [title, backBtn, accountId, balanceContainer]
+    [titleEl, backBtn, accountId, balanceContainer]
   );
 
   return primaryDataContainer;
