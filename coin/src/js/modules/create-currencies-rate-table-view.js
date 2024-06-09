@@ -8,11 +8,21 @@ export default function createCurrenciesRateTableView({ cssClass, webSocket }) {
     body,
   ]);
 
+  const rateList = [];
   webSocket.onmessage = (e) => {
     const data = JSON.parse(e.data);
+
     if (data.type === 'EXCHANGE_RATE_CHANGE') {
-      const currency = new CurrencyRate(data);
+      rateList.unshift(data);
+      if (rateList.length > 12) {
+        rateList.pop();
+      }
+
+      body.innerHTML = '';
+      rateList.forEach(element => {
+        const currency = new CurrencyRate(element);
       mount(body, currency.createElement());
+      });
     }
   };
 
