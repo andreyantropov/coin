@@ -10,8 +10,8 @@ export default function createAccountDataSectionView(
   const details = createAccountDetailsView({ cssClass: 'account-data__account-details', title: 'Просмотр счёта', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
 
   const transactionForm = createTransactionFormView({ cssClass: 'account-data__transaction-form', id: account.account, onSubmit: onTransactionFormSubmit });
-  const plot = createBalancePlotView({ cssClass: 'account-data__plot', balance: account.balance, transactionList: account.transactions, monthCount: 6, onClick: onTransactionsTableClick, });
-  const table = createTransactionsHistoryTableView({ cssClass: 'account-data__table', transactionList: account.transactions, onClick: onTransactionsTableClick, });
+  const plot = createBalancePlotView({ cssClass: 'account-data__plot', account: account, monthCount: 6, onClick: onTransactionsTableClick, });
+  const table = createTransactionsHistoryTableView({ cssClass: 'account-data__table', account: account, onClick: onTransactionsTableClick, });
   const content = el('div', { class: 'account-data__content' }, [ transactionForm, plot, table ]);
 
   const wrapper = el('div', { class: 'account-data__wrapper' }, [ details, content ]);

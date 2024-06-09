@@ -2,7 +2,7 @@ import { el, mount } from 'redom';
 import Account from './account.js';
 
 export default function createAccountsSectionView(
-  { accountList, onAccauntBtnClick, onSortSelectChange, onNewBtnClick }
+  { accountList, onaccountBtnClick, onSortSelectChange, onNewBtnClick }
 ) {
   const ul = el('ul', { class: 'accounts__list list-reset' });
 
@@ -12,7 +12,7 @@ export default function createAccountsSectionView(
     {
       class: 'accounts__select control control_select',
       onchange: () => {
-        sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
+        sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
       },
     },
     [
@@ -28,7 +28,7 @@ export default function createAccountsSectionView(
     class: 'accounts__new-btn primary-btn btn-reset',
     onclick: async () => {
       await onNewBtnClick();
-      sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
+      sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
     },
   });
   const topMenu = el('div', { class: 'accounts__menu' }, [
@@ -45,7 +45,7 @@ export default function createAccountsSectionView(
   );
   const section = el('section', { class: 'accounts' }, [accountContainer]);
 
-  sortAndRenderAccounts(ul, accountList, onAccauntBtnClick, select.value);
+  sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
 
   return section;
 

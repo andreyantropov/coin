@@ -2,11 +2,16 @@ import { el } from 'redom';
 import { formatDate, formatMoney } from './utils';
 
 export default class Transaction {
-  constructor({ amount, date, from, to }) {
+  constructor({ accountId, amount, date, from, to }) {
+    this._accountId = accountId;
     this._amount = amount;
     this._date = date;
     this._from = from;
     this._to = to;
+  }
+
+  get accountId() {
+    return this._accountId;
   }
 
   get amount() {
@@ -30,7 +35,7 @@ export default class Transaction {
       el('td', this._from, { class: 'table__td transaction__data' }),
       el('td', this._to, { class: 'table__td transaction__data' }),
       el('td', formatMoney(this._amount), {
-        class: `table__td transaction__data ${this._amount > 0 ? 'transaction__data_positive' : 'transaction__data_negative'}`,
+        class: `table__td transaction__data ${this._to === this._accountId ? 'transaction__data_positive' : 'transaction__data_negative'}`,
       }),
       el('td', formatDate(this._date), {
         class: 'table__td transaction__data',

@@ -46,7 +46,7 @@ router
         let accountList = await API.getAccountList();
         const section = createAccountsSectionView({
           accountList: accountList,
-          onAccauntBtnClick: (id) => {
+          onaccountBtnClick: (id) => {
             router.navigate(`/accounts/${id}`);
           },
           onSortSelectChange: (sortOption) => {

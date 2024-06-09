@@ -2,7 +2,7 @@ import { el } from 'redom';
 import Transaction from './transaction.js';
 
 export default function createTransactionsHistoryTableView(
-  { cssClass, transactionList, onClick }
+  { cssClass, account, onClick }
 ) {
   const table = el(
     'table',
@@ -23,8 +23,8 @@ export default function createTransactionsHistoryTableView(
         ]),
       ]),
       el('tbody', { class: 'table__tbody' }, [
-        transactionList.slice(0, 10).map((element) => {
-          const transaction = new Transaction(element);
+        account.transactions.slice(-10).reverse().map((element) => {
+          const transaction = new Transaction({ accountId: account.account, ...element });
           return transaction.createElement();
         }),
       ]),

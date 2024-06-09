@@ -10,22 +10,23 @@ import {
 import { chartAreaBorder } from './chart-plugins';
 
 export function createBalancePlotView(
-  { cssClass, balance, transactionList, monthCount, onClick, }
+  { cssClass, account, monthCount, onClick, }
 ) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
-  const lastSixMonthsTransactions = transactionList.filter((transaction) => {
+  const lastTransactions = account.transactions.filter((transaction) => {
     const date = new Date(transaction.date);
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - monthCount);
-    return date >= sixMonthsAgo;
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - monthCount);
+    return date >= startDate;
   });
 
   const groupedTransactions = groupTransactionsByMonth(
-    lastSixMonthsTransactions,
+    account.account,
+    lastTransactions,
     monthCount
   );
-  const balanceList = balanceByMonth(balance, groupedTransactions);
+  const balanceList = balanceByMonth(account.balance, groupedTransactions);
 
   const labels = balanceList.map((item) => item.month);
   const data = balanceList.map((item) => item.amount);
@@ -92,19 +93,20 @@ export function createBalancePlotView(
 }
 
 export function createTransactionsPlotView(
-  { cssClass, balance, transactionList, monthCount, onClick, }
+  { cssClass, account, monthCount, onClick, }
 ) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
-  const lastSixMonthsTransactions = transactionList.filter((transaction) => {
+  const lastTransactions = account.transactions.filter((transaction) => {
     const date = new Date(transaction.date);
-    const sixMonthsAgo = new Date();
-    sixMonthsAgo.setMonth(sixMonthsAgo.getMonth() - monthCount);
-    return date >= sixMonthsAgo;
+    const startDate = new Date();
+    startDate.setMonth(startDate.getMonth() - monthCount);
+    return date >= startDate;
   });
 
   const groupedTransactions = groupTransactionsByMonth(
-    lastSixMonthsTransactions,
+    account.account,
+    lastTransactions,
     monthCount
   );
 
@@ -183,7 +185,7 @@ export function createTransactionsPlotView(
   return chartCanvas;
 }
 
-function groupTransactionsByMonth(transactionList, monthCount) {
+function groupTransactionsByMonth(id, transactionList, monthCount) {
   const groupedTransactions = [];
   const today = new Date();
 
@@ -206,12 +208,13 @@ function groupTransactionsByMonth(transactionList, monthCount) {
       (item) => item.month === month
     );
     if (monthIndex !== -1) {
-      if (transaction.amount > 0) {
+      if (transaction.to === id) {
         groupedTransactions[monthIndex].positive += transaction.amount;
+        groupedTransactions[monthIndex].amount += transaction.amount;
       } else {
         groupedTransactions[monthIndex].negative += transaction.amount;
+        groupedTransactions[monthIndex].amount -= transaction.amount;
       }
-      groupedTransactions[monthIndex].amount += transaction.amount;
     }
   });
   return groupedTransactions;
