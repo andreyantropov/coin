@@ -560,3 +560,46 @@ body {
   letter-spacing: 0.1em;
   color: var(--text-primary-color);
 }
+
+.currency-form {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: repeat(3, auto);
+  grid-template-areas:
+    'currency-title .'
+    'currency-exchange-container currency-submit-btn'
+    'currency-amount-container currency-submit-btn';
+  align-items: center;
+  gap: 20px 10px;
+  padding: 60px;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.currency-form__title {
+  grid-area: currency-title;
+  margin: 0;
+  font-family: var(--second-family);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
+}
+
+.currency-form__input-container {
+  display: flex;
+  gap: 10px;
+}
+
+.currency-form__input-container_exchange {
+  grid-area: currency-exchange-container;
+}
+
+.currency-form__input-container_amount {
+  grid-area: currency-amount-container;
+}
+
+.currency-form__submit-btn {
+  grid-area: currency-submit-btn;
+  height: 100%;
+}

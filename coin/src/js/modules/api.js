@@ -76,6 +76,12 @@ export default class API {
     return data.payload;
   }
 
+  static async getAllCurrenciesList() {
+    const response = await fetch(`${process.env.SERVER}/all-currencies`);
+    const data = await response.json();
+    return data.payload;
+  }
+
   static async getCurrenciesList() {
     const token = localStorage.getItem('coin-auth-token');
     const response = await fetch(`${process.env.SERVER}/currencies`, {
@@ -85,6 +91,24 @@ export default class API {
     });
     const data = await response.json();
     return Object.values(data.payload);
+  }
+
+  static async buyCurrency(from, to, amount) {
+    const token = localStorage.getItem('coin-auth-token');
+    const response = await fetch(`${process.env.SERVER}/currency-buy`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Basic ${token}`,
+      },
+      body: JSON.stringify({
+        from: from,
+        to: to,
+        amount: amount,
+      }),
+    });
+    const data = await response.json();
+    return data.payload;
   }
 
   static async getBankList() {

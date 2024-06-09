@@ -23,7 +23,7 @@ export default function createTransactionsHistoryTableView(
         ]),
       ]),
       el('tbody', { class: 'table__tbody' }, [
-        account.transactions.slice(-10).reverse().map((element) => {
+        account.transactions.slice(-10).map((element) => {
           const transaction = new Transaction({ accountId: account.account, ...element });
           return transaction.createElement();
         }),

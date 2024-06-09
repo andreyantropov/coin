@@ -127,7 +127,11 @@ router
         nav.style.display = 'block';
         main.innerHTML = '';
         const section = createCurrenciesSectionView({
+          allCurrenciesList: await API.getAllCurrenciesList(),
           currenciesList: await API.getCurrenciesList(),
+          onCurrencyFormSubmit: async (from, to, amount) => {
+            await API.buyCurrency(from, to, amount);
+          },
         });
         mount(main, section);
       });
