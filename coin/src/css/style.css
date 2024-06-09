@@ -63,6 +63,10 @@ body {
   width: 100%;
 }
 
+.wrapper {
+  padding: 60px 0;
+}
+
 .primary-btn {
   padding: 14px 21px;
   border-radius: 7px;
@@ -113,7 +117,6 @@ body {
 }
 
 .header {
-  margin-bottom: 60px;
   background-color: var(--primary-color);
 }
 
@@ -513,7 +516,7 @@ body {
     'currencies-user currencies-rate'
     'currencies-form currencies-rate';
   align-items: center;
-  gap: 20px;
+  gap: 32px;
 }
 
 .currencies__table_user {
@@ -523,6 +526,7 @@ body {
 
 .currencies__table_rate {
   grid-area: currencies-rate;
+  height: 100%;
   background-color: var(--background-color);
 }
 
@@ -621,6 +625,11 @@ body {
 
 .currency-form__input-container_amount {
   grid-area: currency-amount-container;
+}
+
+.currency-form__control_from,
+.currency-form__control_to {
+  min-width: 130px;
 }
 
 .currency-form__submit-btn {

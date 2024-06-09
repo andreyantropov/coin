@@ -8,7 +8,7 @@ export default function createCurrenciesSectionView({ allCurrenciesList, currenc
   const form = createCurrenciesFormView({ cssClass: 'currencies__form', options: allCurrenciesList, onSubmit: onCurrencyFormSubmit });
   const rate = createCurrenciesRateTableView({ cssClass: 'currencies__table currencies__table_rate', webSocket: webSocket });
 
-  const wrapper = el('div', { class: 'currencies__wrapper' }, [ userCurrencies, form, rate ]);
+  const wrapper = el('div', { class: 'currencies__wrapper wrapper' }, [ userCurrencies, form, rate ]);
   const accountContainer = el(
     'div',
     { class: 'currencies__container container' },

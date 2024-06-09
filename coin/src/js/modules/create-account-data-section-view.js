@@ -14,7 +14,7 @@ export default function createAccountDataSectionView(
   const table = createTransactionsHistoryTableView({ cssClass: 'account-data__table', account: account, onClick: onTransactionsTableClick, });
   const content = el('div', { class: 'account-data__content' }, [ transactionForm, plot, table ]);
 
-  const wrapper = el('div', { class: 'account-data__wrapper' }, [ details, content ]);
+  const wrapper = el('div', { class: 'account-data__wrapper wrapper' }, [ details, content ]);
   const accountContainer = el(
     'div',
     { class: 'account-data__container container' },

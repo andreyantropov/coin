@@ -37,7 +37,7 @@ export default function createAccountsSectionView(
     newBtn,
   ]);
 
-  const wrapper = el('div', { class: 'accounts__wrapper' }, [topMenu, ul]);
+  const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [topMenu, ul]);
   const accountContainer = el(
     'div',
     { class: 'accounts__container container' },

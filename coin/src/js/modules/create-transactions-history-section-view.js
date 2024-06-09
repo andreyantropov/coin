@@ -10,7 +10,7 @@ export default function createTransactionsHistorySectionView({ account, onBackBt
   const table = createTransactionsHistoryTableView({ cssClass: 'history__table', account: account, onClick: () => {}, });
   const content = el('div', { class: 'history__content' }, [ balancePlot, transactionsPlot, table ]);
 
-  const wrapper = el('div', { class: 'history__wrapper' }, [ details, content ]);
+  const wrapper = el('div', { class: 'history__wrapper wrapper' }, [ details, content ]);
   const accountContainer = el(
     'div',
     { class: 'history__container container' },
