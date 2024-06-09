@@ -504,3 +504,59 @@ body {
   width: 100% !important;
   height: 320px !important;
 }
+
+.dictionary {
+  padding: 32px;
+  border-radius: 50px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.dictionary__table {
+  display: block;
+  width: 100%;
+}
+
+.dictionary__caption {
+  margin-bottom: 30px;
+  font-family: var(--second-family);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary-color);
+  text-align: left;
+}
+
+.dictionary__tbody {
+  display: block;
+  width: 100%;
+}
+
+.dictionary__tr {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dictionary__th {
+  display: flex;
+  align-items: flex-end;
+  font-family: var(--second-family);
+  font-size: 20px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text-primary-color);
+}
+
+.dictionary__th::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px dashed var(--text-primary-color);
+  transform: translateY(-2px);
+}
+
+.dictionary__td {
+  font-family: var(--second-family);
+  font-size: 20px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  color: var(--text-primary-color);
+}

@@ -8,8 +8,9 @@ import createAuthFormView from './modules/create-auth-form-view.js';
 import createAccountsSectionView from './modules/create-accounts-section-view.js';
 import createMapSectionView from './modules/create-map-section-view.js';
 import createAccountDataSectionView from './modules/create-account-data-section-view.js';
-import createTransactionsHistoryView from './modules/create-transactions-history-view.js';
+import createTransactionsHistorySectionView from './modules/create-transactions-history-section-view.js';
 import { mount } from 'redom';
+import createCurrenciesSectionView from './modules/create-currencies-section-view.js';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 
@@ -112,11 +113,21 @@ router
 
         nav.style.display = 'block';
         main.innerHTML = '';
-        const section = createTransactionsHistoryView({
+        const section = createTransactionsHistorySectionView({
           account: await API.getAccount(id),
           onBackBtnClick: () => {
             router.navigate(`/accounts/${id}`);
           },
+        });
+        mount(main, section);
+      });
+    },
+    '/currencies': () => {
+      checkAuth(async () => {
+        nav.style.display = 'block';
+        main.innerHTML = '';
+        const section = createCurrenciesSectionView({
+          currenciesList: await API.getCurrenciesList(),
         });
         mount(main, section);
       });

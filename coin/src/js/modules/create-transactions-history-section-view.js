@@ -3,7 +3,7 @@ import { createBalancePlotView, createTransactionsPlotView } from './create-plot
 import createTransactionsHistoryTableView from './create-transactions-history-table-view.js';
 import createAccountDetailsView from './create-account-details-view.js';
 
-export default function createTransactionsHistoryView({ account, onBackBtnClick }) {
+export default function createTransactionsHistorySectionView({ account, onBackBtnClick }) {
   const details = createAccountDetailsView({ cssClass: 'history__account-details', title: 'История баланса', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
   const balancePlot = createBalancePlotView({ cssClass: 'history__plot history__plot_balance', account: account, monthCount: 12, onClick: () => {}, });
   const transactionsPlot = createTransactionsPlotView({ cssClass: 'history__plot history__plot_transactions', account: account, monthCount: 12, onClick: () => {}, });
