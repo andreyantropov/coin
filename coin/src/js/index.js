@@ -129,6 +129,7 @@ router
         const section = createCurrenciesSectionView({
           allCurrenciesList: await API.getAllCurrenciesList(),
           currenciesList: await API.getCurrenciesList(),
+          webSocket: API.currencyRate(),
           onCurrencyFormSubmit: async (from, to, amount) => {
             await API.buyCurrency(from, to, amount);
           },

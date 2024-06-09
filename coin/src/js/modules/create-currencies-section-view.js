@@ -1,12 +1,14 @@
 import { el } from 'redom';
 import createUserCurrenciesTableView from './create-user-currencies-table-view';
 import createCurrenciesFormView from './create-currencies-form-view';
+import createCurrenciesRateTableView from './create-currencies-rate-table-view'
 
-export default function createCurrenciesSectionView({ allCurrenciesList, currenciesList, onCurrencyFormSubmit }) {
+export default function createCurrenciesSectionView({ allCurrenciesList, currenciesList, webSocket, onCurrencyFormSubmit }) {
   const userCurrencies = createUserCurrenciesTableView({ cssClass: 'currencies__table currencies__table_user', currenciesList: currenciesList, });
   const form = createCurrenciesFormView({ cssClass: 'currencies__form', options: allCurrenciesList, onSubmit: onCurrencyFormSubmit });
+  const rate = createCurrenciesRateTableView({ cssClass: 'currencies__table currencies__table_rate', webSocket: webSocket });
 
-  const wrapper = el('div', { class: 'currencies__wrapper' }, [ userCurrencies, form ]);
+  const wrapper = el('div', { class: 'currencies__wrapper' }, [ userCurrencies, form, rate ]);
   const accountContainer = el(
     'div',
     { class: 'currencies__container container' },

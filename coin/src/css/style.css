@@ -505,10 +505,30 @@ body {
   height: 320px !important;
 }
 
+.currencies__wrapper {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: auto auto;
+  grid-template-areas:
+    'currencies-user currencies-rate'
+    'currencies-form currencies-rate';
+  align-items: center;
+  gap: 20px;
+}
+
+.currencies__table_user {
+  grid-area: currencies-user;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.currencies__table_rate {
+  grid-area: currencies-rate;
+  background-color: var(--background-color);
+}
+
 .dictionary {
   padding: 32px;
   border-radius: 50px;
-  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
 .dictionary__table {
@@ -559,6 +579,10 @@ body {
   font-weight: 400;
   letter-spacing: 0.1em;
   color: var(--text-primary-color);
+}
+
+.currencies__form {
+  grid-area: currencies-form;
 }
 
 .currency-form {

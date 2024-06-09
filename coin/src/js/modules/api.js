@@ -111,6 +111,31 @@ export default class API {
     return data.payload;
   }
 
+  static currencyRate() {
+    const ws = new WebSocket(
+      `${process.env.SERVER}/currency-feed`,
+    );
+
+    ws.onopen = () => {
+      console.log('Соединение с валютным стримом установлено');
+    };
+
+    ws.onmessage = (e) => {
+      const data = JSON.parse(e.data);
+      console.log('Получено сообщение:', data);
+    };
+
+    ws.onerror = (error) => {
+      console.error('Ошибка соединения:', error);
+    };
+
+    ws.onclose = () => {
+      console.log('Соединение с валютным стримом закрыто');
+    };
+
+    return ws;
+  };
+
   static async getBankList() {
     const response = await fetch(`${process.env.SERVER}/banks`);
     const data = await response.json();
