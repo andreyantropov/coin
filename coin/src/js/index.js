@@ -92,13 +92,16 @@ router
 
         nav.style.display = 'block';
         main.innerHTML = '';
+        let account = await API.getAccount(id);
         const section = createAccountDataSectionView({
-          account: await API.getAccount(id),
+          account: account,
           onBackBtnClick: () => {
             router.navigate('/');
           },
           onTransactionFormSubmit: async (from, to, amount) => {
-            await API.transferFunds(from, to, amount);
+            const res = await API.transferFunds(from, to, amount);
+            account.balance = res.balance;
+            account.transactions.push(res.transactions.pop());
           },
           onTransactionsTableClick: () => {
             router.navigate(`/history/${id}`);
