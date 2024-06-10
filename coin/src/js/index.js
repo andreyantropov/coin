@@ -129,12 +129,17 @@ router
       checkAuth(async () => {
         nav.style.display = 'block';
         main.innerHTML = '';
+        let currenciesList = await API.getCurrenciesList();
         const section = createCurrenciesSectionView({
           allCurrenciesList: await API.getAllCurrenciesList(),
-          currenciesList: await API.getCurrenciesList(),
+          currenciesList: currenciesList,
           webSocket: API.currencyRate(),
           onCurrencyFormSubmit: async (from, to, amount) => {
-            await API.buyCurrency(from, to, amount);
+            const res = await API.buyCurrency(from, to, amount);
+            currenciesList.length = 0;
+            [ ...Object.values(res) ].forEach(element => {
+              currenciesList.push(element)
+            });
           },
         });
         mount(main, section);
