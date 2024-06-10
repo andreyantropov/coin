@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -13,22 +13,6 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
   },
-  plugins: [
-    new HtmlWebpackPlugin({
-      title: 'Coin.',
-      template: 'src/index.html',
-    }),
-    new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-    }),
-    new CopyPlugin({
-      patterns: [
-        { from: 'src/assets/img', to: 'img' },
-        { from: 'src/assets/fonts', to: 'fonts' },
-      ]
-    }),
-    new Dotenv(),
-  ],
   module: {
     rules: [
       {
@@ -44,25 +28,28 @@ module.exports = {
       {
         test: /\.css$/,
         use: [
-          process.env.NODE_ENV === 'production' ? MiniCssExtractPlugin.loader : 'style-loader',
+          process.env.NODE_ENV === 'production'
+            ? MiniCssExtractPlugin.loader
+            : 'style-loader',
           'css-loader',
         ],
       },
       {
         test: /\.(jpe?g|png|gif|svg|webp)$/i,
-        type: "asset/resource",
+        type: 'asset/resource',
       },
     ],
   },
   optimization: {
     minimizer: [
       new ImageMinimizerPlugin({
+        exclude: /\.(svg|png)$/i,
         minimizer: {
           implementation: ImageMinimizerPlugin.sharpMinify,
         },
         generator: [
           {
-            type: "asset",
+            type: 'asset',
             implementation: ImageMinimizerPlugin.sharpGenerate,
             options: {
               encodeOptions: {
@@ -78,6 +65,28 @@ module.exports = {
       new TerserPlugin(),
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'Coin.',
+      template: 'src/index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: '[name].[contenthash].css',
+    }),
+    new CopyPlugin({
+      patterns: [
+        {
+          from: 'src/assets/img',
+          to: 'img',
+          globOptions: {
+            ignore: ['**/svg/**'],
+          },
+        },
+        { from: 'src/assets/fonts', to: 'fonts' },
+      ],
+    }),
+    new Dotenv(),
+  ],
   devServer: {
     static: {
       directory: path.join(__dirname, 'public'),
