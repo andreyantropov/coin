@@ -5,6 +5,7 @@ const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const SVGSpritemapPlugin = require('svg-spritemap-webpack-plugin');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
@@ -16,7 +17,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.js$/,
+        test: /\.js$/i,
         exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
@@ -26,7 +27,7 @@ module.exports = {
         },
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         use: [
           process.env.NODE_ENV === 'production'
             ? MiniCssExtractPlugin.loader
@@ -84,6 +85,11 @@ module.exports = {
         },
         { from: 'src/assets/fonts', to: 'fonts' },
       ],
+    }),
+    new SVGSpritemapPlugin('src/assets/img/svg/**/*.svg', {
+      output: {
+        filename: 'img/sprite.svg',
+      }
     }),
     new Dotenv(),
   ],
