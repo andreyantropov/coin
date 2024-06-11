@@ -1,5 +1,5 @@
 import { el, mount } from 'redom';
-import CurrencyRate from "./currency-rate";
+import CurrencyRate from "../classes/currency-rate";
 
 export default function createCurrenciesRateTableView({ cssClass, webSocket }) {
   const body = el('tbody', { class: 'dictionary__tbody' });

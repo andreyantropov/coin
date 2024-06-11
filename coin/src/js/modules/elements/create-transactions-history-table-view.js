@@ -1,5 +1,5 @@
 import { el } from 'redom';
-import Transaction from './transaction.js';
+import Transaction from '../classes/transaction';
 
 export default function createTransactionsHistoryTableView(
   { cssClass, account, onClick }

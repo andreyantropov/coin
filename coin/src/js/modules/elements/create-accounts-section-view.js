@@ -1,5 +1,5 @@
 import { el, mount } from 'redom';
-import Account from './account.js';
+import Account from '../classes/account';
 
 export default function createAccountsSectionView(
   { accountList, onaccountBtnClick, onSortSelectChange, onNewBtnClick }

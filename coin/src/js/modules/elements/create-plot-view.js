@@ -7,7 +7,7 @@ import {
   BarElement,
   Title,
 } from 'chart.js';
-import { chartAreaBorder } from './chart-plugins';
+import { chartAreaBorder } from '../plugins/chart-plugins';
 
 export function createBalancePlotView(
   { cssClass, account, monthCount, onClick, }

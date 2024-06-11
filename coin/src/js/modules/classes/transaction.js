@@ -1,5 +1,6 @@
 import { el } from 'redom';
-import { formatDate, formatMoney } from './utils';
+import formatDate from '../utils/format-date';
+import formatMoney from '../utils/format-money';
 
 export default class Transaction {
   constructor({ accountId, amount, date, from, to }) {

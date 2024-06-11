@@ -3,14 +3,14 @@ import '../css/fonts.css';
 import '../css/style.css';
 
 import Navigo from 'navigo';
-import API from './modules/api.js';
-import createAuthFormView from './modules/create-auth-form-view.js';
-import createAccountsSectionView from './modules/create-accounts-section-view.js';
-import createMapSectionView from './modules/create-map-section-view.js';
-import createAccountDataSectionView from './modules/create-account-data-section-view.js';
-import createTransactionsHistorySectionView from './modules/create-transactions-history-section-view.js';
+import API from './modules/api/api.js';
+import createAuthFormView from './modules/elements/create-auth-form-view.js';
+import createAccountsSectionView from './modules/elements/create-accounts-section-view.js';
+import createMapSectionView from './modules/elements/create-map-section-view.js';
+import createAccountDataSectionView from './modules/elements/create-account-data-section-view.js';
+import createTransactionsHistorySectionView from './modules/elements/create-transactions-history-section-view.js';
+import createCurrenciesSectionView from './modules/elements/create-currencies-section-view.js';
 import { mount } from 'redom';
-import createCurrenciesSectionView from './modules/create-currencies-section-view.js';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 

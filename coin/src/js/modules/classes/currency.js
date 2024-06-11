@@ -1,5 +1,5 @@
 import { el } from 'redom';
-import { formatMoney } from './utils';
+import formatMoney from '../utils/format-money';
 
 export default class Currency {
   constructor({ code, amount }) {

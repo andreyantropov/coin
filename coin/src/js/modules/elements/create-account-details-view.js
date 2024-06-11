@@ -1,5 +1,5 @@
 import { el } from 'redom';
-import { formatMoney } from './utils';
+import formatMoney from '../utils/format-money';
 
 export default function createAccountDetailsView({ cssClass, title, id, balance, onBackBtnClick }) {
   const titleEl = el('h2', title, {

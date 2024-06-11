@@ -1,5 +1,5 @@
 import { el } from 'redom';
-import Marker from './marker';
+import Marker from '../classes/marker';
 
 export default function createMapSectionView({ markerList }) {
   const title = el('h2', 'Карта банкоматов', { class: 'banks__title title' });

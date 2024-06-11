@@ -1,5 +1,5 @@
 import { el } from 'redom';
-import Currency from "./currency";
+import Currency from "../classes/currency";
 
 export default function createUserCurrenciesTableView({ cssClass, currenciesList }) {
   const dictionary = el('dictionary', { class: 'dictionary__table' }, [
