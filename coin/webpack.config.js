@@ -38,6 +38,16 @@ module.exports = {
       {
         test: /\.(jpe?g|png|gif|svg|webp)$/i,
         type: 'asset/resource',
+        generator: {
+          filename: 'img/[name][ext]',
+        },
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf)$/i,
+        type: 'asset/resource',
+        generator: {
+          filename: 'fonts/[name][ext]',
+        },
       },
     ],
   },
@@ -83,13 +93,12 @@ module.exports = {
             ignore: ['**/svg/**'],
           },
         },
-        { from: 'src/assets/fonts', to: 'fonts' },
       ],
     }),
     new SVGSpritemapPlugin('src/assets/img/svg/**/*.svg', {
       output: {
         filename: 'img/sprite.svg',
-      }
+      },
     }),
     new Dotenv(),
   ],
