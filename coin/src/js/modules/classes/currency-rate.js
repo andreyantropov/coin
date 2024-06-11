@@ -1,5 +1,6 @@
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
+import getSprite from '../utils/get-sprite';
 
 export default class CurrencyRate {
   constructor({ from, to, rate, change }) {
@@ -26,17 +27,13 @@ export default class CurrencyRate {
   }
 
   createElement() {
-    const use = document.createElementNS("http://www.w3.org/2000/svg", 'use');
-    use.setAttributeNS("http://www.w3.org/1999/xlink", 'xlink:href', this.getIcon());
-    const svg = document.createElementNS("http://www.w3.org/2000/svg", 'svg');
-    svg.classList.add('icon_rate-arrow');
-    svg.appendChild(use);
+    const arrowIcon = getSprite(this.getIcon(), 'icon_rate-arrow');
 
-    const tr = el('tr', { class: 'dictionary__tr currency' }, [
+    const tr = el('tr', { class: `dictionary__tr currency ${this.getRateClass()}` }, [
       el('th', `${this._from}/${this._to}`, { class: 'dictionary__th currency__th' }),
       el('td', { class: 'dictionary__td currency__td' }, [
         el('span', formatMoney(this._rate)),
-        svg,
+        arrowIcon,
       ]),
     ]);
     return tr;
@@ -48,6 +45,17 @@ export default class CurrencyRate {
         return './img/sprite.svg#sprite-arrow-down';
       case 1:
         return './img/sprite.svg#sprite-arrow-up';
+      default:
+        return '';
+    }
+  }
+
+  getRateClass() {
+    switch(this._change) {
+      case -1:
+        return 'rate-negative';
+      case 1:
+        return 'rate-positive';
       default:
         return '';
     }

@@ -1,6 +1,9 @@
 import { el } from 'redom';
+import getSprite from '../utils/get-sprite';
 
 export default function createTransactionFormView({ cssClass, id, onSubmit }) {
+  const mailIcon = getSprite('./img/sprite.svg#sprite-mail', 'icon_mail');
+
   const form = el(
     'form',
     {
@@ -36,9 +39,10 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
         maxlength: 6,
         required: true,
       }),
-      el('button', 'Отправить', {
+      el('button', {
         class: 'transaction-form__submit-btn primary-btn btn-reset',
-      }),
+      },
+      mailIcon, el('span', 'Отправить')),
     ],
   );
 

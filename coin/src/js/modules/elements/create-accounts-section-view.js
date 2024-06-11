@@ -1,9 +1,15 @@
 import { el, mount } from 'redom';
 import Account from '../classes/account';
+import getSprite from '../utils/get-sprite';
 
-export default function createAccountsSectionView(
-  { accountList, onaccountBtnClick, onSortSelectChange, onNewBtnClick }
-) {
+export default function createAccountsSectionView({
+  accountList,
+  onaccountBtnClick,
+  onSortSelectChange,
+  onNewBtnClick,
+}) {
+  const plusIcon = getSprite('./img/sprite.svg#sprite-plus', 'icon_plus');
+
   const ul = el('ul', { class: 'accounts__list list-reset' });
 
   const title = el('h2', 'Ваши счета', { class: 'accounts__title title' });
@@ -24,20 +30,27 @@ export default function createAccountsSectionView(
       el('option', 'По последней транзакции', { class: 'option' }),
     ]
   );
-  const newBtn = el('button', '+ Создать новый счет', {
-    class: 'accounts__new-btn primary-btn btn-reset',
-    onclick: async () => {
-      await onNewBtnClick();
-      sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
+  const newBtn = el(
+    'button',
+    {
+      class: 'accounts__new-btn primary-btn btn-reset',
+      onclick: async () => {
+        await onNewBtnClick();
+        sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
+      },
     },
-  });
+    [plusIcon, el('span', 'Создать новый счет')]
+  );
   const topMenu = el('div', { class: 'accounts__menu' }, [
     title,
     select,
     newBtn,
   ]);
 
-  const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [topMenu, ul]);
+  const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [
+    topMenu,
+    ul,
+  ]);
   const accountContainer = el(
     'div',
     { class: 'accounts__container container' },
@@ -55,13 +68,20 @@ export default function createAccountsSectionView(
       const account = new Account({
         ...element,
         id: element.account,
-        onClick: () => { onClick(element.account) },
+        onClick: () => {
+          onClick(element.account);
+        },
       });
       mount(container, account.createElement());
     });
   }
 
-  function sortAndRenderAccounts(container, accountList, onClick, sortOption = '') {
+  function sortAndRenderAccounts(
+    container,
+    accountList,
+    onClick,
+    sortOption = ''
+  ) {
     onSortSelectChange(sortOption);
     renderAccounts(container, accountList, onClick);
   }

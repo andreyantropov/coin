@@ -68,6 +68,10 @@ body {
 }
 
 .primary-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
   padding: 14px 21px;
   border-radius: 7px;
   font-size: 14px;
@@ -597,6 +601,16 @@ body {
   transform: translateY(10px);
 }
 
+.rate-positive .dictionary__td::before,
+.rate-positive .dictionary__th::after {
+  border-bottom: 1px dashed var(--success-color);
+}
+
+.rate-negative .dictionary__td::before,
+.rate-negative .dictionary__th::after {
+  border-bottom: 1px dashed var(--danger-color);
+}
+
 .currencies__form {
   grid-area: currencies-form;
 }
@@ -647,6 +661,21 @@ body {
 .currency-form__submit-btn {
   grid-area: currency-submit-btn;
   height: 100%;
+}
+
+.icon_plus {
+  width: 12px;
+  height: 12px;
+}
+
+.icon_back {
+  width: 12px;
+  height: 16px;
+}
+
+.icon_mail {
+  width: 24px;
+  height: 24px;
 }
 
 .icon_rate-arrow {

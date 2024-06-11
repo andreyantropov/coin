@@ -1,16 +1,29 @@
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
+import getSprite from '../utils/get-sprite';
 
-export default function createAccountDetailsView({ cssClass, title, id, balance, onBackBtnClick }) {
+export default function createAccountDetailsView({
+  cssClass,
+  title,
+  id,
+  balance,
+  onBackBtnClick,
+}) {
+  const backIcon = getSprite('./img/sprite.svg#sprite-back', 'icon_back');
+
   const titleEl = el('h2', title, {
     class: 'account-details__title title',
   });
-  const backBtn = el('button', '<- Вернуться назад', {
-    class: 'account-details__back-btn primary-btn btn-reset',
-    onclick: () => {
-      onBackBtnClick();
+  const backBtn = el(
+    'button',
+    {
+      class: 'account-details__back-btn primary-btn btn-reset',
+      onclick: () => {
+        onBackBtnClick();
+      },
     },
-  });
+    [backIcon, el('span', 'Вернуться назад')]
+  );
   const accountId = el('span', `№ ${id}`, {
     class: 'account-details__number',
   });
