@@ -564,7 +564,7 @@ body {
 
 .dictionary__th {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   font-family: var(--second-family);
   font-size: 20px;
   font-weight: 600;
@@ -576,12 +576,13 @@ body {
   content: "";
   flex: 1;
   border-bottom: 1px dashed var(--text-primary-color);
-  transform: translateY(-2px);
+  transform: translateY(10px);
 }
 
 .dictionary__td {
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  gap: 5px;
   font-family: var(--second-family);
   font-size: 20px;
   font-weight: 400;
@@ -593,7 +594,7 @@ body {
   content: "";
   flex: 1;
   border-bottom: 1px dashed var(--text-primary-color);
-  transform: translateY(-2px);
+  transform: translateY(10px);
 }
 
 .currencies__form {
@@ -646,4 +647,9 @@ body {
 .currency-form__submit-btn {
   grid-area: currency-submit-btn;
   height: 100%;
+}
+
+.icon_rate-arrow {
+  width: 20px;
+  height: 10px;
 }
