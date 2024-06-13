@@ -20,8 +20,8 @@ export default class NavItem {
     }
 
     createElement() {
-        const li = el('li', { class: `nav__item ${this._isActive ? 'nav__item_active' : ''}` }, [
-            el('a', this._text, { class: 'nav__link', href: this._href, }),
+        const li = el('li', { class: 'nav__item' }, [
+            el('a', this._text, { class: `nav__link ${this._isActive ? 'nav__link_active' : ''}`, href: this._href, }),
         ]);
         return li;
     }

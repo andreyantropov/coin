@@ -7,7 +7,8 @@
     "creditcard.js": "^3.0.33",
     "maska": "^2.1.11",
     "navigo": "^8.11.1",
-    "redom": "^4.0.0"
+    "redom": "^4.0.0",
+    "toastify-js": "^1.12.0"
   },
   "devDependencies": {
     "@babel/core": "^7.24.6",
