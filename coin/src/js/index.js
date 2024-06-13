@@ -1,9 +1,12 @@
+import 'toastify-js/src/toastify.css';
 import '../css/normalize.css';
 import '../css/fonts.css';
 import '../css/style.css';
 import '../css/icons.css';
 
 import Navigo from 'navigo';
+import { mount } from 'redom';
+import Toastify from 'toastify-js';
 import API from './modules/api/api.js';
 import createHeaderView from './modules/elements/create-header-view.js';
 import createAuthFormView from './modules/elements/create-auth-form-view.js';
@@ -12,7 +15,6 @@ import createMapSectionView from './modules/elements/create-map-section-view.js'
 import createAccountDataSectionView from './modules/elements/create-account-data-section-view.js';
 import createTransactionsHistorySectionView from './modules/elements/create-transactions-history-section-view.js';
 import createCurrenciesSectionView from './modules/elements/create-currencies-section-view.js';
-import { mount } from 'redom';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 

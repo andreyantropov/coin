@@ -3,7 +3,7 @@
         'transaction-title .'
         'transaction-account-lbl transaction-account-input'
         'transaction-amount-lbl transaction-amount-input'
-        '. transaction-submit-btn';
+        'transaction-card transaction-submit-btn';
 }
 
 .transaction-title {
@@ -24,6 +24,15 @@
 
 .form__control_amount {
     grid-area: transaction-amount-input;
+}
+
+.transaction-card {
+    grid-area: transaction-card;
+    justify-self: end;
+}
+
+.transaction-card {
+    max-height: 52px;
 }
 
 .transaction-form-submit {
