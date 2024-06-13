@@ -9,6 +9,7 @@ import createAccountDetailsView from './create-account-details-view.js';
 export default function createAccountDataSectionView({
   account,
   onBackBtnClick,
+  numbers,
   onTransactionFormSubmit,
   onTransactionsTableClick,
 }) {
@@ -34,6 +35,7 @@ export default function createAccountDataSectionView({
   const transactionForm = createTransactionFormView({
     cssClass: 'account-data__transaction-form',
     id: account.account,
+    numbers: numbers,
     onSubmit: async (from, to, amount) => {
       await onTransactionFormSubmit(from, to, amount);
       details.replaceWith(

@@ -3,9 +3,15 @@ import '../../../css/transaction.css';
 
 import { el } from 'redom';
 import { getCreditCardNameByNumber } from 'creditcard.js';
+import autocomplete from 'autocompleter';
 import getSprite from '../utils/get-sprite';
 
-export default function createTransactionFormView({ cssClass, id, onSubmit }) {
+export default function createTransactionFormView({
+  cssClass,
+  id,
+  numbers,
+  onSubmit,
+}) {
   const mailIcon = getSprite('./img/sprite.svg#sprite-mail', 'icon_mail');
 
   const cardImg = el('img', {
@@ -28,7 +34,7 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
     minlength: 3,
     required: true,
     onblur: () => {
-      const cardName = getCreditCardNameByNumber( accountControl.value.trim() );
+      const cardName = getCreditCardNameByNumber(accountControl.value.trim());
 
       switch (cardName) {
         case 'Visa':
@@ -90,6 +96,18 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
       submitBtn,
     ]
   );
+
+  autocomplete({
+    input: accountControl,
+    fetch: function (num, update) {
+      console.log(numbers)
+      const suggestions = numbers.filter((n) => n.label.startsWith(num));
+      update(suggestions);
+    },
+    onSelect: function (item) {
+      accountControl.value = item.label;
+    },
+  });
 
   return form;
 }

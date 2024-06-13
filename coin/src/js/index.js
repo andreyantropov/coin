@@ -127,8 +127,12 @@ router
 
           main.innerHTML = '';
           let account = await API.getAccount(id);
+          // localStorage.removeItem('coin-recipient-accounts')
+          const numbers =
+            JSON.parse(localStorage.getItem('coin-recipient-accounts')) ?? [];
           const section = createAccountDataSectionView({
             account: account,
+            numbers: numbers,
             onBackBtnClick: () => {
               router.navigate('/');
             },
@@ -136,6 +140,15 @@ router
               const res = await API.transferFunds(from, to, amount);
               account.balance = res.balance;
               account.transactions.push(res.transactions.pop());
+
+              const isExistInAutocomplete = numbers.find(element => element.label === to);
+              if (!isExistInAutocomplete) {
+                numbers.push({ label: to });
+                localStorage.setItem(
+                  'coin-recipient-accounts',
+                  JSON.stringify(numbers)
+                );
+              }
 
               Toastify({
                 text: 'Успешно!',
