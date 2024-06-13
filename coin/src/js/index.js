@@ -4,6 +4,7 @@ import '../css/style.css';
 
 import Navigo from 'navigo';
 import API from './modules/api/api.js';
+import createHeaderView from './modules/elements/create-header-view.js';
 import createAuthFormView from './modules/elements/create-auth-form-view.js';
 import createAccountsSectionView from './modules/elements/create-accounts-section-view.js';
 import createMapSectionView from './modules/elements/create-map-section-view.js';
@@ -14,7 +15,7 @@ import { mount } from 'redom';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 
-const nav = document.getElementById('nav');
+const header = document.getElementById('header');
 const main = document.getElementById('main');
 
 const checkAuth = (done) => {
@@ -41,9 +42,16 @@ router
   .on({
     '/': () => {
       checkAuth(async () => {
-        nav.style.display = 'block';
-        main.innerHTML = '';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([
+          { text: 'Банкоматы', href: '/banks', isActive: false },
+          { text: 'Счета', href: '/', isActive: true },
+          { text: 'Валюта', href: '/currencies', isActive: false },
+          { text: 'Выйти', href: '/logout', isActive: false },
+        ]);
+        mount(header, headerContainer);
 
+        main.innerHTML = '';
         let accountList = await API.getAccountList();
         const section = createAccountsSectionView({
           accountList: accountList,
@@ -90,7 +98,15 @@ router
       checkAuth(async () => {
         const id = data.id;
 
-        nav.style.display = 'block';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([
+          { text: 'Банкоматы', href: '/banks', isActive: false },
+          { text: 'Счета', href: '/', isActive: false },
+          { text: 'Валюта', href: '/currencies', isActive: false },
+          { text: 'Выйти', href: '/logout', isActive: false },
+        ]);
+        mount(header, headerContainer);
+
         main.innerHTML = '';
         let account = await API.getAccount(id);
         const section = createAccountDataSectionView({
@@ -114,7 +130,15 @@ router
       checkAuth(async () => {
         const id = data.id;
 
-        nav.style.display = 'block';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([
+          { text: 'Банкоматы', href: '/banks', isActive: false },
+          { text: 'Счета', href: '/', isActive: false },
+          { text: 'Валюта', href: '/currencies', isActive: false },
+          { text: 'Выйти', href: '/logout', isActive: false },
+        ]);
+        mount(header, headerContainer);
+
         main.innerHTML = '';
         const section = createTransactionsHistorySectionView({
           account: await API.getAccount(id),
@@ -127,7 +151,15 @@ router
     },
     '/currencies': () => {
       checkAuth(async () => {
-        nav.style.display = 'block';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([
+          { text: 'Банкоматы', href: '/banks', isActive: false },
+          { text: 'Счета', href: '/', isActive: false },
+          { text: 'Валюта', href: '/currencies', isActive: true },
+          { text: 'Выйти', href: '/logout', isActive: false },
+        ]);
+        mount(header, headerContainer);
+
         main.innerHTML = '';
         let currenciesList = await API.getCurrenciesList();
         const section = createCurrenciesSectionView({
@@ -137,8 +169,8 @@ router
           onCurrencyFormSubmit: async (from, to, amount) => {
             const res = await API.buyCurrency(from, to, amount);
             currenciesList.length = 0;
-            [ ...Object.values(res) ].forEach(element => {
-              currenciesList.push(element)
+            [...Object.values(res)].forEach((element) => {
+              currenciesList.push(element);
             });
           },
         });
@@ -147,7 +179,15 @@ router
     },
     '/banks': () => {
       checkAuth(async () => {
-        nav.style.display = 'block';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([
+          { text: 'Банкоматы', href: '/banks', isActive: true },
+          { text: 'Счета', href: '/', isActive: false },
+          { text: 'Валюта', href: '/currencies', isActive: false },
+          { text: 'Выйти', href: '/logout', isActive: false },
+        ]);
+        mount(header, headerContainer);
+
         main.innerHTML = '';
         const section = createMapSectionView({
           markerList: await API.getBankList(),
@@ -157,7 +197,10 @@ router
     },
     '/auth': () => {
       checkNotAuth(() => {
-        nav.style.display = 'none';
+        header.innerHTML = '';
+        const headerContainer = createHeaderView([]);
+        mount(header, headerContainer);
+
         main.innerHTML = '';
         const section = createAuthFormView({
           onAuthSubmit: async (login, password) => {
