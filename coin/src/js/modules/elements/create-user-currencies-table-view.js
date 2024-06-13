@@ -1,3 +1,5 @@
+import '../../../css/dictionary.css';
+
 import { el } from 'redom';
 import Currency from "../classes/currency";
 

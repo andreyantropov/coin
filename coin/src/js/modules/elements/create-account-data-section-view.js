@@ -1,3 +1,5 @@
+import '../../../css/account-data.css';
+
 import { el } from 'redom';
 import createTransactionFormView from './create-transaction-form-view.js';
 import { createBalancePlotView } from './create-plot-view.js';

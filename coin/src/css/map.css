@@ -1,0 +1,9 @@
+.banks__map {
+    width: 75vw;
+    height: 75vh;
+}
+
+.marker {
+    width: 32px;
+    height: 32px;
+}

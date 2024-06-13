@@ -1,3 +1,5 @@
+import '../../../css/plot.css';
+
 import { el } from 'redom';
 import {
   Chart,

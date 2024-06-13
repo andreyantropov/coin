@@ -1,3 +1,6 @@
+import '../../../css/form.css';
+import '../../../css/transaction.css';
+
 import { el } from 'redom';
 import getSprite from '../utils/get-sprite';
 
@@ -7,7 +10,7 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
   const form = el(
     'form',
     {
-      class: `${cssClass} transaction-form`,
+      class: `${cssClass} form transaction-form`,
       onsubmit: (e) => {
         e.preventDefault();
 
@@ -18,10 +21,10 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
       },
     },
     [
-      el('h3', 'Новый перевод', { class: 'transaction-form__title' }),
-      el('label', 'Номер счета получателя', { class: 'transaction-form__label transaction-form__label_account label' }),
+      el('h3', 'Новый перевод', { class: 'form__title transaction-title' }),
+      el('label', 'Номер счета получателя', { class: 'form__label form__label_account label' }),
       el('input', {
-        class: 'transaction-form__control transaction-form__control_account control',
+        class: 'form__control form__control_account control',
         id: 'transaction-account',
         type: 'text',
         placeholder: 'Счет получателя',
@@ -29,10 +32,10 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
         required: true,
       }),
       el('label', 'Сумма перевода', {
-        class: 'transaction-form__label transaction-form__label_amount label',
+        class: 'form__label form__label_amount label',
       }),
       el('input', {
-        class: 'transaction-form__control transaction-form__control_amount control',
+        class: 'form__control form__control_amount control',
         id: 'transaction-amount',
         type: 'text',
         placeholder: 'Сумма',
@@ -40,7 +43,7 @@ export default function createTransactionFormView({ cssClass, id, onSubmit }) {
         required: true,
       }),
       el('button', {
-        class: 'transaction-form__submit-btn primary-btn btn-reset',
+        class: 'form__submit-btn primary-btn btn-reset transaction-form-submit',
       },
       mailIcon, el('span', 'Отправить')),
     ],

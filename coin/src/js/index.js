@@ -1,6 +1,7 @@
 import '../css/normalize.css';
 import '../css/fonts.css';
 import '../css/style.css';
+import '../css/icons.css';
 
 import Navigo from 'navigo';
 import API from './modules/api/api.js';
@@ -133,6 +134,18 @@ router
               const res = await API.transferFunds(from, to, amount);
               account.balance = res.balance;
               account.transactions.push(res.transactions.pop());
+
+              Toastify({
+                text: 'Успешно!',
+                duration: 10000,
+                gravity: 'bottom',
+                position: 'right',
+                stopOnFocus: true,
+                style: {
+                  color: '#fff',
+                  background: '#76ca66',
+                },
+              }).showToast();
             },
             onTransactionsTableClick: () => {
               router.navigate(`/history/${id}`);
@@ -215,6 +228,18 @@ router
               [...Object.values(res)].forEach((element) => {
                 currenciesList.push(element);
               });
+
+              Toastify({
+                text: 'Успешно!',
+                duration: 10000,
+                gravity: 'bottom',
+                position: 'right',
+                stopOnFocus: true,
+                style: {
+                  color: '#fff',
+                  background: '#76ca66',
+                },
+              }).showToast();
             },
           });
           mount(main, section);

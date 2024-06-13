@@ -1,3 +1,5 @@
+import '../../../css/table.css';
+
 import { el } from 'redom';
 import Transaction from '../classes/transaction';
 

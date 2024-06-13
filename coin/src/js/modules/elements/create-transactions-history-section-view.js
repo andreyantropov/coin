@@ -1,3 +1,5 @@
+import '../../../css/history.css';
+
 import { el } from 'redom';
 import { createBalancePlotView, createTransactionsPlotView } from './create-plot-view.js';
 import createTransactionsHistoryTableView from './create-transactions-history-table-view.js';

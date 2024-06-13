@@ -1,3 +1,5 @@
+import '../../../css/accounts.css';
+
 import { el, mount } from 'redom';
 import Account from '../classes/account';
 import getSprite from '../utils/get-sprite';

@@ -1,0 +1,76 @@
+.dictionary {
+    padding: 32px;
+    border-radius: 50px;
+}
+
+.dictionary__table {
+    display: block;
+    width: 100%;
+}
+
+.dictionary__caption {
+    margin-bottom: 30px;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+    text-align: left;
+    white-space: nowrap;
+}
+
+.dictionary__tbody {
+    display: block;
+    width: 100%;
+}
+
+.dictionary__tr {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px 0;
+}
+
+.dictionary__th {
+    display: flex;
+    align-items: center;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-primary-color);
+}
+
+.dictionary__th::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px dashed var(--text-primary-color);
+    transform: translateY(10px);
+}
+
+.dictionary__td {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--text-primary-color);
+}
+
+.dictionary__td::before {
+    content: "";
+    flex: 1;
+    border-bottom: 1px dashed var(--text-primary-color);
+    transform: translateY(10px);
+}
+
+.rate-positive .dictionary__td::before,
+.rate-positive .dictionary__th::after {
+    border-bottom: 1px dashed var(--success-color);
+}
+
+.rate-negative .dictionary__td::before,
+.rate-negative .dictionary__th::after {
+    border-bottom: 1px dashed var(--danger-color);
+}

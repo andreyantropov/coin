@@ -1,0 +1,52 @@
+.account-details {
+    display: grid;
+    grid-template-columns: 1fr 200px;
+    grid-template-rows: repeat(2, auto);
+    grid-template-areas:
+        'account-title account-back-btn'
+        'account-number account-balance';
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.account-details__title {
+    grid-area: account-title;
+    margin: 0;
+}
+
+.account-details__back-btn {
+    grid-area: account-back-btn;
+}
+
+.account-details__number {
+    grid-area: account-number;
+    font-family: var(--second-family);
+    font-size: 34px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}
+
+.balance__container {
+    grid-area: account-balance;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.balance__title {
+    margin: 0;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}
+
+.balance__value {
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}

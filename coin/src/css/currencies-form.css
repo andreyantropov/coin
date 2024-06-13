@@ -1,0 +1,32 @@
+.currencies-form {
+    grid-template-columns: 1fr 200px;
+    grid-template-rows: repeat(3, auto);
+    grid-template-areas:
+        'currency-title .'
+        'currency-exchange-container currency-submit-btn'
+        'currency-amount-container currency-submit-btn';
+    background-color: var(--light-color);
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.currency-title {
+    grid-area: currency-title;
+}
+
+.form__input-container_exchange {
+    grid-area: currency-exchange-container;
+}
+
+.form__input-container_amount {
+    grid-area: currency-amount-container;
+}
+
+.currencies__form .form__control_from,
+.currencies__form .form__control_to {
+    min-width: 130px;
+}
+
+.currencies-form-submit {
+    grid-area: currency-submit-btn;
+    height: 100%;
+}

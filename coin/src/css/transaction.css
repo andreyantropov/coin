@@ -1,0 +1,32 @@
+.transaction-form {
+    grid-template-areas:
+        'transaction-title .'
+        'transaction-account-lbl transaction-account-input'
+        'transaction-amount-lbl transaction-amount-input'
+        '. transaction-submit-btn';
+}
+
+.transaction-title {
+    grid-area: transaction-title;
+}
+
+.form__label_account {
+    grid-area: transaction-account-lbl;
+}
+
+.form__control_account {
+    grid-area: transaction-account-input;
+}
+
+.form__label_amount {
+    grid-area: transaction-amount-lbl;
+}
+
+.form__control_amount {
+    grid-area: transaction-amount-input;
+}
+
+.transaction-form-submit {
+    grid-area: transaction-submit-btn;
+    max-width: 50%;
+}

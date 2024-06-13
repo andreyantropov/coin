@@ -1,10 +1,13 @@
+import '../../../css/form.css';
+import '../../../css/currencies-form.css';
+
 import { el } from 'redom';
 
 export default function createCurrenciesFormView({ cssClass, options, onSubmit }) {
   const form = el(
     'form',
     {
-      class: `${cssClass} currency-form`,
+      class: `${cssClass} form currencies-form`,
       onsubmit: (e) => {
         e.preventDefault();
 
@@ -16,13 +19,13 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
       },
     },
     [
-      el('h3', 'Обмен валюты', { class: 'currency-form__title' }),
-      el('div', { class: 'currency-form__input-container currency-form__input-container_exchange' }, [
+      el('h3', 'Обмен валюты', { class: 'form__title currency-title' }),
+      el('div', { class: 'form__input-container form__input-container_exchange' }, [
         el('label', 'Из', {
-          class: 'currency-form__label currency-form__from label',
+          class: 'form__label form__from label',
         }),
         el('select', {
-          class: 'currency-form__control currency-form__control_from control control_select',
+          class: 'form__control form__control_from control control_select',
           id: 'currency-from',
           required: true,
         }, [
@@ -31,10 +34,10 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
           }),
         ]),
         el('label', 'в', {
-          class: 'currency-form__label currency-form__label_to label',
+          class: 'form__label form__label_to label',
         }),
         el('select', {
-          class: 'currency-form__control currency-form__control_to control control_select',
+          class: 'form__control form__control_to control control_select',
           id: 'currency-to',
           required: true,
         }, [
@@ -43,12 +46,12 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
           }),
         ]),
       ]),
-      el('div', { class: 'currency-form__input-container currency-form__input-container_amount' }, [
+      el('div', { class: 'form__input-container form__input-container_amount' }, [
         el('label', 'Сумма перевода', {
-          class: 'currency-form__label currency-form__label_amount label',
+          class: 'form__label form__label_amount label',
         }),
         el('input', {
-          class: 'currency-form__control currency-form__control_amount control',
+          class: 'form__control form__control_amount control',
           id: 'currency-amount',
           type: 'text',
           placeholder: 'Сумма',
@@ -57,7 +60,7 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
         }),
       ]),
       el('button', 'Обменять', {
-        class: 'currency-form__submit-btn primary-btn btn-reset',
+        class: 'form__submit-btn primary-btn btn-reset currencies-form-submit',
       }),
     ],
   );

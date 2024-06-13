@@ -1,10 +1,13 @@
-import { el, mount } from 'redom';
+import '../../../css/form.css'
+import '../../../css/auth.css'
+
+import { el } from 'redom';
 
 export default function createAuthFormView({ onAuthSubmit }) {
   const form = el(
     'form',
     {
-      class: 'auth',
+      class: 'auth form auth-form',
       onsubmit: (e) => {
         e.preventDefault();
 
@@ -15,10 +18,10 @@ export default function createAuthFormView({ onAuthSubmit }) {
       },
     },
     [
-      el('h2', 'Вход в аккаунт', { class: 'auth__title' }),
-      el('label', 'Логин', { class: 'auth__label auth__label_login label' }),
+      el('h2', 'Вход в аккаунт', { class: 'form__title auth-form-title' }),
+      el('label', 'Логин', { class: 'form__label form__label_login label' }),
       el('input', {
-        class: 'auth__control auth__control_login control',
+        class: 'form__control form__control_login control',
         id: 'auth-login',
         type: 'text',
         placeholder: 'Логин',
@@ -26,10 +29,10 @@ export default function createAuthFormView({ onAuthSubmit }) {
         required: true,
       }),
       el('label', 'Пароль', {
-        class: 'auth__label auth__label_password label',
+        class: 'form__label form__label_password label',
       }),
       el('input', {
-        class: 'auth__control auth__control_password control',
+        class: 'form__control form__control_password control',
         id: 'auth-password',
         type: 'password',
         placeholder: 'Пароль',
@@ -37,7 +40,7 @@ export default function createAuthFormView({ onAuthSubmit }) {
         required: true,
       }),
       el('button', 'Войти', {
-        class: 'auth__submit-btn primary-btn btn-reset',
+        class: 'form__submit-btn primary-btn btn-reset auth-form-submit',
       }),
     ],
   );

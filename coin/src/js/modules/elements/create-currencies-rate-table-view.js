@@ -1,3 +1,5 @@
+import '../../../css/dictionary.css';
+
 import { el, mount } from 'redom';
 import CurrencyRate from "../classes/currency-rate";
 

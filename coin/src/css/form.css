@@ -1,0 +1,28 @@
+.form {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    grid-template-rows: repeat(4, auto);
+    align-items: center;
+    gap: 20px 10px;
+    padding: 60px;
+    border-radius: 50px;
+    background-color: var(--background-color);
+}
+
+.form__title {
+    margin: 0;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}
+
+.form__input-container {
+    display: flex;
+    gap: 10px;
+}
+
+.form__label {
+    justify-self: end;
+}

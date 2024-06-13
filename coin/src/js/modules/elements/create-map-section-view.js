@@ -1,3 +1,5 @@
+import '../../../css/map.css';
+
 import { el } from 'redom';
 import Marker from '../classes/marker';
 

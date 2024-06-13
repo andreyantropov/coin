@@ -1,3 +1,5 @@
+import '../../../css/account-details.css';
+
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
 import getSprite from '../utils/get-sprite';

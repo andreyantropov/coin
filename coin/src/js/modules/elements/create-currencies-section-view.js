@@ -1,3 +1,5 @@
+import '../../../css/currencies.css';
+
 import { el } from 'redom';
 import createUserCurrenciesTableView from './create-user-currencies-table-view';
 import createCurrenciesFormView from './create-currencies-form-view';

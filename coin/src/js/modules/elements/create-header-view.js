@@ -1,3 +1,5 @@
+import '../../../css/header.css';
+
 import { el } from 'redom';
 import NavItem from '../classes/nav-item';
 
