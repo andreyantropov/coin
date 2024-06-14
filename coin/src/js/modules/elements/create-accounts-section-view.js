@@ -1,57 +1,31 @@
-import '../../../css/accounts.css';
-
 import { el, mount } from 'redom';
-import Account from '../classes/account';
-import getSprite from '../utils/get-sprite';
+import createAccountMenuView from './create-account-menu-view';
+import createAccountsListView from './create-accounts-list-view';
 
 export default function createAccountsSectionView({
   accountList,
-  onaccountBtnClick,
+  onAccountBtnClick,
   onSortSelectChange,
   onNewBtnClick,
 }) {
-  const plusIcon = getSprite('./img/sprite.svg#sprite-plus', 'icon_plus');
-
-  const ul = el('ul', { class: 'accounts__list list-reset' });
-
-  const title = el('h2', 'Ваши счета', { class: 'accounts__title title' });
-  const select = el(
-    'select',
-    {
-      class: 'accounts__select control control_select',
-      onchange: () => {
-        sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
-      },
+  let accountListEl = createAccountsListView({
+    accountList: accountList,
+    onAccountBtnClick: onAccountBtnClick,
+  });
+  const menu = createAccountMenuView({
+    onNewBtnClick: onNewBtnClick,
+    onSortSelectChange: (value) => {
+      onSortSelectChange(value);
+      accountListEl.innerHTML = createAccountsListView({
+        accountList: accountList,
+        onAccountBtnClick: onAccountBtnClick,
+      }).innerHTML;
     },
-    [
-      el('option', 'По номеру', { class: 'option' }),
-      el('option', 'По балансу', {
-        class: 'option',
-        selected: true,
-      }),
-      el('option', 'По последней транзакции', { class: 'option' }),
-    ]
-  );
-  const newBtn = el(
-    'button',
-    {
-      class: 'accounts__new-btn primary-btn btn-reset',
-      onclick: async () => {
-        await onNewBtnClick();
-        sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
-      },
-    },
-    [plusIcon, el('span', 'Создать новый счет')]
-  );
-  const topMenu = el('div', { class: 'accounts__menu' }, [
-    title,
-    select,
-    newBtn,
-  ]);
+  });
 
   const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [
-    topMenu,
-    ul,
+    menu,
+    accountListEl,
   ]);
   const accountContainer = el(
     'div',
@@ -60,31 +34,5 @@ export default function createAccountsSectionView({
   );
   const section = el('section', { class: 'accounts' }, [accountContainer]);
 
-  sortAndRenderAccounts(ul, accountList, onaccountBtnClick, select.value);
-
   return section;
-
-  function renderAccounts(container, accountList, onClick) {
-    container.innerHTML = '';
-    accountList.forEach((element) => {
-      const account = new Account({
-        ...element,
-        id: element.account,
-        onClick: () => {
-          onClick(element.account);
-        },
-      });
-      mount(container, account.createElement());
-    });
-  }
-
-  function sortAndRenderAccounts(
-    container,
-    accountList,
-    onClick,
-    sortOption = ''
-  ) {
-    onSortSelectChange(sortOption);
-    renderAccounts(container, accountList, onClick);
-  }
 }

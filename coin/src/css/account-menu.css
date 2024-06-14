@@ -1,0 +1,15 @@
+.accounts__menu {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.accounts__title {
+    display: inline-block;
+    margin: 0;
+    margin-right: 30px;
+}
+
+.accounts__select {
+    margin-right: auto;
+}
