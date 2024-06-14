@@ -1,26 +1,26 @@
-.skeleton-loader {
+.skeleton {
     background-color: #f2f2f2;
     border-radius: 4px;
     overflow: hidden;
 }
 
-.skeleton-loader_image {
+.skeleton_image {
     height: 200px;
 }
 
-.skeleton-loader_text {
+.skeleton_text {
     height: 20px;
 }
 
-.skeleton-loader_title {
+.skeleton_title {
     height: 30px;
 }
 
-.skeleton-loader_paragraph {
+.skeleton_paragraph {
     height: 100px;
 }
 
-.skeleton-loader::before {
+.skeleton::before {
     content: "";
     display: block;
     background: linear-gradient(to right,

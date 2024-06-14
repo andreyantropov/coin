@@ -9,6 +9,7 @@
     "maska": "^2.1.11",
     "navigo": "^8.11.1",
     "redom": "^4.0.0",
+    "sortablejs": "^1.15.2",
     "toastify-js": "^1.12.0"
   },
   "devDependencies": {

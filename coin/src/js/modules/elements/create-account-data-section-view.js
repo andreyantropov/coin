@@ -1,6 +1,7 @@
 import '../../../css/account-data.css';
 
 import { el } from 'redom';
+import Sortable from 'sortablejs';
 import createTransactionFormView from './create-transaction-form-view.js';
 import { createBalancePlotView } from './create-plot-view.js';
 import createTransactionsHistoryTableView from './create-transactions-history-table-view.js';
@@ -64,11 +65,30 @@ export default function createAccountDataSectionView({
       );
     },
   });
-  const content = el('div', { class: 'account-data__content' }, [
+
+  const topContainer = el('div', { class: 'account-data__top' }, [
     transactionForm,
     plot,
+  ]);
+
+  const sortableTopContainer = new Sortable(topContainer, {
+    animation: 150,
+    group: {
+      name: 'account-data-top-group',
+    },
+  });
+
+  const content = el('div', { class: 'account-data__content' }, [
+    topContainer,
     table,
   ]);
+
+  const sortableContent = new Sortable(content, {
+    animation: 150,
+    group: {
+      name: 'account-data-content-group',
+    },
+  });
 
   const wrapper = el('div', { class: 'account-data__wrapper wrapper' }, [
     details,

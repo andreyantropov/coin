@@ -1,6 +1,7 @@
 import '../../../css/accounts.css';
 
 import { el } from 'redom';
+import Sortable from 'sortablejs';
 import Account from '../classes/account';
 
 export default function createAccountsListView({
@@ -19,6 +20,13 @@ export default function createAccountsListView({
       return account.createElement();
     }),
   ]);
+
+  const sortable = new Sortable(ul, {
+    animation: 150,
+    group: {
+      name: 'account-list-group',
+    },
+  });
 
   return ul;
 }

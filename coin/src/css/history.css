@@ -1,11 +1,10 @@
 .history__content {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 320px 320px auto;
+    display: flex;
+    flex-direction: column;
     gap: 30px;
 }
 
 .history__plot {
     width: 100% !important;
-    height: 320px !important;
+    height: 600px !important;
 }

@@ -1,6 +1,7 @@
 import '../../../css/currencies.css';
 
 import { el } from 'redom';
+import Sortable from 'sortablejs';
 import createUserCurrenciesTableView from './create-user-currencies-table-view';
 import createCurrenciesFormView from './create-currencies-form-view';
 import createCurrenciesRateTableView from './create-currencies-rate-table-view';
@@ -33,11 +34,30 @@ export default function createCurrenciesSectionView({
     },
   });
 
-  const wrapper = el('div', { class: 'currencies__wrapper wrapper' }, [
+  const leftContainer = el('div', { class: 'currencies__left' }, [
     userCurrencies,
     form,
+  ]);
+
+  const sortableLeftContainer = new Sortable(leftContainer, {
+    animation: 150,
+    group: {
+      name: 'currencies-left-group',
+    },
+  });
+
+  const wrapper = el('div', { class: 'currencies__wrapper wrapper' }, [
+    leftContainer,
     rate,
   ]);
+
+  const sortableWrapper = new Sortable(wrapper, {
+    animation: 150,
+    group: {
+      name: 'currencies-wrapper-group',
+    },
+  });
+
   const accountContainer = el(
     'div',
     { class: 'currencies__container container' },

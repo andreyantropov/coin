@@ -1,23 +1,15 @@
 .account-data__content {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 320px auto;
-    grid-template-areas:
-        'transaction-form transaction-plot'
-        'transaction-table transaction-table';
+    display: flex;
+    flex-direction: column;
     gap: 30px;
 }
 
-.account-data__transaction-form {
-    grid-area: transaction-form;
+.account-data__top {
+    display: flex;
+    gap: 30px;
 }
 
 .account-data__plot {
-    grid-area: transaction-plot;
     width: 100% !important;
-    height: 320px !important;
-}
-
-.account-data__table {
-    grid-area: transaction-table;
+    height: 339px !important;
 }

@@ -1,4 +1,4 @@
-import { el, mount } from 'redom';
+import { el } from 'redom';
 import createAccountMenuView from './create-account-menu-view';
 import createAccountsListView from './create-accounts-list-view';
 
