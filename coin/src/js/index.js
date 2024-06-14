@@ -8,6 +8,13 @@ import Navigo from 'navigo';
 import { mount } from 'redom';
 import Toastify from 'toastify-js';
 import API from './modules/api/api.js';
+
+import createCurrenciesSectionSkeleton from './modules/skeletons/create-currencies-section-skeleton.js';
+import createMapSectionSkeleton from './modules/skeletons/create-map-section-skeleton.js';
+import createTransactionsHistorySectionSkeleton from './modules/skeletons/create-transactions-history-section-skeleton.js';
+import createAccountDataSectionSkeleton from './modules/skeletons/create-account-data-section-skeleton.js';
+import createAccountsSectionSkeleton from './modules/skeletons/create-accounts-section-skeleton.js';
+
 import createHeaderView from './modules/elements/create-header-view.js';
 import createAuthFormView from './modules/elements/create-auth-form-view.js';
 import createAccountsSectionView from './modules/elements/create-accounts-section-view.js';
@@ -55,7 +62,10 @@ router
           ]);
           mount(header, headerContainer);
 
+          const skeleton = createAccountsSectionSkeleton();
           main.innerHTML = '';
+          mount(main, skeleton);
+
           let accountList = await API.getAccountList();
           const section = createAccountsSectionView({
             accountList: accountList,
@@ -95,6 +105,7 @@ router
               accountList.push(newAccount);
             },
           });
+          main.innerHTML = '';
           mount(main, section);
         } catch (error) {
           Toastify({
@@ -125,9 +136,11 @@ router
           ]);
           mount(header, headerContainer);
 
+          const skeleton = createAccountDataSectionSkeleton();
           main.innerHTML = '';
+          mount(main, skeleton);
+          
           let account = await API.getAccount(id);
-          // localStorage.removeItem('coin-recipient-accounts')
           const numbers =
             JSON.parse(localStorage.getItem('coin-recipient-accounts')) ?? [];
           const section = createAccountDataSectionView({
@@ -166,6 +179,7 @@ router
               router.navigate(`/history/${id}`);
             },
           });
+          main.innerHTML = '';
           mount(main, section);
         } catch (error) {
           Toastify({
@@ -196,13 +210,17 @@ router
           ]);
           mount(header, headerContainer);
 
+          const skeleton = createTransactionsHistorySectionSkeleton();
           main.innerHTML = '';
+          mount(main, skeleton);
+
           const section = createTransactionsHistorySectionView({
             account: await API.getAccount(id),
             onBackBtnClick: () => {
               router.navigate(`/accounts/${id}`);
             },
           });
+          main.innerHTML = '';
           mount(main, section);
         } catch (error) {
           Toastify({
@@ -231,7 +249,10 @@ router
           ]);
           mount(header, headerContainer);
 
+          const skeleton = createCurrenciesSectionSkeleton();
           main.innerHTML = '';
+          mount(main, skeleton);
+
           let currenciesList = await API.getCurrenciesList();
           const section = createCurrenciesSectionView({
             allCurrenciesList: await API.getAllCurrenciesList(),
@@ -257,6 +278,7 @@ router
               }).showToast();
             },
           });
+          main.innerHTML = '';
           mount(main, section);
         } catch (error) {
           Toastify({
@@ -285,10 +307,14 @@ router
           ]);
           mount(header, headerContainer);
 
+          const skeleton = createMapSectionSkeleton();
           main.innerHTML = '';
+          mount(main, skeleton);
+          
           const section = createMapSectionView({
             markerList: await API.getBankList(),
           });
+          main.innerHTML = '';
           mount(main, section);
         } catch (error) {
           Toastify({

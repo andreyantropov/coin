@@ -1,36 +1,76 @@
-.skeleton {
-    background-color: #f2f2f2;
-    border-radius: 4px;
-    overflow: hidden;
+.skeleton-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+    border-radius: 50px;
+    background-color: #f8f8f8;
 }
 
-.skeleton_image {
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+}
+
+.skeleton-map {
+    display: flex;
+    justify-content: space-between;
+    padding: 32px;
+    padding-bottom: 0;
+    border-radius: 50px;
+    background-color: #f8f8f8;
+}
+
+.skeleton {
+    position: relative;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: shimmer 1.5s linear infinite;
+}
+
+.skeleton_map {
+    height: 800px;
+}
+
+.skeleton_img {
     height: 200px;
 }
 
-.skeleton_text {
-    height: 20px;
-}
-
 .skeleton_title {
-    height: 30px;
+    margin-bottom: 32px;
+    height: 40px;
 }
 
 .skeleton_paragraph {
-    height: 100px;
+    height: 20px;
+}
+
+.skeleton_bar {
+    border-radius: 4px;
+    width: 64px;
+    height: 120px;
 }
 
 .skeleton::before {
-    content: "";
-    display: block;
-    background: linear-gradient(to right,
-            rgba(230, 230, 230, 0),
-            rgba(200, 200, 200, 0.4),
-            rgba(230, 230, 230, 0));
-    animation: shimmer 1.5s linear infinite;
-    width: 100%;
-    height: 100%;
+    content: '';
     position: absolute;
+    left: -150px;
     top: 0;
-    left: 0;
+    display: block;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%);
+    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+@keyframes load {
+    from {
+        left: -150px;
+    }
+
+    to {
+        left: 100%;
+    }
 }

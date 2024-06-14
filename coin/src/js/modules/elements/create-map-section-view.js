@@ -7,10 +7,10 @@ export default function createMapSectionView({ markerList }) {
   const title = el('h2', 'Карта банкоматов', { class: 'banks__title title' });
   const map = el('div', { class: 'banks__map map', id: 'map' });
   const wrapper = el('div', { class: 'banks__wrapper wrapper' }, [title, map]);
-  const accountContainer = el('div', { class: 'banks__container container' }, [
+  const banksContainer = el('div', { class: 'banks__container container' }, [
     wrapper,
   ]);
-  const section = el('section', { class: 'banks' }, [accountContainer]);
+  const section = el('section', { class: 'banks' }, [banksContainer]);
 
   initMap(map, markerList);
 
