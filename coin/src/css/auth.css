@@ -2,11 +2,13 @@
     position: absolute;
     top: 50%;
     left: 50%;
+    grid-template-columns: 80px 1fr;
     grid-template-areas:
         '. auth-title'
         'auth-login-lbl auth-login-input'
         'auth-password-lbl auth-password-input'
-        '. auth-submit-btn';
+        '. auth-submit-btn'
+        '. auth-error';
     transform: translate(-50%, -50%);
 }
 
@@ -34,4 +36,10 @@
 .auth-form-submit {
     grid-area: auth-submit-btn;
     max-width: 33%;
+}
+
+.auth-error {
+  grid-area: auth-error;
+  display: inline-block;
+  max-width: 245px;
 }

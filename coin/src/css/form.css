@@ -1,7 +1,6 @@
 .form {
     display: grid;
     grid-template-columns: 200px 1fr;
-    grid-template-rows: repeat(4, auto);
     align-items: center;
     gap: 20px 10px;
     padding: 60px;
@@ -25,4 +24,9 @@
 
 .form__label {
     justify-self: end;
+}
+
+.form__error {
+  font-size: 12px;
+  color: var(--danger-color);
 }
