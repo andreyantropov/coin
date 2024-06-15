@@ -4,12 +4,13 @@
     grid-template-areas:
         'currency-title .'
         'currency-exchange-container currency-submit-btn'
-        'currency-amount-container currency-submit-btn';
+        'currency-amount-container currency-submit-btn'
+        'currency-error currency-error';
     background-color: var(--light-color);
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
-.currency-title {
+.currencies-title {
     grid-area: currency-title;
 }
 
@@ -29,4 +30,8 @@
 .currencies-form-submit {
     grid-area: currency-submit-btn;
     height: 100%;
+}
+
+.currencies-error {
+  grid-area: currency-error;
 }

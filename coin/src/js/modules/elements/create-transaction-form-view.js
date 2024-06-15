@@ -92,7 +92,7 @@ export default function createTransactionFormView({
           }
 
           if (isNaN(amount) || parseFloat(amount) <= 0) {
-            error.textContent = 'Некорректная сумма перевода: сумма перевода должна быть неотрицательной';
+            error.textContent = 'Некорректная сумма перевода: укажите неотрицательное число';
             error.classList.remove('hidden');
             return;
           }
