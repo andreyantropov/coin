@@ -3,7 +3,8 @@
         'transaction-title .'
         'transaction-account-lbl transaction-account-input'
         'transaction-amount-lbl transaction-amount-input'
-        'transaction-card transaction-submit-btn';
+        'transaction-card transaction-submit-btn'
+        '. transaction-error';
 }
 
 .transaction-title {
@@ -38,4 +39,9 @@
 .transaction-form-submit {
     grid-area: transaction-submit-btn;
     max-width: 50%;
+}
+
+.transaction-error {
+  grid-area: transaction-error;
+  max-width: 245px;
 }

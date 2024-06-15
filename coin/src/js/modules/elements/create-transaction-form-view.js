@@ -23,6 +23,7 @@ export default function createTransactionFormView({
   const title = el('h3', 'Новый перевод', {
     class: 'form__title transaction-title',
   });
+  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: 'form__error hidden transaction-error', });
   const accountLabel = el('label', 'Номер счета получателя', {
     class: 'form__label form__label_account label',
   });
@@ -31,8 +32,9 @@ export default function createTransactionFormView({
     id: 'transaction-account',
     type: 'text',
     placeholder: 'Счет получателя',
-    minlength: 3,
-    required: true,
+    onfocus: () => {
+      error.classList.add('hidden');
+    },
     onblur: () => {
       const cardName = getCreditCardNameByNumber(accountControl.value.trim());
 
@@ -58,10 +60,11 @@ export default function createTransactionFormView({
   const amountControl = el('input', {
     class: 'form__control form__control_amount control',
     id: 'transaction-amount',
-    type: 'text',
+    type: 'number',
     placeholder: 'Сумма',
-    maxlength: 6,
-    required: true,
+    onfocus: () => {
+      error.classList.add('hidden');
+    },
   });
   const submitBtn = el(
     'button',
@@ -78,10 +81,21 @@ export default function createTransactionFormView({
       onsubmit: (e) => {
         e.preventDefault();
 
-        const to = document.getElementById('transaction-account').value.trim();
-        const amount = document
-          .getElementById('transaction-amount')
+        const to = accountControl.value.trim();
+        const amount = amountControl
           .value.trim();
+
+          if (!to || !amount) {
+            error.textContent = 'Некорректный номер счета или сумма перевода: заполните все поля';
+            error.classList.remove('hidden');
+            return;
+          }
+
+          if (isNaN(amount) || parseFloat(amount) <= 0) {
+            error.textContent = 'Некорректная сумма перевода: сумма перевода должна быть неотрицательной';
+            error.classList.remove('hidden');
+            return;
+          }
 
         onSubmit(id, to, amount);
       },
@@ -94,6 +108,7 @@ export default function createTransactionFormView({
       amountControl,
       cardImg,
       submitBtn,
+      error,
     ]
   );
 
