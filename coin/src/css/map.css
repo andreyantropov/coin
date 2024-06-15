@@ -1,3 +1,9 @@
+.banks__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
 .banks__map {
     width: 75vw;
     height: 75vh;
