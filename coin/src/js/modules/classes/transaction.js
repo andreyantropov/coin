@@ -35,7 +35,7 @@ export default class Transaction {
     const tr = el('tr', { class: 'table__tr transaction' }, [
       el('td', this._from, { class: 'table__td transaction__data' }),
       el('td', this._to, { class: 'table__td transaction__data' }),
-      el('td', formatMoney(this._amount), {
+      el('td', this.getFormattedAmount(), {
         class: `table__td transaction__data ${this._to === this._accountId ? 'transaction__data_positive' : 'transaction__data_negative'}`,
       }),
       el('td', formatDate(this._date), {
@@ -43,5 +43,9 @@ export default class Transaction {
       }),
     ]);
     return tr;
+  }
+
+  getFormattedAmount() {
+    return this._to === this._accountId ? `+ ${ formatMoney(this._amount) } ₽` : `- ${ formatMoney(this._amount) } ₽`
   }
 }

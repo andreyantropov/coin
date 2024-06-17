@@ -10,7 +10,7 @@ export default function createTransactionsHistorySectionView({ account, onBackBt
   const details = createAccountDetailsView({ cssClass: 'history__account-details', title: 'История баланса', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
   const balancePlot = createBalancePlotView({ cssClass: 'history__plot history__plot_balance', account: account, monthCount: 12, onClick: () => {}, });
   const transactionsPlot = createTransactionsPlotView({ cssClass: 'history__plot history__plot_transactions', account: account, monthCount: 12, onClick: () => {}, });
-  const table = createTransactionsHistoryTableView({ cssClass: 'history__table', account: account, onClick: () => {}, });
+  const table = createTransactionsHistoryTableView({ cssClass: 'history__table', account: account, rowsCount: 25, onClick: () => {}, });
   const content = el('div', { class: 'history__content' }, [ balancePlot, transactionsPlot, table ]);
 
   const sortable = new Sortable(content, {
