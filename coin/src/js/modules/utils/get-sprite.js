@@ -6,7 +6,7 @@ export default function getSprite(path, cssClass) {
     path,
   );
   const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  svg.classList.add(cssClass);
+  svg.classList.add('icon', cssClass);
   svg.appendChild(use);
 
   return svg;

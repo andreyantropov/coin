@@ -27,8 +27,31 @@
     letter-spacing: -0.01em;
     color: var(--primary-color);
     background-color: var(--light-color);
+    transition: border 0.3s, color 0.3s, background-color 0.3s;
+}
+
+.nav__link:focus {
+    border: 2px solid var(--primary-light-color);
+    outline: none;
+    color: var(--light-color);
+    background-color: var(--primary-light-color);
+}
+
+@media (any-hover: hover) {
+    .nav__link:hover {
+        border: 2px solid var(--light-color);
+        color: var(--light-color);
+        background-color: var(--primary-color);
+    }
+}
+
+.nav__link:active {
+    border: 2px solid var(--primary-dark-color);
+    outline: none;
+    color: var(--light-color);
+    background-color: var(--primary-dark-color);
 }
 
 .nav__link_active {
-    background-color: var(--primary-light-color);
+    background-color: var(--primary-lighter-color);
 }

@@ -7,7 +7,9 @@
   --third-family: "Roboto", sans-serif;
 
   --primary-color: #116acc;
-  --primary-light-color: #a0c3ff;
+  --primary-light-color: #4087d6;
+  --primary-lighter-color: #a0c3ff;
+  --primary-dark-color: #0d54a3;
   --danger-color: #fd4e5d;
   --success-color: #76ca66;
   --text-primary-color: #000;
@@ -73,6 +75,7 @@ body {
   align-items: center;
   gap: 5px;
   padding: 14px 21px;
+  border: 2px solid var(--primary-color);
   border-radius: 7px;
   font-size: 14px;
   font-weight: 500;
@@ -80,6 +83,33 @@ body {
   letter-spacing: -0.01em;
   color: var(--light-color);
   background-color: var(--primary-color);
+  transition: border 0.3s, color 0.3s, background-color 0.3s;
+}
+
+.primary-btn:focus {
+  border: 2px solid var(--primary-light-color);
+  outline: none;
+  color: var(--light-color);
+  background-color: var(--primary-light-color);
+}
+
+@media (any-hover: hover) {
+  .primary-btn:hover {
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: var(--light-color);
+  }
+
+  .primary-btn:hover .icon {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+  }
+}
+
+.primary-btn:active {
+  border: 2px solid var(--primary-dark-color);
+  color: var(--light-color);
+  background-color: var(--primary-dark-color);
 }
 
 .label {
