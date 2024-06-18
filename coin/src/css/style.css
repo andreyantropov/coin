@@ -112,6 +112,11 @@ body {
   background-color: var(--primary-dark-color);
 }
 
+.primary-btn:active .icon {
+  fill: var(--light-color);
+  stroke: var(--light-color);
+}
+
 .label {
   font-size: 16px;
   font-weight: 500;

@@ -15,7 +15,7 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
     required: true,
   }, [
     options.map(element => {
-      return el('option', element, { class: 'option' });
+      return el('option', element.code, { class: 'option' });
     }),
   ]);
   const toLabel = el('label', 'в', {
@@ -27,7 +27,7 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
     required: true,
   }, [
     options.map(element => {
-      return el('option', element, { class: 'option' });
+      return el('option', element.code, { class: 'option' });
     }),
   ]);
   const exchangeContainer = el('div', { class: 'form__input-container form__input-container_exchange' }, [
