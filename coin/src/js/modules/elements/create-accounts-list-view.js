@@ -12,7 +12,6 @@ export default function createAccountsListView({
     accountList.map((element) => {
       const account = new Account({
         ...element,
-        id: element.account,
         onClick: () => {
           onAccountBtnClick(element.account);
         },

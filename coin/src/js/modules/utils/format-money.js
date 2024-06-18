@@ -1,3 +1,4 @@
 export default function formatMoney(number) {
-  return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+  const roundedNumber = parseFloat(number.toFixed(2));
+  return roundedNumber.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
 }

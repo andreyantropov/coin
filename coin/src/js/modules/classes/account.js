@@ -5,15 +5,15 @@ import formatDate from '../utils/format-date';
 import formatMoney from '../utils/format-money';
 
 export default class Account {
-  constructor({ id, balance, transactions, onClick }) {
-    this._id = id;
+  constructor({ account, balance, transactions, onClick }) {
+    this._account = account;
     this._balance = balance;
     this._transactions = transactions;
     this.onClick = onClick;
   }
 
-  get id() {
-    return this._id;
+  get account() {
+    return this._account;
   }
 
   get balance() {
@@ -31,7 +31,7 @@ export default class Account {
         class: 'accounts__item account',
       },
       [
-        el('h3', this._id, { class: 'account__title' }),
+        el('h3', this._account, { class: 'account__title' }),
         el('span', formatMoney(this._balance), { class: 'account__balance' }),
         el('div', { class: 'account__container' }, [
           el('div', { class: 'account__transaction' }, [
