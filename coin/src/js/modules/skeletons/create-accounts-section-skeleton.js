@@ -1,59 +1,16 @@
 import '../../../css/skeleton.css';
 
 import { el } from 'redom';
+import createAccountSkeleton from './create-account-skeleton';
 
 export default function createAccountsSectionSkeleton() {
-  const menu = el('div', { class: 'skeleton skeleton_title' });
-  const accountListEl = el('div', { class: 'skeleton-grid' }, [
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-    el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_title' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]),
-  ]);
+  const menu = el('div', { class: 'skeleton skeleton-title' });
+
+  const accounts = [];
+  for (let i = 0; i < 8; i++) {
+    accounts.push(createAccountSkeleton());
+  }
+  const accountListEl = el('div', { class: 'skeleton-grid' }, [...accounts]);
 
   const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [
     menu,

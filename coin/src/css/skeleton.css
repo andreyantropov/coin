@@ -1,3 +1,11 @@
+.skeleton {
+    position: relative;
+    background-color: #f2f2f2;
+    border-radius: 12px;
+    overflow: hidden;
+    animation: shimmer 1.5s linear infinite;
+}
+
 .skeleton-container {
     display: flex;
     flex-direction: column;
@@ -13,44 +21,60 @@
     gap: 60px;
 }
 
-.skeleton-map {
+.skeleton-plot {
     display: flex;
     justify-content: space-between;
+    align-items: end;
     padding: 32px;
     padding-bottom: 0;
     border-radius: 50px;
     background-color: #f8f8f8;
 }
 
-.skeleton {
-    position: relative;
-    background-color: #f2f2f2;
-    border-radius: 12px;
-    overflow: hidden;
-    animation: shimmer 1.5s linear infinite;
-}
-
-.skeleton_map {
+.skeleton-map {
     height: 800px;
 }
 
-.skeleton_img {
+.skeleton-img {
     height: 200px;
 }
 
-.skeleton_title {
+.skeleton-title {
     margin-bottom: 32px;
     height: 40px;
 }
 
-.skeleton_paragraph {
+.skeleton-title-sm {
+    margin-bottom: 16px;
+    width: 75%;
+    height: 40px;
+}
+
+.skeleton-paragraph {
     height: 20px;
 }
 
-.skeleton_bar {
+.skeleton-paragraph-sm {
+    height: 20px;
+    width: 50%;
+}
+
+.skeleton-bar {
     border-radius: 4px;
     width: 64px;
     height: 120px;
+}
+
+.skeleton-bar-lg {
+    border-radius: 4px;
+    width: 64px;
+    height: 180px;
+}
+
+.skeleton-bar-sm {
+    border-radius: 4px;
+    width: 64px;
+    height: 60px;
 }
 
 .skeleton::before {

@@ -118,8 +118,7 @@ const renderAccountsDataSkeleton = () => {
   const skeleton = createAccountDataSectionSkeleton();
   main.innerHTML = '';
   mount(main, skeleton);
-
-}
+};
 
 const renderAccountsDataView = (account) => {
   const numbers =
@@ -167,7 +166,7 @@ const renderHistorySkeleton = () => {
   const skeleton = createTransactionsHistorySectionSkeleton();
   main.innerHTML = '';
   mount(main, skeleton);
-}
+};
 
 const renderHistoryView = (account) => {
   const section = createTransactionsHistorySectionView({
@@ -184,7 +183,7 @@ const renderCurrenciesSkeleton = () => {
   const skeleton = createCurrenciesSectionSkeleton();
   main.innerHTML = '';
   mount(main, skeleton);
-}
+};
 
 const renderCurrenciesView = (currenciesList) => {
   const section = createCurrenciesSectionView({
@@ -216,7 +215,7 @@ const renderBanksSkeleton = () => {
   const skeleton = createMapSectionSkeleton();
   main.innerHTML = '';
   mount(main, skeleton);
-}
+};
 
 const renderBanksView = (markerList) => {
   const section = createMapSectionView({
@@ -270,7 +269,7 @@ router
           renderHeaderView('');
           renderAccountsDataSkeleton();
           let account = await API.getAccount(id);
-          await renderAccountsDataView(account);
+          renderAccountsDataView(account);
         } catch (error) {
           Toastify({
             ...toastConfig,
@@ -318,7 +317,8 @@ router
         try {
           renderHeaderView('/banks');
           renderBanksSkeleton();
-          let markerList = JSON.parse( localStorage.getItem('coin-marker-list') ) ?? [];
+          let markerList =
+            JSON.parse(localStorage.getItem('coin-marker-list')) ?? [];
           if (markerList != []) {
             renderBanksView(markerList);
           }

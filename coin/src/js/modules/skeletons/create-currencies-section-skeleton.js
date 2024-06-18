@@ -1,46 +1,12 @@
 import '../../../css/skeleton.css';
 
 import { el } from 'redom';
+import createTableSkeleton from './create-table-skeleton';
 
 export default function createCurrenciesSectionSkeleton() {
-    const userCurrencies = el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]);
-    const form = el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]);
-    const rate = el('div', { class: 'skeleton-container' }, [
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-        el('div', { class: 'skeleton skeleton_paragraph' }),
-    ]);
+    const userCurrencies = createTableSkeleton(12);
+    const form = createTableSkeleton(3);
+    const rate = createTableSkeleton(17);
 
   const leftContainer = el('div', { class: 'currencies__left' }, [
     userCurrencies,

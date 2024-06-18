@@ -1,45 +1,22 @@
 import '../../../css/skeleton.css';
 
 import { el } from 'redom';
+import createPlotSkeleton from './create-plot-skeleton';
+import createTableSkeleton from './create-table-skeleton';
 
 export default function createAccountDataSectionSkeleton() {
   const details = el('div', [
-    el('div', { class: 'skeleton skeleton_title' }),
-    el('div', { class: 'skeleton skeleton_title' }),
+    el('div', { class: 'skeleton skeleton-title' }),
+    el('div', { class: 'skeleton skeleton-title' }),
   ]);
 
-  const plot = el('div', { class: 'skeleton-map' }, [
-    el('div', { class: 'skeleton skeleton_bar' }),
-    el('div', { class: 'skeleton skeleton_bar' }),
-    el('div', { class: 'skeleton skeleton_bar' }),
-    el('div', { class: 'skeleton skeleton_bar' }),
-    el('div', { class: 'skeleton skeleton_bar' }),
-    el('div', { class: 'skeleton skeleton_bar' }),
-]);
-  const table = el('div', { class: 'skeleton-container' }, [
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-]);
+  const plot = createPlotSkeleton(6);
+  const table = createTableSkeleton(16);
   const transactionForm = el('div', { class: 'skeleton-container' }, [
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-    el('div', { class: 'skeleton skeleton_paragraph' }),
-]);
+    el('div', { class: 'skeleton skeleton-paragraph' }),
+    el('div', { class: 'skeleton skeleton-paragraph' }),
+    el('div', { class: 'skeleton skeleton-paragraph' }),
+  ]);
 
   const topContainer = el('div', { class: 'account-data__top' }, [
     transactionForm,
