@@ -1,5 +1,5 @@
 import '../../../css/form.css'
-import '../../../css/auth.css'
+import '../../../css/auth-form.css'
 
 import { el } from 'redom';
 
@@ -9,7 +9,6 @@ export default function createAuthFormView({ onAuthSubmit }) {
   const loginLabel = el('label', 'Логин', { class: 'form__label form__label_login label' });
   const loginControl = el('input', {
     class: 'form__control form__control_login control',
-    id: 'auth-login',
     type: 'text',
     placeholder: 'Логин',
     onfocus: () => {
@@ -21,7 +20,6 @@ export default function createAuthFormView({ onAuthSubmit }) {
   });
   const passwordControl = el('input', {
     class: 'form__control form__control_password control',
-    id: 'auth-password',
     type: 'password',
     placeholder: 'Пароль',
     onfocus: () => {

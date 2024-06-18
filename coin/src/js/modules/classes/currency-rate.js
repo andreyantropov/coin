@@ -42,9 +42,9 @@ export default class CurrencyRate {
   getIcon() {
     switch(this._change) {
       case -1:
-        return './img/sprite.svg#sprite-arrow-down';
+        return './img/icons.svg#icon-arrow-down';
       case 1:
-        return './img/sprite.svg#sprite-arrow-up';
+        return './img/icons.svg#icon-arrow-up';
       default:
         return '';
     }

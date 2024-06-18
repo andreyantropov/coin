@@ -95,9 +95,12 @@ module.exports = {
         },
       ],
     }),
-    new SVGSpritemapPlugin('src/assets/img/svg/**/*.svg', {
+    new SVGSpritemapPlugin('src/assets/img/icons/**/*.svg', {
       output: {
-        filename: 'img/sprite.svg',
+        filename: 'img/icons.svg',
+      },
+      sprite: {
+        prefix: 'icon-',
       },
     }),
     new Dotenv(),

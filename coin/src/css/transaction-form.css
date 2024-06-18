@@ -7,7 +7,7 @@
         '. transaction-error';
 }
 
-.transaction-title {
+.transaction-form-title {
     grid-area: transaction-title;
 }
 
@@ -27,12 +27,12 @@
     grid-area: transaction-amount-input;
 }
 
-.transaction-card {
+.transaction-form-card {
     grid-area: transaction-card;
     justify-self: end;
 }
 
-.transaction-card {
+.transaction-form-card {
     max-height: 52px;
 }
 
@@ -41,7 +41,7 @@
     max-width: 60%;
 }
 
-.transaction-error {
+.transaction-form-error {
   grid-area: transaction-error;
   max-width: 245px;
 }

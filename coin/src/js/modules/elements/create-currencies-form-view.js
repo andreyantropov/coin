@@ -11,7 +11,6 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
   });
   const fromControl = el('select', {
     class: 'form__control form__control_from control control_select',
-    id: 'currency-from',
     required: true,
   }, [
     options.map(element => {
@@ -23,7 +22,6 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
   });
   const toControl = el('select', {
     class: 'form__control form__control_to control control_select',
-    id: 'currency-to',
     required: true,
   }, [
     options.map(element => {
@@ -38,7 +36,6 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
   });
   const amountControl = el('input', {
     class: 'form__control form__control_amount control',
-    id: 'currency-amount',
     type: 'text',
     placeholder: 'Сумма',
     onfocus: () => {

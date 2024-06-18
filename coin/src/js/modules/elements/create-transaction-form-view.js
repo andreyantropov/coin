@@ -1,5 +1,5 @@
 import '../../../css/form.css';
-import '../../../css/transaction.css';
+import '../../../css/transaction-form.css';
 
 import { el } from 'redom';
 import { getCreditCardNameByNumber } from 'creditcard.js';
@@ -12,24 +12,22 @@ export default function createTransactionFormView({
   numbers,
   onSubmit,
 }) {
-  const mailIcon = getSprite('./img/sprite.svg#sprite-mail', 'icon_mail');
+  const mailIcon = getSprite('./img/icons.svg#icon-mail', 'icon_mail');
 
   const cardImg = el('img', {
-    class: 'form__img transaction-card hidden',
-    id: 'card-img',
+    class: 'form__img transaction-form-card hidden',
     src: '',
     alt: 'Платежная система',
   });
   const title = el('h3', 'Новый перевод', {
-    class: 'form__title transaction-title',
+    class: 'form__title transaction-form-title',
   });
-  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: 'form__error hidden transaction-error', });
+  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: 'form__error hidden transaction-form-error', });
   const accountLabel = el('label', 'Номер счета получателя', {
     class: 'form__label form__label_account label',
   });
   const accountControl = el('input', {
     class: 'form__control form__control_account control',
-    id: 'transaction-account',
     type: 'text',
     placeholder: 'Счет получателя',
     onfocus: () => {
@@ -59,7 +57,6 @@ export default function createTransactionFormView({
   });
   const amountControl = el('input', {
     class: 'form__control form__control_amount control',
-    id: 'transaction-amount',
     type: 'number',
     placeholder: 'Сумма',
     onfocus: () => {

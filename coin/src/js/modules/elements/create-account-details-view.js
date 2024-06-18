@@ -11,7 +11,7 @@ export default function createAccountDetailsView({
   balance,
   onBackBtnClick,
 }) {
-  const backIcon = getSprite('./img/sprite.svg#sprite-back', 'icon_back');
+  const backIcon = getSprite('./img/icons.svg#icon-back', 'icon_back');
 
   const titleEl = el('h2', title, {
     class: 'account-details__title title',

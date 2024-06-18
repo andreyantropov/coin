@@ -7,7 +7,7 @@ export default function createAccountMenuView({
   onSortSelectChange,
   onNewBtnClick,
 }) {
-  const plusIcon = getSprite('./img/sprite.svg#sprite-plus', 'icon_plus');
+  const plusIcon = getSprite('./img/icons.svg#icon-plus', 'icon_plus');
 
   const title = el('h2', 'Ваши счета', { class: 'accounts__title title' });
   const select = el(
