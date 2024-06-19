@@ -5,8 +5,7 @@
 }
 
 .banks__map {
-    width: 75vw;
-    height: 75vh;
+    width: 100%;
 }
 
 .marker {

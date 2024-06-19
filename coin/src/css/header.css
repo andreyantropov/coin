@@ -55,3 +55,25 @@
 .nav__link_active {
     background-color: var(--primary-lighter-color);
 }
+
+@media (max-width: 768px) {
+    .header__wrapper {
+        justify-content: center;
+    }
+
+    .header__logo {
+        display: none;
+    }
+
+    .nav {
+        overflow: scroll;
+    }
+
+    .nav__list {
+        justify-content: space-between;
+    }
+
+    .nav__link {
+        display: block;
+    }
+}

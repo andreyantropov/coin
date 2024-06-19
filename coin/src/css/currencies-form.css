@@ -33,5 +33,35 @@
 }
 
 .currencies-error {
-  grid-area: currency-error;
+    grid-area: currency-error;
+}
+
+@media (max-width: 768px) {
+    .currencies-form {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'currency-title'
+            'currency-exchange-container'
+            'currency-amount-container'
+            'currency-submit-btn'
+            'currency-error';
+    }
+}
+
+@media (max-width: 576px) {
+    .currencies__form .form__control_from,
+    .currencies__form .form__control_to {
+        min-width: 75px;
+        font-size: 12px;
+    }
+
+    .form__label_from,
+    .form__label_to,
+    .currencies-form .form__label_amount {
+        font-size: 12px;
+    }
+
+    .currencies-form .form__control_amount {
+        font-size: 12px;
+    }
 }

@@ -5,6 +5,7 @@
         'transaction-amount-lbl transaction-amount-input'
         'transaction-card transaction-submit-btn'
         '. transaction-error';
+    min-width: 600px;
 }
 
 .transaction-form-title {
@@ -44,4 +45,19 @@
 .transaction-form-error {
   grid-area: transaction-error;
   max-width: 245px;
+}
+
+@media (max-width: 768px) {
+    .transaction-form {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'transaction-title'
+            'transaction-account-lbl'
+            'transaction-account-input'
+            'transaction-amount-lbl'
+            'transaction-amount-input'
+            'transaction-submit-btn'
+            'transaction-error';
+        min-width: 0;
+    }
 }

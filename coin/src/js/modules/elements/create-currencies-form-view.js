@@ -7,7 +7,7 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
   const title = el('h3', 'Обмен валюты', { class: 'form__title currencies-title' });
   const error = el('span', 'Некорректная сумма перевода: укажите неотрицательное число', { class: 'form__error hidden currencies-error', });
   const fromLabel = el('label', 'Из', {
-    class: 'form__label form__from label',
+    class: 'form__label form__label_from label',
   });
   const fromControl = el('select', {
     class: 'form__control form__control_from control control_select',

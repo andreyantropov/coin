@@ -13,3 +13,13 @@
     width: 100% !important;
     height: 363px !important;
 }
+
+@media (max-width: 1366px) {
+    .account-data__top {
+        flex-direction: column;
+    }
+
+    .account-data__plot {
+        height: 600px !important;
+    }
+}

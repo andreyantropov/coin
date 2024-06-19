@@ -27,8 +27,11 @@
     color: var(--text-primary-color);
 }
 
-.balance__container {
+.account-details__container {
     grid-area: account-balance;
+}
+
+.balance {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -49,4 +52,36 @@
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--text-primary-color);
+}
+
+@media (max-width: 1024px) {
+    .account-details__number {
+        font-size: 20px;
+    }
+
+    .balance__title {
+        font-size: 16px;
+    }
+    
+    .balance__value {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 768px) {
+    .account-details {
+        display: grid;
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'account-back-btn'
+            'account-title'
+            'account-number'
+            'account-balance';
+        gap: 15px;
+        margin-bottom: 30px;
+    }
+
+    .account-details__number {
+        font-size: 16px;
+    }
 }

@@ -9,14 +9,15 @@
 }
 
 .dictionary__caption {
+    display: block;
     margin-bottom: 30px;
+    width: 100%;
     font-family: var(--second-family);
     font-size: 20px;
     font-weight: 700;
     letter-spacing: -0.02em;
     color: var(--text-primary-color);
     text-align: left;
-    white-space: nowrap;
 }
 
 .dictionary__tbody {
@@ -73,4 +74,14 @@
 .rate-negative .dictionary__td::before,
 .rate-negative .dictionary__th::after {
     border-bottom: 1px dashed var(--danger-color);
+}
+
+@media (max-width: 576px) {
+    .dictionary__th {
+        font-size: 12px;
+    }
+
+    .dictionary__td {
+        font-size: 12px;
+    }
 }

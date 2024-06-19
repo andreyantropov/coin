@@ -50,3 +50,24 @@
     letter-spacing: -0.02em;
     color: var(--text-primary-color);
 }
+
+@media (max-width: 576px) {
+    .account__title {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .account__balance {
+        font-size: 12px;
+    }
+
+    .account__container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .account__btn {
+        width: 100%;
+    }
+}

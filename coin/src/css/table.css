@@ -42,6 +42,7 @@
     letter-spacing: -0.01em;
     color: var(--light-color);
     text-align: left;
+    word-break: break-word;
 }
 
 .table__th_from {
@@ -59,6 +60,7 @@
     line-height: 150%;
     letter-spacing: -0.01em;
     color: var(--text-secondary-color);
+    word-break: break-word;
 }
 
 .transaction__data_positive {
@@ -67,4 +69,16 @@
 
 .transaction__data_negative {
     color: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+    .table__th {
+        padding: 20px 10px;
+        font-size: 12px;
+    }
+
+    .table__td {
+        padding: 20px 10px;
+        font-size: 10px;
+    }
 }

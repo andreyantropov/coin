@@ -13,3 +13,35 @@
 .accounts__select {
     margin-right: auto;
 }
+
+@media (max-width: 1024px) {
+    .accounts__menu {
+        flex-wrap: wrap;
+    }
+
+    .accounts__title {
+        margin-right: 0;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .accounts__menu {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .accounts__title {
+        margin-bottom: 0;
+    }
+
+    .accounts__select {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .accounts__new-btn {
+        width: 100%;
+    }
+}
