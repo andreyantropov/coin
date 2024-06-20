@@ -47,7 +47,7 @@
     "build": "webpack --mode production",
     "lint": "eslint ./src/js/",
     "test:unit": "jest",
-    "ctest:e2e": "npx cypress open",
+    "test:e2e": "npx cypress open",
     "fix": "eslint --fix ./src/js/"
   },
   "keywords": [],

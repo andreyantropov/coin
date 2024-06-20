@@ -18,6 +18,8 @@
   --text-table-color: rgba(0, 82, 255, 0.1);
   --background-color: #f3f4f6;
   --light-color: #fff;
+  --skeleton-color: #f8f8f8;
+  --skeleton-dark-color: #f8f8f8;
 }
 
 html {
