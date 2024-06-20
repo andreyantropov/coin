@@ -89,6 +89,11 @@
     animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
 }
 
+.account-data-top-container-skeleton .skeleton-container,
+.account-data-top-container-skeleton .skeleton-plot {
+    width: 100%;
+}
+
 @keyframes load {
     from {
         left: -150px;

@@ -1,0 +1,87 @@
+.dictionary {
+    padding: 32px;
+    border-radius: 50px;
+}
+
+.table {
+    display: block;
+    width: 100%;
+}
+
+.caption {
+    display: block;
+    margin-bottom: 30px;
+    width: 100%;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+    text-align: left;
+}
+
+.tbody {
+    display: block;
+    width: 100%;
+}
+
+.tr {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 5px 0;
+}
+
+.th {
+    display: flex;
+    align-items: center;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    color: var(--text-primary-color);
+}
+
+.th::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px dashed var(--text-primary-color);
+    transform: translateY(10px);
+}
+
+.td {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-family: var(--second-family);
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    color: var(--text-primary-color);
+}
+
+.td::before {
+    content: "";
+    flex: 1;
+    border-bottom: 1px dashed var(--text-primary-color);
+    transform: translateY(10px);
+}
+
+.rate_positive .td::before,
+.rate_positive .th::after {
+    border-bottom: 1px dashed var(--success-color);
+}
+
+.rate_negative .td::before,
+.rate_negative .th::after {
+    border-bottom: 1px dashed var(--danger-color);
+}
+
+@media (max-width: 576px) {
+    .th {
+        font-size: 12px;
+    }
+
+    .td {
+        font-size: 12px;
+    }
+}

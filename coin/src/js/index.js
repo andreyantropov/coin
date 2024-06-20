@@ -8,22 +8,22 @@ import '../css/skeleton.css';
 import Navigo from 'navigo';
 import { mount } from 'redom';
 import Toastify from 'toastify-js';
-import API from './modules/api/api.js';
-import toastConfig from './modules/configs/toast-config.js';
+import API from './api/api.js';
+import toastConfig from './configs/toast-config.js';
 
-import createCurrenciesSectionSkeleton from './modules/skeletons/create-currencies-section-skeleton.js';
-import createMapSectionSkeleton from './modules/skeletons/create-map-section-skeleton.js';
-import createTransactionsHistorySectionSkeleton from './modules/skeletons/create-transactions-history-section-skeleton.js';
-import createAccountDataSectionSkeleton from './modules/skeletons/create-account-data-section-skeleton.js';
-import createAccountsSectionSkeleton from './modules/skeletons/create-accounts-section-skeleton.js';
+import createCurrenciesSectionSkeleton from './skeletons/create-currencies-section-skeleton.js';
+import createMapSectionSkeleton from './skeletons/create-map-section-skeleton.js';
+import createTransactionsHistorySectionSkeleton from './skeletons/create-transactions-history-section-skeleton.js';
+import createAccountDataSectionSkeleton from './skeletons/create-account-data-section-skeleton.js';
+import createAccountsSectionSkeleton from './skeletons/create-accounts-section-skeleton.js';
 
-import createHeaderView from './modules/elements/create-header-view.js';
-import createAuthFormView from './modules/elements/create-auth-form-view.js';
-import createAccountsSectionView from './modules/elements/create-accounts-section-view.js';
-import createMapSectionView from './modules/elements/create-map-section-view.js';
-import createAccountDataSectionView from './modules/elements/create-account-data-section-view.js';
-import createTransactionsHistorySectionView from './modules/elements/create-transactions-history-section-view.js';
-import createCurrenciesSectionView from './modules/elements/create-currencies-section-view.js';
+import createHeaderView from './elements/header/create-header-view.js';
+import createAuthFormView from './elements/auth-form/create-auth-form-view.js';
+import createAccountsSectionView from './elements/accounts-section/create-accounts-section-view.js';
+import createMapSectionView from './elements/map-section/create-map-section-view.js';
+import createAccountDataSectionView from './elements/account-data-section/create-account-data-section-view.js';
+import createTransactionsHistorySectionView from './elements/transactions-history-section/create-transactions-history-section-view.js';
+import createCurrenciesSectionView from './elements/currencies-section/create-currencies-section-view.js';
 
 const router = new Navigo('/', { linksSelector: 'a', hash: true });
 
@@ -245,7 +245,7 @@ router
     '/': () => {
       checkAuth(async () => {
         try {
-          renderHeaderView('/');
+          // renderHeaderView('/');
           renderAccountsSkeleton();
           let accountList =
             JSON.parse(localStorage.getItem('coin-account-list')) ?? [];
