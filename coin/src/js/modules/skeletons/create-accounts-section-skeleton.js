@@ -1,5 +1,3 @@
-import '../../../css/skeleton.css';
-
 import { el } from 'redom';
 import createAccountSkeleton from './create-account-skeleton';
 
@@ -12,16 +10,16 @@ export default function createAccountsSectionSkeleton() {
   }
   const accountListEl = el('div', { class: 'skeleton-grid' }, [...accounts]);
 
-  const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [
+  const wrapper = el('div', { class: 'wrapper' }, [
     menu,
     accountListEl,
   ]);
   const accountContainer = el(
     'div',
-    { class: 'accounts__container container' },
+    { class: 'container' },
     [wrapper]
   );
-  const section = el('section', { class: 'accounts' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

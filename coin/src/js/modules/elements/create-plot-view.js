@@ -1,4 +1,4 @@
-import '../../../css/plot.css';
+import * as styles from '../../../css/plot.module.css';
 
 import { el } from 'redom';
 import {
@@ -28,7 +28,7 @@ export function createBalancePlotView(
   const labels = balanceList.map((item) => item.month);
   const data = balanceList.map((item) => item.amount);
 
-  const chartCanvas = el('canvas', { class: `${cssClass} plot`, onclick: () => { onClick(); } });
+  const chartCanvas = el('canvas', { class: `${cssClass} ${styles.plot}`, onclick: () => { onClick(); } });
   const chart = new Chart(chartCanvas, {
     ...chartConfig,
     data: {
@@ -75,7 +75,7 @@ export function createTransactionsPlotView(
   const positiveData = data.map(item => item.positive);
   const negativeData = data.map(item => item.negative);
 
-  const chartCanvas = el('canvas', { class: `${cssClass} plot`, onclick: () => { onClick(); } });
+  const chartCanvas = el('canvas', { class: `${cssClass} ${styles.plot}`, onclick: () => { onClick(); } });
   const chart = new Chart(chartCanvas, {
     ...chartConfig,
     data: {

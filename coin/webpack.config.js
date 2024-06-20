@@ -27,7 +27,25 @@ module.exports = {
         },
       },
       {
+        test: /\.module\.css$/i,
+        use: [
+          process.env.NODE_ENV === 'production'
+            ? MiniCssExtractPlugin.loader
+            : 'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                localIdentName: '[name]__[local]--[hash:base64:5]',
+              },
+            },
+          },
+        ],
+      },
+      {
         test: /\.css$/i,
+        exclude: /\.module\.css$/i,
         use: [
           process.env.NODE_ENV === 'production'
             ? MiniCssExtractPlugin.loader

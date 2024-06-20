@@ -1,4 +1,4 @@
-import '../../../css/account.css';
+import * as styles from '../../../css/account.module.css';
 
 import { el } from 'redom';
 import formatDate from '../utils/format-date';
@@ -28,20 +28,20 @@ export default class Account {
     const li = el(
       'li',
       {
-        class: 'accounts__item account',
+        class: styles.account,
       },
       [
-        el('h3', this._account, { class: 'account__title' }),
-        el('span', formatMoney(this._balance), { class: 'account__balance' }),
-        el('div', { class: 'account__container' }, [
-          el('div', { class: 'account__transaction' }, [
-            el('h4', 'Последняя транзакция', { class: 'account__subtitle' }),
+        el('h3', this._account, { class: styles.title }),
+        el('span', formatMoney(this._balance), { class: styles.balance }),
+        el('div', { class: styles.container }, [
+          el('div', { class: styles.transaction }, [
+            el('h4', 'Последняя транзакция', { class: styles.subtitle }),
             el('span', this.getLastTransactionFormattedDate(), {
-              class: 'accoutn__date',
+              class: styles.date,
             }),
           ]),
           el('button', 'Открыть', {
-            class: 'account__btn primary-btn btn-reset',
+            class: `${styles.btn} primary-btn btn-reset`,
             onclick: () => this.onClick(),
           }),
         ]),

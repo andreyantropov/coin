@@ -1,4 +1,4 @@
-.auth-form {
+.form {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -12,33 +12,33 @@
     transform: translate(-50%, -50%);
 }
 
-.auth-form-title {
+.title {
     grid-area: auth-title;
     font-size: 34px;
 }
 
-.form__label_login {
+.label_login {
     grid-area: auth-login-lbl;
 }
 
-.form__control_login {
+.control_login {
     grid-area: auth-login-input;
 }
 
-.form__label_password {
+.label_password {
     grid-area: auth-password-lbl;
 }
 
-.form__control_password {
+.control_password {
     grid-area: auth-password-input;
 }
 
-.auth-form-submit {
+.submit {
     grid-area: auth-submit-btn;
     max-width: 33%;
 }
 
-.auth-error {
+.error {
   grid-area: auth-error;
   display: inline-block;
   max-width: 245px;

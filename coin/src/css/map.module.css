@@ -1,11 +1,12 @@
-.banks__wrapper {
+.wrapper {
   display: flex;
   flex-direction: column;
   gap: 32px;
 }
 
-.banks__map {
+.map {
     width: 100%;
+    height: 75vh;
 }
 
 .marker {

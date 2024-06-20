@@ -1,16 +1,16 @@
-.table {
+.tableContainer {
     padding: 32px;
     border-radius: 56px;
     background-color: var(--background-color);
 }
 
-.table__table {
+.table {
     width: 100%;
     border-collapse: collapse;
     caption-side: top;
 }
 
-.table__caption {
+.caption {
     margin-bottom: 30px;
     font-family: var(--second-family);
     font-size: 20px;
@@ -20,20 +20,20 @@
     text-align: left;
 }
 
-.table__thead {
+.thead {
     width: 100%;
     background-color: var(--primary-color);
 }
 
-.table__tr {
+.tr {
     border-bottom: 2px solid var(--text-table-color);
 }
 
-.table__thead .table__tr {
+.thead .tr {
     border: none;
 }
 
-.table__th {
+.th {
     padding: 20px 20px;
     border: none;
     font-size: 20px;
@@ -45,15 +45,15 @@
     word-break: break-word;
 }
 
-.table__th_from {
+.th_from {
     border-radius: 15px 0 0 15px;
 }
 
-.table__th_date {
+.th_date {
     border-radius: 0 15px 15px 0;
 }
 
-.table__td {
+.td {
     padding: 20px 20px;
     font-size: 16px;
     font-weight: 400;
@@ -63,21 +63,21 @@
     word-break: break-word;
 }
 
-.transaction__data_positive {
+.data_positive {
     color: var(--success-color);
 }
 
-.transaction__data_negative {
+.data_negative {
     color: var(--danger-color);
 }
 
 @media (max-width: 768px) {
-    .table__th {
+    .th {
         padding: 20px 10px;
         font-size: 12px;
     }
 
-    .table__td {
+    .td {
         padding: 20px 10px;
         font-size: 10px;
     }

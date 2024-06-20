@@ -1,14 +1,14 @@
-import '../../../css/form.css'
-import '../../../css/auth-form.css'
+import * as formStyles from  '../../../css/form.module.css'
+import * as styles from '../../../css/auth-form.module.css'
 
 import { el } from 'redom';
 
 export default function createAuthFormView({ onAuthSubmit }) {
-  const title = el('h2', 'Вход в аккаунт', { class: 'form__title auth-form-title' });
-  const error = el('span', 'Некорректный логин или пароль: пароли и логины длиной менее 6 символов и с пробелами не поддерживаются', { class: 'form__error hidden auth-error', });
-  const loginLabel = el('label', 'Логин', { class: 'form__label form__label_login label' });
+  const title = el('h2', 'Вход в аккаунт', { class: `${formStyles.title} ${styles.title}` });
+  const error = el('span', 'Некорректный логин или пароль: пароли и логины длиной менее 6 символов и с пробелами не поддерживаются', { class: `${formStyles.error} hidden ${styles.error}`, });
+  const loginLabel = el('label', 'Логин', { class: `${formStyles.label} ${styles.label_login} label` });
   const loginControl = el('input', {
-    class: 'form__control form__control_login control',
+    class: `${formStyles.control} ${styles.control_login} control`,
     type: 'text',
     placeholder: 'Логин',
     onfocus: () => {
@@ -16,10 +16,10 @@ export default function createAuthFormView({ onAuthSubmit }) {
     },
   });
   const passwordLabel = el('label', 'Пароль', {
-    class: 'form__label form__label_password label',
+    class: `${formStyles.label} ${styles.label_password} label`,
   });
   const passwordControl = el('input', {
-    class: 'form__control form__control_password control',
+    class: `${formStyles.control} ${styles.control_password} control`,
     type: 'password',
     placeholder: 'Пароль',
     onfocus: () => {
@@ -27,13 +27,13 @@ export default function createAuthFormView({ onAuthSubmit }) {
     },
   });
   const submitBtn = el('button', 'Войти', {
-    class: 'form__submit-btn primary-btn btn-reset auth-form-submit',
+    class: `primary-btn btn-reset ${styles.submit}`,
   });
 
   const form = el(
     'form',
     {
-      class: 'auth form auth-form',
+      class: `${formStyles.form} ${styles.form}`,
       onsubmit: (e) => {
         e.preventDefault();
 

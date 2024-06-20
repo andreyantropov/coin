@@ -1,4 +1,4 @@
-import '../../../css/skeleton.css';
+import * as styles from '../../../css/account-data.module.css';
 
 import { el } from 'redom';
 import createPlotSkeleton from './create-plot-skeleton';
@@ -18,26 +18,26 @@ export default function createAccountDataSectionSkeleton() {
     el('div', { class: 'skeleton skeleton-paragraph' }),
   ]);
 
-  const topContainer = el('div', { class: 'account-data__top' }, [
+  const topContainer = el('div', { class: styles.topContainer }, [
     transactionForm,
     plot,
   ]);
 
-  const content = el('div', { class: 'account-data__content' }, [
+  const content = el('div', { class: styles.content }, [
     topContainer,
     table,
   ]);
 
-  const wrapper = el('div', { class: 'account-data__wrapper wrapper' }, [
+  const wrapper = el('div', { class: 'wrapper' }, [
     details,
     content,
   ]);
   const accountContainer = el(
     'div',
-    { class: 'account-data__container container' },
+    { class: 'container' },
     [wrapper]
   );
-  const section = el('section', { class: 'account-data' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

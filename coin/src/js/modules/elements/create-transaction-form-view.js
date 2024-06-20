@@ -1,5 +1,5 @@
-import '../../../css/form.css';
-import '../../../css/transaction-form.css';
+import * as formStyles from '../../../css/form.module.css';
+import * as styles from '../../../css/transaction-form.module.css';
 
 import { el } from 'redom';
 import { getCreditCardNameByNumber } from 'creditcard.js';
@@ -15,19 +15,19 @@ export default function createTransactionFormView({
   const mailIcon = getSprite('./img/icons.svg#icon-mail', 'icon_mail');
 
   const cardImg = el('img', {
-    class: 'form__img transaction-form-card hidden',
+    class: `hidden`,
     src: '',
     alt: 'Платежная система',
   });
   const title = el('h3', 'Новый перевод', {
-    class: 'form__title transaction-form-title',
+    class: `${formStyles.title} ${styles.title}`,
   });
-  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: 'form__error hidden transaction-form-error', });
+  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: `${formStyles.error} hidden ${styles.error}`, });
   const accountLabel = el('label', 'Номер счета получателя', {
-    class: 'form__label form__label_account label',
+    class: `${formStyles.label} ${styles.label_account} label`,
   });
   const accountControl = el('input', {
-    class: 'form__control form__control_account control',
+    class: `${formStyles.control} ${styles.control_account} control`,
     type: 'text',
     placeholder: 'Счет получателя',
     onfocus: () => {
@@ -53,10 +53,10 @@ export default function createTransactionFormView({
     },
   });
   const amountLabel = el('label', 'Сумма перевода', {
-    class: 'form__label form__label_amount label',
+    class: `${formStyles.label} ${styles.label_amount} label`,
   });
   const amountControl = el('input', {
-    class: 'form__control form__control_amount control',
+    class: `${formStyles.control} ${styles.control_amount} control`,
     type: 'number',
     placeholder: 'Сумма',
     onfocus: () => {
@@ -66,7 +66,7 @@ export default function createTransactionFormView({
   const submitBtn = el(
     'button',
     {
-      class: 'form__submit-btn primary-btn btn-reset transaction-form-submit',
+      class: `primary-btn btn-reset ${styles.submit}`,
     },
     [mailIcon, el('span', 'Отправить')]
   );
@@ -74,7 +74,7 @@ export default function createTransactionFormView({
   const form = el(
     'form',
     {
-      class: `${cssClass} form transaction-form`,
+      class: `${cssClass} ${formStyles.form} ${styles.form}`,
       onsubmit: (e) => {
         e.preventDefault();
 

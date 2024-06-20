@@ -1,4 +1,4 @@
-import '../../../css/currencies.css';
+import * as styles from '../../../css/currencies.module.css';
 
 import { el } from 'redom';
 import Sortable from 'sortablejs';
@@ -13,28 +13,28 @@ export default function createCurrenciesSectionView({
   onCurrencyFormSubmit,
 }) {
   const userCurrencies = createUserCurrenciesTableView({
-    cssClass: 'currencies__table currencies__table_user',
+    cssClass: `${styles.table_user}`,
     currenciesList: currenciesList,
   });
   const rate = createCurrenciesRateTableView({
-    cssClass: 'currencies__table currencies__table_rate',
+    cssClass: `${styles.table_rate}`,
     webSocket: webSocket,
   });
   const form = createCurrenciesFormView({
-    cssClass: 'currencies__form',
+    cssClass: '',
     options: allCurrenciesList,
     onSubmit: async (from, to, amount) => {
       await onCurrencyFormSubmit(from, to, amount);
       userCurrencies.replaceWith(
         createUserCurrenciesTableView({
-          cssClass: 'currencies__table currencies__table_user',
+          cssClass: `${styles.table_user}`,
           currenciesList: currenciesList,
         })
       );
     },
   });
 
-  const leftContainer = el('div', { class: 'currencies__left' }, [
+  const leftContainer = el('div', { class: `${styles.leftContainer}` }, [
     userCurrencies,
     form,
   ]);
@@ -46,7 +46,7 @@ export default function createCurrenciesSectionView({
     },
   });
 
-  const wrapper = el('div', { class: 'currencies__wrapper wrapper' }, [
+  const wrapper = el('div', { class: `${styles.wrapper} wrapper` }, [
     leftContainer,
     rate,
   ]);
@@ -60,10 +60,10 @@ export default function createCurrenciesSectionView({
 
   const accountContainer = el(
     'div',
-    { class: 'currencies__container container' },
+    { class: `container` },
     [wrapper]
   );
-  const section = el('section', { class: 'currencies' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

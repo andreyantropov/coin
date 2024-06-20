@@ -1,25 +1,25 @@
-.accounts__menu {
+.menu {
     display: flex;
     align-items: center;
     margin-bottom: 50px;
 }
 
-.accounts__title {
+.title {
     display: inline-block;
     margin: 0;
     margin-right: 30px;
 }
 
-.accounts__select {
+.select {
     margin-right: auto;
 }
 
 @media (max-width: 1024px) {
-    .accounts__menu {
+    .menu {
         flex-wrap: wrap;
     }
 
-    .accounts__title {
+    .title {
         margin-right: 0;
         margin-bottom: 30px;
         width: 100%;
@@ -27,21 +27,21 @@
 }
 
 @media (max-width: 768px) {
-    .accounts__menu {
+    .menu {
         flex-direction: column;
         gap: 16px;
     }
 
-    .accounts__title {
+    .title {
         margin-bottom: 0;
     }
 
-    .accounts__select {
+    .select {
         margin-right: 0;
         width: 100%;
     }
 
-    .accounts__new-btn {
+    .newBtn {
         width: 100%;
     }
 }

@@ -1,3 +1,5 @@
+import * as styles from '../../../css/dictionary.module.css'
+
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
 import getSprite from '../utils/get-sprite';
@@ -29,9 +31,9 @@ export default class CurrencyRate {
   createElement() {
     const arrowIcon = getSprite(this.getIcon(), 'icon_rate-arrow');
 
-    const tr = el('tr', { class: `dictionary__tr currency ${this.getRateClass()}` }, [
-      el('th', `${this._from}/${this._to}`, { class: 'dictionary__th currency__th' }),
-      el('td', { class: 'dictionary__td currency__td' }, [
+    const tr = el('tr', { class: `${styles.tr} currency ${this.getRateClass()}` }, [
+      el('th', `${this._from}/${this._to}`, { class: `${styles.th} currency__th` }),
+      el('td', { class: `${styles.td} currency__td` }, [
         el('span', formatMoney(this._rate)),
         arrowIcon,
       ]),

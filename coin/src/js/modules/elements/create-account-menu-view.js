@@ -1,4 +1,4 @@
-import '../../../css/account-menu.css';
+import * as styles from '../../../css/account-menu.module.css';
 
 import { el } from 'redom';
 import getSprite from '../utils/get-sprite';
@@ -9,11 +9,11 @@ export default function createAccountMenuView({
 }) {
   const plusIcon = getSprite('./img/icons.svg#icon-plus', 'icon_plus');
 
-  const title = el('h2', 'Ваши счета', { class: 'accounts__title title' });
+  const title = el('h2', 'Ваши счета', { class: `${styles.title} title` });
   const select = el(
     'select',
     {
-      class: 'accounts__select control control_select',
+      class: `${styles.select} control control_select`,
       onchange: () => {
         onSortSelectChange(select.value);
       },
@@ -35,7 +35,7 @@ export default function createAccountMenuView({
   const newBtn = el(
     'button',
     {
-      class: 'accounts__new-btn primary-btn btn-reset',
+      class: `${styles.newBtn} primary-btn btn-reset`,
       onclick: async () => {
         await onNewBtnClick();
         onSortSelectChange(select.value);
@@ -43,7 +43,7 @@ export default function createAccountMenuView({
     },
     [plusIcon, el('span', 'Создать новый счет')]
   );
-  const topMenu = el('div', { class: 'accounts__menu' }, [
+  const topMenu = el('div', { class: styles.menu }, [
     title,
     select,
     newBtn,

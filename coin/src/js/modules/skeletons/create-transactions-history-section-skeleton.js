@@ -1,4 +1,4 @@
-import '../../../css/skeleton.css';
+import * as styles from '../../../css/history.module.css';
 
 import { el } from 'redom';
 import createPlotSkeleton from './create-plot-skeleton';
@@ -12,22 +12,22 @@ export default function createTransactionsHistorySectionSkeleton() {
   const balancePlot = createPlotSkeleton(12);
   const transactionsPlot = createPlotSkeleton(12);
   const table = createTableSkeleton(16);
-  const content = el('div', { class: 'history__content' }, [
+  const content = el('div', { class: styles.content }, [
     balancePlot,
     transactionsPlot,
     table,
   ]);
 
-  const wrapper = el('div', { class: 'history__wrapper wrapper' }, [
+  const wrapper = el('div', { class: 'wrapper' }, [
     details,
     content,
   ]);
   const accountContainer = el(
     'div',
-    { class: 'history__container container' },
+    { class: 'container' },
     [wrapper]
   );
-  const section = el('section', { class: 'history' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

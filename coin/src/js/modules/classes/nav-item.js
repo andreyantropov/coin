@@ -1,3 +1,5 @@
+import * as styles from '../../../css/header.module.css';
+
 import { el } from 'redom';
 
 export default class NavItem {
@@ -20,8 +22,8 @@ export default class NavItem {
     }
 
     createElement() {
-        const li = el('li', { class: 'nav__item' }, [
-            el('a', this._text, { class: `nav__link ${this._isActive ? 'nav__link_active' : ''}`, href: this._href, }),
+        const li = el('li', [
+            el('a', this._text, { class: `${styles.navLink} ${this._isActive ? styles.navLink_active : ''}`, href: this._href, }),
         ]);
         return li;
     }

@@ -1,3 +1,5 @@
+import * as styles from '../../../css/accounts.module.css';
+
 import { el } from 'redom';
 import createAccountMenuView from './create-account-menu-view';
 import createAccountsListView from './create-accounts-list-view';
@@ -23,16 +25,16 @@ export default function createAccountsSectionView({
     },
   });
 
-  const wrapper = el('div', { class: 'accounts__wrapper wrapper' }, [
+  const wrapper = el('div', { class: `wrapper` }, [
     menu,
     accountListEl,
   ]);
   const accountContainer = el(
     'div',
-    { class: 'accounts__container container' },
+    { class: `container` },
     [wrapper]
   );
-  const section = el('section', { class: 'accounts' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

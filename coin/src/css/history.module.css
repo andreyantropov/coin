@@ -1,10 +1,10 @@
-.history__content {
+.content {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.history__plot {
+.plot {
     width: 100% !important;
     height: 600px !important;
 }

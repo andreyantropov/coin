@@ -1,4 +1,4 @@
-.account-details {
+.details {
     display: grid;
     grid-template-columns: 1fr 200px;
     grid-template-rows: repeat(2, auto);
@@ -9,16 +9,16 @@
     margin-bottom: 30px;
 }
 
-.account-details__title {
+.title {
     grid-area: account-title;
     margin: 0;
 }
 
-.account-details__back-btn {
+.backBtn {
     grid-area: account-back-btn;
 }
 
-.account-details__number {
+.number {
     grid-area: account-number;
     font-family: var(--second-family);
     font-size: 34px;
@@ -27,7 +27,7 @@
     color: var(--text-primary-color);
 }
 
-.account-details__container {
+.container {
     grid-area: account-balance;
 }
 
@@ -37,7 +37,7 @@
     align-items: center;
 }
 
-.balance__title {
+.balanceTitle {
     margin: 0;
     font-family: var(--second-family);
     font-size: 20px;
@@ -46,7 +46,7 @@
     color: var(--text-primary-color);
 }
 
-.balance__value {
+.balanceValue {
     font-family: var(--second-family);
     font-size: 20px;
     font-weight: 400;
@@ -55,21 +55,21 @@
 }
 
 @media (max-width: 1024px) {
-    .account-details__number {
+    .number {
         font-size: 20px;
     }
 
-    .balance__title {
+    .balanceTitle {
         font-size: 16px;
     }
     
-    .balance__value {
+    .balanceValue {
         font-size: 16px;
     }
 }
 
 @media (max-width: 768px) {
-    .account-details {
+    .details {
         display: grid;
         grid-template-columns: 1fr;
         grid-template-areas:
@@ -81,7 +81,7 @@
         margin-bottom: 30px;
     }
 
-    .account-details__number {
+    .number {
         font-size: 16px;
     }
 }

@@ -1,4 +1,4 @@
-import '../../../css/account-details.css';
+import * as styles from'../../../css/account-details.module.css';
 
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
@@ -14,12 +14,12 @@ export default function createAccountDetailsView({
   const backIcon = getSprite('./img/icons.svg#icon-back', 'icon_back');
 
   const titleEl = el('h2', title, {
-    class: 'account-details__title title',
+    class: `${styles.title} title`,
   });
   const backBtn = el(
     'button',
     {
-      class: 'account-details__back-btn primary-btn btn-reset',
+      class: `${styles.backBtn} primary-btn btn-reset`,
       onclick: () => {
         onBackBtnClick();
       },
@@ -27,19 +27,19 @@ export default function createAccountDetailsView({
     [backIcon, el('span', 'Вернуться назад')]
   );
   const accountId = el('span', `№ ${id}`, {
-    class: 'account-details__number',
+    class: styles.number,
   });
   const balanceContainer = el(
     'div',
-    { class: 'account-details__balance-container balance' },
+    { class: `${styles.balance}` },
     [
-      el('h4', 'Баланс', { class: 'balance__title' }),
-      el('span', formatMoney(balance), { class: 'balance__value' }),
+      el('h4', 'Баланс', { class: styles.balanceTitle }),
+      el('span', formatMoney(balance), { class: styles.balanceValue }),
     ]
   );
   const primaryDataContainer = el(
     'div',
-    { class: `${cssClass} account-details` },
+    { class: `${cssClass} ${styles.details}` },
     [titleEl, backBtn, accountId, balanceContainer]
   );
 

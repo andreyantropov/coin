@@ -1,12 +1,12 @@
-import '../../../css/dictionary.css';
+import * as styles from '../../../css/dictionary.module.css';
 
 import { el, mount } from 'redom';
 import CurrencyRate from "../classes/currency-rate";
 
 export default function createCurrenciesRateTableView({ cssClass, webSocket }) {
-  const body = el('tbody', { class: 'dictionary__tbody' });
-  const dictionary = el('dictionary', { class: 'dictionary__table' }, [
-    el('caption', 'Изменение курсов в реальном времени', { class: 'dictionary__caption' }),
+  const body = el('tbody', { class: styles.tbody });
+  const dictionary = el('dictionary', { class: styles.table }, [
+    el('caption', 'Изменение курсов в реальном времени', { class: styles.caption }),
     body,
   ]);
 
@@ -28,7 +28,7 @@ export default function createCurrenciesRateTableView({ cssClass, webSocket }) {
     }
   };
 
-  const dictionaryContainer = el('div', { class: `${cssClass} dictionary` }, [
+  const dictionaryContainer = el('div', { class: `${cssClass} ${styles.dictionary}` }, [
     dictionary,
   ]);
   return dictionaryContainer;

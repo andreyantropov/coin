@@ -6,7 +6,7 @@
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
-.account__title {
+.title {
     margin: 0;
     margin-bottom: 15px;
     font-family: var(--third-family);
@@ -17,23 +17,23 @@
     color: var(--text-primary-color);
 }
 
-.account__balance {
+.balance {
     display: inline-block;
     margin-bottom: 25px;
 }
 
-.account__container {
+.container {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.account__transaction {
+.transaction {
     display: flex;
     flex-direction: column;
 }
 
-.account__subtitle {
+.subtitle {
     margin: 0;
     margin-bottom: 2px;
     font-family: var(--second-family);
@@ -43,7 +43,7 @@
     color: var(--text-primary-color);
 }
 
-.accoutn__date {
+.date {
     font-family: var(--second-family);
     font-size: 13px;
     font-weight: 400;
@@ -52,22 +52,22 @@
 }
 
 @media (max-width: 576px) {
-    .account__title {
+    .title {
         margin-bottom: 5px;
         font-size: 12px;
     }
 
-    .account__balance {
+    .balance {
         font-size: 12px;
     }
 
-    .account__container {
+    .container {
         flex-direction: column;
         align-items: flex-start;
         gap: 15px;
     }
 
-    .account__btn {
+    .btn {
         width: 100%;
     }
 }

@@ -3,6 +3,7 @@ import '../css/normalize.css';
 import '../css/fonts.css';
 import '../css/style.css';
 import '../css/icons.css';
+import '../css/skeleton.css';
 
 import Navigo from 'navigo';
 import { mount } from 'redom';

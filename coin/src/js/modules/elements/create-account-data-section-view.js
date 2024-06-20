@@ -1,4 +1,4 @@
-import '../../../css/account-data.css';
+import * as styles from '../../../css/account-data.module.css';
 
 import { el } from 'redom';
 import Sortable from 'sortablejs';
@@ -15,7 +15,7 @@ export default function createAccountDataSectionView({
   onTransactionsTableClick,
 }) {
   const details = createAccountDetailsView({
-    cssClass: 'account-data__account-details',
+    cssClass: '',
     title: 'Просмотр счёта',
     id: account.account,
     balance: account.balance,
@@ -23,25 +23,25 @@ export default function createAccountDataSectionView({
   });
 
   const plot = createBalancePlotView({
-    cssClass: 'account-data__plot',
+    cssClass: styles.plot,
     account: account,
     monthCount: 6,
     onClick: onTransactionsTableClick,
   });
   const table = createTransactionsHistoryTableView({
-    cssClass: 'account-data__table',
+    cssClass: '',
     account: account,
     onClick: onTransactionsTableClick,
   });
   const transactionForm = createTransactionFormView({
-    cssClass: 'account-data__transaction-form',
+    cssClass: '',
     id: account.account,
     numbers: numbers,
     onSubmit: async (from, to, amount) => {
       await onTransactionFormSubmit(from, to, amount);
       details.replaceWith(
         createAccountDetailsView({
-          cssClass: 'account-data__account-details',
+          cssClass: '',
           title: 'Просмотр счёта',
           id: account.account,
           balance: account.balance,
@@ -50,14 +50,14 @@ export default function createAccountDataSectionView({
       );
       table.replaceWith(
         createTransactionsHistoryTableView({
-          cssClass: 'account-data__table',
+          cssClass: '',
           account: account,
           onClick: onTransactionsTableClick,
         })
       );
       plot.replaceWith(
         createBalancePlotView({
-          cssClass: 'account-data__plot',
+          cssClass: plot,
           account: account,
           monthCount: 6,
           onClick: onTransactionsTableClick,
@@ -66,7 +66,7 @@ export default function createAccountDataSectionView({
     },
   });
 
-  const topContainer = el('div', { class: 'account-data__top' }, [
+  const topContainer = el('div', { class: styles.topContainer }, [
     transactionForm,
     plot,
   ]);
@@ -78,7 +78,7 @@ export default function createAccountDataSectionView({
     },
   });
 
-  const content = el('div', { class: 'account-data__content' }, [
+  const content = el('div', { class: styles.content }, [
     topContainer,
     table,
   ]);
@@ -90,16 +90,16 @@ export default function createAccountDataSectionView({
     },
   });
 
-  const wrapper = el('div', { class: 'account-data__wrapper wrapper' }, [
+  const wrapper = el('div', { class: `wrapper` }, [
     details,
     content,
   ]);
   const accountContainer = el(
     'div',
-    { class: 'account-data__container container' },
+    { class: `container` },
     [wrapper]
   );
-  const section = el('section', { class: 'account-data' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

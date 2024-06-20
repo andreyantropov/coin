@@ -1,3 +1,5 @@
+import * as styles from '../../../css/map.module.css';
+
 import { el } from 'redom';
 
 export default class Marker {
@@ -15,8 +17,8 @@ export default class Marker {
   }
 
   createElement() {
-    const markerElement = el('div', { class: 'marker', }, [
-        el('img', { class: 'marker__img', src: './img/marker.png', }),
+    const markerElement = el('div', { class: styles.marker, }, [
+        el('img', { src: './img/marker.png', }),
     ]);
 
     const { YMapMarker } = ymaps3;

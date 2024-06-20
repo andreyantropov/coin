@@ -1,25 +1,25 @@
-.account-data__content {
+.content {
     display: flex;
     flex-direction: column;
     gap: 30px;
 }
 
-.account-data__top {
+.topContainer {
     display: flex;
     gap: 30px;
 }
 
-.account-data__plot {
+.plot {
     width: 100% !important;
     height: 363px !important;
 }
 
 @media (max-width: 1366px) {
-    .account-data__top {
+    .topContainer {
         flex-direction: column;
     }
 
-    .account-data__plot {
+    .plot {
         height: 600px !important;
     }
 }

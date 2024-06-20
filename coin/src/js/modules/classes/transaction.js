@@ -1,3 +1,5 @@
+import * as styles from '../../../css/table.module.css';
+
 import { el } from 'redom';
 import formatDate from '../utils/format-date';
 import formatMoney from '../utils/format-money';
@@ -32,14 +34,14 @@ export default class Transaction {
   }
 
   createElement() {
-    const tr = el('tr', { class: 'table__tr transaction' }, [
-      el('td', this._from, { class: 'table__td transaction__data' }),
-      el('td', this._to, { class: 'table__td transaction__data' }),
+    const tr = el('tr', { class: `${styles.tr} transaction` }, [
+      el('td', this._from, { class: `${styles.td} transaction__data` }),
+      el('td', this._to, { class: `${styles.td} transaction__data` }),
       el('td', this.getFormattedAmount(), {
-        class: `table__td transaction__data ${this._to === this._accountId ? 'transaction__data_positive' : 'transaction__data_negative'}`,
+        class: `${styles.td} transaction__data ${this._to === this._accountId ? styles.data_positive : styles.data_negative}`,
       }),
       el('td', formatDate(this._date), {
-        class: 'table__td transaction__data',
+        class: `${styles.td} transaction__data`,
       }),
     ]);
     return tr;

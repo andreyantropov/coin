@@ -1,3 +1,5 @@
+import * as styles from '../../../css/dictionary.module.css'
+
 import { el } from 'redom';
 import formatMoney from '../utils/format-money';
 
@@ -16,9 +18,9 @@ export default class Currency {
   }
 
   createElement() {
-    const tr = el('tr', { class: 'dictionary__tr currency' }, [
-      el('th', this._code, { class: 'dictionary__th currency__th' }),
-      el('td', formatMoney(this._amount), { class: 'dictionary__td currency__td' }),
+    const tr = el('tr', { class: `${styles.tr} currency` }, [
+      el('th', this._code, { class: `${styles.th} currency__th` }),
+      el('td', formatMoney(this._amount), { class: `${styles.td} currency__td` }),
     ]);
     return tr;
   }

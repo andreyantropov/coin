@@ -1,4 +1,4 @@
-import '../../../css/accounts.css';
+import * as styles from '../../../css/accounts.module.css';
 
 import { el } from 'redom';
 import Sortable from 'sortablejs';
@@ -8,7 +8,7 @@ export default function createAccountsListView({
   accountList,
   onAccountBtnClick,
 }) {
-  const ul = el('ul', { class: 'accounts__list list-reset' }, [
+  const ul = el('ul', { class: `${styles.list} list-reset` }, [
     accountList.map((element) => {
       const account = new Account({
         ...element,

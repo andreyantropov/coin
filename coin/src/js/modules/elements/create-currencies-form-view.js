@@ -1,16 +1,16 @@
-import '../../../css/form.css';
-import '../../../css/currencies-form.css';
+import * as formStyles from  '../../../css/form.module.css';
+import * as styles from '../../../css/currencies-form.module.css';
 
 import { el } from 'redom';
 
 export default function createCurrenciesFormView({ cssClass, options, onSubmit }) {
-  const title = el('h3', 'Обмен валюты', { class: 'form__title currencies-title' });
-  const error = el('span', 'Некорректная сумма перевода: укажите неотрицательное число', { class: 'form__error hidden currencies-error', });
+  const title = el('h3', 'Обмен валюты', { class: `${formStyles.title} ${styles.title}` });
+  const error = el('span', 'Некорректная сумма перевода: укажите неотрицательное число', { class: `${formStyles.error} hidden ${styles.error}`, });
   const fromLabel = el('label', 'Из', {
-    class: 'form__label form__label_from label',
+    class: `${formStyles.label} ${styles.label_from} label`,
   });
   const fromControl = el('select', {
-    class: 'form__control form__control_from control control_select',
+    class: `${formStyles.control} ${styles.control_from} control control_select`,
     required: true,
   }, [
     options.map(element => {
@@ -18,41 +18,41 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
     }),
   ]);
   const toLabel = el('label', 'в', {
-    class: 'form__label form__label_to label',
+    class: `${formStyles.label} ${styles.label_to} label`,
   });
   const toControl = el('select', {
-    class: 'form__control form__control_to control control_select',
+    class: `${formStyles.control} ${styles.control_to} control control_select`,
     required: true,
   }, [
     options.map(element => {
       return el('option', element.code, { class: 'option' });
     }),
   ]);
-  const exchangeContainer = el('div', { class: 'form__input-container form__input-container_exchange' }, [
+  const exchangeContainer = el('div', { class: `${formStyles.inputContainer} ${styles.inputContainer_exchange}` }, [
     fromLabel, fromControl, toLabel, toControl,
   ]);
   const amountLabel = el('label', 'Сумма перевода', {
-    class: 'form__label form__label_amount label',
+    class: `${formStyles.label} ${styles.label_amount} label`,
   });
   const amountControl = el('input', {
-    class: 'form__control form__control_amount control',
+    class: `${formStyles.control} ${styles.control_amount} control`,
     type: 'text',
     placeholder: 'Сумма',
     onfocus: () => {
       error.classList.add('hidden');
     },
   });
-  const amountContainer = el('div', { class: 'form__input-container form__input-container_amount' }, [
+  const amountContainer = el('div', { class: `${formStyles.inputContainer} ${styles.inputContainer_amount}` }, [
     amountLabel, amountControl,
   ]);
   const submitBtn = el('button', 'Обменять', {
-    class: 'form__submit-btn primary-btn btn-reset currencies-form-submit',
+    class: `primary-btn btn-reset ${styles.submit}`,
   });
 
   const form = el(
     'form',
     {
-      class: `${cssClass} form currencies-form`,
+      class: `${cssClass} ${formStyles.form} ${styles.form}`,
       onsubmit: (e) => {
         e.preventDefault();
 

@@ -3,12 +3,12 @@
     border-radius: 50px;
 }
 
-.dictionary__table {
+.table {
     display: block;
     width: 100%;
 }
 
-.dictionary__caption {
+.caption {
     display: block;
     margin-bottom: 30px;
     width: 100%;
@@ -20,18 +20,18 @@
     text-align: left;
 }
 
-.dictionary__tbody {
+.tbody {
     display: block;
     width: 100%;
 }
 
-.dictionary__tr {
+.tr {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     padding: 5px 0;
 }
 
-.dictionary__th {
+.th {
     display: flex;
     align-items: center;
     font-family: var(--second-family);
@@ -41,14 +41,14 @@
     color: var(--text-primary-color);
 }
 
-.dictionary__th::after {
+.th::after {
     content: "";
     flex: 1;
     border-bottom: 1px dashed var(--text-primary-color);
     transform: translateY(10px);
 }
 
-.dictionary__td {
+.td {
     display: flex;
     align-items: center;
     gap: 5px;
@@ -59,29 +59,29 @@
     color: var(--text-primary-color);
 }
 
-.dictionary__td::before {
+.td::before {
     content: "";
     flex: 1;
     border-bottom: 1px dashed var(--text-primary-color);
     transform: translateY(10px);
 }
 
-.rate-positive .dictionary__td::before,
-.rate-positive .dictionary__th::after {
+.rate_positive .td::before,
+.rate_positive .th::after {
     border-bottom: 1px dashed var(--success-color);
 }
 
-.rate-negative .dictionary__td::before,
-.rate-negative .dictionary__th::after {
+.rate_negative .td::before,
+.rate_negative .th::after {
     border-bottom: 1px dashed var(--danger-color);
 }
 
 @media (max-width: 576px) {
-    .dictionary__th {
+    .th {
         font-size: 12px;
     }
 
-    .dictionary__td {
+    .td {
         font-size: 12px;
     }
 }

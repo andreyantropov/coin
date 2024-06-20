@@ -1,4 +1,4 @@
-.currencies-form {
+.form {
     grid-template-columns: 1fr 200px;
     grid-template-rows: repeat(3, auto);
     grid-template-areas:
@@ -10,34 +10,34 @@
     box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
 }
 
-.currencies-title {
+.title {
     grid-area: currency-title;
 }
 
-.form__input-container_exchange {
+.inputContainer_exchange {
     grid-area: currency-exchange-container;
 }
 
-.form__input-container_amount {
+.inputContainer_amount {
     grid-area: currency-amount-container;
 }
 
-.currencies__form .form__control_from,
-.currencies__form .form__control_to {
+.form .control_from,
+.form .control_to {
     min-width: 130px;
 }
 
-.currencies-form-submit {
+.submit {
     grid-area: currency-submit-btn;
     height: 100%;
 }
 
-.currencies-error {
+.error {
     grid-area: currency-error;
 }
 
 @media (max-width: 768px) {
-    .currencies-form {
+    .form {
         grid-template-columns: 1fr;
         grid-template-areas:
             'currency-title'
@@ -49,19 +49,19 @@
 }
 
 @media (max-width: 576px) {
-    .currencies__form .form__control_from,
-    .currencies__form .form__control_to {
+    .form .control_from,
+    .form .control_to {
         min-width: 75px;
         font-size: 12px;
     }
 
-    .form__label_from,
-    .form__label_to,
-    .currencies-form .form__label_amount {
+    .label_from,
+    .label_to,
+    .form .label_amount {
         font-size: 12px;
     }
 
-    .currencies-form .form__control_amount {
+    .form .control_amount {
         font-size: 12px;
     }
 }

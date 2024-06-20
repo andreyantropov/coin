@@ -1,4 +1,4 @@
-.transaction-form {
+.form {
     grid-template-areas:
         'transaction-title .'
         'transaction-account-lbl transaction-account-input'
@@ -8,47 +8,44 @@
     min-width: 600px;
 }
 
-.transaction-form-title {
+.title {
     grid-area: transaction-title;
 }
 
-.form__label_account {
+.label_account {
     grid-area: transaction-account-lbl;
 }
 
-.form__control_account {
+.control_account {
     grid-area: transaction-account-input;
 }
 
-.form__label_amount {
+.label_amount {
     grid-area: transaction-amount-lbl;
 }
 
-.form__control_amount {
+.control_amount {
     grid-area: transaction-amount-input;
 }
 
-.transaction-form-card {
+.card {
     grid-area: transaction-card;
     justify-self: end;
-}
-
-.transaction-form-card {
     max-height: 52px;
 }
 
-.transaction-form-submit {
+.submit {
     grid-area: transaction-submit-btn;
     max-width: 60%;
 }
 
-.transaction-form-error {
+.error {
   grid-area: transaction-error;
   max-width: 245px;
 }
 
 @media (max-width: 768px) {
-    .transaction-form {
+    .form {
         grid-template-columns: 1fr;
         grid-template-areas:
             'transaction-title'

@@ -1,12 +1,12 @@
-import '../../../css/dictionary.css';
+import * as styles from '../../../css/dictionary.module.css';
 
 import { el } from 'redom';
 import Currency from "../classes/currency";
 
 export default function createUserCurrenciesTableView({ cssClass, currenciesList }) {
-  const dictionary = el('dictionary', { class: 'dictionary__table' }, [
-    el('caption', 'Ваши валюты', { class: 'dictionary__caption' }),
-    el('tbody', { class: 'dictionary__tbody' }, [
+  const dictionary = el('dictionary', { class: styles.table }, [
+    el('caption', 'Ваши валюты', { class: styles.caption }),
+    el('tbody', { class: styles.tbody }, [
       currenciesList.map((element) => {
         const currency = new Currency(element);
         return currency.createElement();
@@ -14,7 +14,7 @@ export default function createUserCurrenciesTableView({ cssClass, currenciesList
     ]),
   ]);
 
-  const dictionaryContainer = el('div', { class: `${cssClass} dictionary` }, [
+  const dictionaryContainer = el('div', { class: `${cssClass} ${styles.dictionary}` }, [
     dictionary,
   ]);
   return dictionaryContainer;

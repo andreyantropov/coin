@@ -1,4 +1,4 @@
-import '../../../css/history.css';
+import * as styles from '../../../css/history.module.css';
 
 import { el } from 'redom';
 import Sortable from 'sortablejs';
@@ -7,11 +7,11 @@ import createTransactionsHistoryTableView from './create-transactions-history-ta
 import createAccountDetailsView from './create-account-details-view.js';
 
 export default function createTransactionsHistorySectionView({ account, onBackBtnClick }) {
-  const details = createAccountDetailsView({ cssClass: 'history__account-details', title: 'История баланса', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
-  const balancePlot = createBalancePlotView({ cssClass: 'history__plot history__plot_balance', account: account, monthCount: 12, onClick: () => {}, });
-  const transactionsPlot = createTransactionsPlotView({ cssClass: 'history__plot history__plot_transactions', account: account, monthCount: 12, onClick: () => {}, });
-  const table = createTransactionsHistoryTableView({ cssClass: 'history__table', account: account, rowsCount: 25, onClick: () => {}, });
-  const content = el('div', { class: 'history__content' }, [ balancePlot, transactionsPlot, table ]);
+  const details = createAccountDetailsView({ cssClass: '', title: 'История баланса', id: account.account, balance: account.balance, onBackBtnClick: onBackBtnClick });
+  const balancePlot = createBalancePlotView({ cssClass: `${styles.plot}`, account: account, monthCount: 12, onClick: () => {}, });
+  const transactionsPlot = createTransactionsPlotView({ cssClass: `${styles.plot}`, account: account, monthCount: 12, onClick: () => {}, });
+  const table = createTransactionsHistoryTableView({ cssClass: '', account: account, rowsCount: 25, onClick: () => {}, });
+  const content = el('div', { class: styles.content }, [ balancePlot, transactionsPlot, table ]);
 
   const sortable = new Sortable(content, {
     animation: 150,
@@ -20,13 +20,13 @@ export default function createTransactionsHistorySectionView({ account, onBackBt
     },
   });
 
-  const wrapper = el('div', { class: 'history__wrapper wrapper' }, [ details, content ]);
+  const wrapper = el('div', { class: `wrapper` }, [ details, content ]);
   const accountContainer = el(
     'div',
-    { class: 'history__container container' },
+    { class: `container` },
     [wrapper]
   );
-  const section = el('section', { class: 'history' }, [accountContainer]);
+  const section = el('section', [accountContainer]);
 
   return section;
 }

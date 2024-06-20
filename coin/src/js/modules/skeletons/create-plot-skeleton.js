@@ -1,5 +1,3 @@
-import '../../../css/skeleton.css';
-
 import { el } from 'redom';
 
 export default function createPlotSkeleton(barsCount) {
