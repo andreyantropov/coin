@@ -1,3 +1,4 @@
+import * as ymaps3 from 'ymaps3';
 import Marker from '../elements/map-section/marker/marker';
 
 export default async function initMap(container, markerList = []) {

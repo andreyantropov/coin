@@ -14,6 +14,14 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
   },
+  externalsType: 'script',
+  externals: {
+    ymaps3: [
+      'https://api-maps.yandex.ru/v3/?apikey=ce1ed5b3-c3a8-43cc-a92e-8247fe5ac5c6&lang=ru_RU',
+      'ymaps3',
+    ],
+  },
+  devtool: 'cheap-source-map',
   module: {
     rules: [
       {
