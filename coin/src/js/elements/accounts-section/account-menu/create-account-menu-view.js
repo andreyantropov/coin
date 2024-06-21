@@ -9,7 +9,7 @@ export default function createAccountMenuView({
 }) {
   const plusIcon = getSprite('./img/icons.svg#icon-plus', 'icon_plus');
 
-  const title = el('h2', 'Ваши счета', { class: `${styles.title} title` });
+  const title = el('h2', 'Ваши счета', { class: `${styles.title} title accounts-title` });
   const select = el(
     'select',
     {
@@ -35,7 +35,7 @@ export default function createAccountMenuView({
   const newBtn = el(
     'button',
     {
-      class: `${styles.newBtn} primary-btn btn-reset`,
+      class: `${styles.newBtn} primary-btn btn-reset accounts-new-btn`,
       onclick: async () => {
         await onNewBtnClick();
         onSortSelectChange(select.value);

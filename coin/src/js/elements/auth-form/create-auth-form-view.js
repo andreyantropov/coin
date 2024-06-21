@@ -8,7 +8,7 @@ export default function createAuthFormView({ onAuthSubmit }) {
   const error = el('span', 'Некорректный логин или пароль: пароли и логины длиной менее 6 символов и с пробелами не поддерживаются', { class: `${formStyles.error} hidden ${styles.error}`, });
   const loginLabel = el('label', 'Логин', { class: `${formStyles.label} ${styles.label_login} label` });
   const loginControl = el('input', {
-    class: `${formStyles.control} ${styles.control_login} control`,
+    class: `${formStyles.control} ${styles.control_login} control auth-login`,
     type: 'text',
     placeholder: 'Логин',
     onfocus: () => {
@@ -19,7 +19,7 @@ export default function createAuthFormView({ onAuthSubmit }) {
     class: `${formStyles.label} ${styles.label_password} label`,
   });
   const passwordControl = el('input', {
-    class: `${formStyles.control} ${styles.control_password} control`,
+    class: `${formStyles.control} ${styles.control_password} control auth-password`,
     type: 'password',
     placeholder: 'Пароль',
     onfocus: () => {
@@ -27,7 +27,7 @@ export default function createAuthFormView({ onAuthSubmit }) {
     },
   });
   const submitBtn = el('button', 'Войти', {
-    class: `primary-btn btn-reset ${styles.submit}`,
+    class: `primary-btn btn-reset ${styles.submit} auth-form-submit`,
   });
 
   const form = el(

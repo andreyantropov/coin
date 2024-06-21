@@ -1,5 +1,5 @@
-import formatDate from '../src/js/modules/utils/format-date';
-import formatMoney from '../src/js/modules/utils/format-money';
+import formatDate from '../src/js/utils/format-date';
+import formatMoney from '../src/js/utils/format-money';
 
 test('Should format date', () => {
   expect(formatDate('2021-09-11T23:00:44.486Z')).toBe('12 сентября 2021 г.');

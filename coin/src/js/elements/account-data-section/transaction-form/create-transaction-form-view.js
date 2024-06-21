@@ -27,7 +27,7 @@ export default function createTransactionFormView({
     class: `${formStyles.label} ${styles.label_account} label`,
   });
   const accountControl = el('input', {
-    class: `${formStyles.control} ${styles.control_account} control`,
+    class: `${formStyles.control} ${styles.control_account} control transaction-account`,
     type: 'text',
     placeholder: 'Счет получателя',
     onfocus: () => {
@@ -56,7 +56,7 @@ export default function createTransactionFormView({
     class: `${formStyles.label} ${styles.label_amount} label`,
   });
   const amountControl = el('input', {
-    class: `${formStyles.control} ${styles.control_amount} control`,
+    class: `${formStyles.control} ${styles.control_amount} control transaction-amount`,
     type: 'number',
     placeholder: 'Сумма',
     onfocus: () => {
@@ -66,7 +66,7 @@ export default function createTransactionFormView({
   const submitBtn = el(
     'button',
     {
-      class: `primary-btn btn-reset ${styles.submit}`,
+      class: `${styles.submit} primary-btn btn-reset transaction-form-submit`,
     },
     [mailIcon, el('span', 'Отправить')]
   );

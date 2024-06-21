@@ -8,7 +8,7 @@ export default function createAccountsListView({
   accountList,
   onAccountBtnClick,
 }) {
-  const ul = el('ul', { class: `${styles.list} list-reset` }, [
+  const ul = el('ul', { class: `${styles.list} list-reset accounts-list` }, [
     accountList.map((element) => {
       const account = new Account({
         ...element,

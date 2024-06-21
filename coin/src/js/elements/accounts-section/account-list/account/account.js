@@ -28,7 +28,7 @@ export default class Account {
     const li = el(
       'li',
       {
-        class: styles.account,
+        class: `${styles.account} accounts-item`,
       },
       [
         el('h3', this._account, { class: styles.title }),
@@ -41,7 +41,7 @@ export default class Account {
             }),
           ]),
           el('button', 'Открыть', {
-            class: `${styles.btn} primary-btn btn-reset`,
+            class: `${styles.btn} primary-btn btn-reset account-btn`,
             onclick: () => this.onClick(),
           }),
         ]),

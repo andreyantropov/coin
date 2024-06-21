@@ -15,16 +15,16 @@ describe('Core', () => {
   });
 
   it('Can see the list of accounts', () => {
-    cy.get('.accounts__title').should('contain', 'Ваши счета');
-    cy.get('.accounts__list').should('exist');
-    cy.get('.accounts__list').find('.accounts__item').contains(sourceAccountId);
+    cy.get('.accounts-title').should('contain', 'Ваши счета');
+    cy.get('.accounts-list').should('exist');
+    cy.get('.accounts-list').find('.accounts-item').contains(sourceAccountId);
   });
 
   it('Can translate amount from account to account', () => {
-    cy.get('.accounts__item')
+    cy.get('.accounts-item')
       .contains(sourceAccountId)
       .parent()
-      .find('.account__btn')
+      .find('.account-btn')
       .click();
     cy.get('.transaction-account').type(targetAccountId);
     cy.get('.transaction-amount').type(transferAmount);
@@ -33,10 +33,10 @@ describe('Core', () => {
   });
 
   it('Can create new account', () => {
-    cy.get('.accounts__item').then(($items) => {
+    cy.get('.accounts-item').then(($items) => {
       const initialCount = $items.length;
-      cy.get('.accounts__new-btn').click();
-      cy.get('.accounts__item').then(($items) => {
+      cy.get('.accounts-new-btn').click();
+      cy.get('.accounts-item').then(($items) => {
         expect($items.length).to.equal(initialCount + 1);
       });
     });
