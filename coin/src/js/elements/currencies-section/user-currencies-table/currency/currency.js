@@ -1,4 +1,4 @@
-import * as styles from '../dictionary.module.css';
+import * as styles from './currency.module.css';
 
 import { el } from 'redom';
 import formatMoney from '../../../../utils/format-money';

@@ -1,4 +1,4 @@
-import * as styles from '../header.module.css';
+import * as styles from './nav-item.module.css';
 
 import { el } from 'redom';
 

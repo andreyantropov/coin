@@ -8,7 +8,7 @@ export default function createHeaderView(navItems) {
     el('img', { src: './img/logo.png', img: 'Логотип Coin' }),
   ]);
 
-  const nav = el('nav', { class: styles.nav }, [
+  const nav = el('nav', [
     el('ul', { class: `${styles.navList} list-reset` }, [
       navItems.map((element) => {
         const navItem = new NavItem(element);

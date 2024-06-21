@@ -1,4 +1,4 @@
-import * as styles from '../dictionary.module.css';
+import * as styles from './currency-rate.module.css';
 
 import { el } from 'redom';
 import formatMoney from '../../../../utils/format-money';
@@ -55,9 +55,9 @@ export default class CurrencyRate {
   getRateClass() {
     switch(this._change) {
       case -1:
-        return 'rate-negative';
+        return styles.td_negative;
       case 1:
-        return 'rate-positive';
+        return styles.td_positive;
       default:
         return '';
     }

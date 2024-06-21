@@ -17,7 +17,7 @@ export default function createTransactionsHistoryTableView(
     [
       el('caption', 'История переводов', { class: styles.caption }),
       el('thead', { class: styles.thead }, [
-        el('tr', { class: styles.tr }, [
+        el('tr', [
           el('th', 'Счёт отправителя', { class: `${styles.th} ${styles.th_from}` }),
           el('th', 'Счёт получателя', { class: `${styles.th}` }),
           el('th', 'Сумма', { class: `${styles.th}` }),

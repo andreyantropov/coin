@@ -1,4 +1,4 @@
-import * as styles from '../map.module.css';
+import * as styles from './marker.module.css';
 
 import { el } from 'redom';
 
