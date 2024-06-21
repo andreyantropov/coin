@@ -1,4 +1,4 @@
-import * as styles from '../elements/account-data-section/account-data.module.css';
+import * as styles from '../elements/account-data-section/account-data-section.module.css';
 
 import { el } from 'redom';
 import createPlotSkeleton from './create-plot-skeleton';

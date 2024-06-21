@@ -1,4 +1,4 @@
-import * as styles from './dictionary.module.css';
+import * as styles from './user-currencies-table.module.css';
 
 import { el } from 'redom';
 import Currency from "./currency/currency";

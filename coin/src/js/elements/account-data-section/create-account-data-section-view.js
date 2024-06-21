@@ -1,4 +1,4 @@
-import * as styles from './account-data.module.css';
+import * as styles from './account-data-section.module.css';
 
 import { el } from 'redom';
 import Sortable from 'sortablejs';

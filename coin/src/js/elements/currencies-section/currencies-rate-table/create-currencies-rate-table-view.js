@@ -1,4 +1,4 @@
-import * as styles from './dictionary.module.css';
+import * as styles from './currencies-rate-table.module.css';
 
 import { el, mount } from 'redom';
 import CurrencyRate from "./currency-rate/currency-rate";

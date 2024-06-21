@@ -1,4 +1,4 @@
-import * as styles from '../elements/transactions-history-section/history.module.css';
+import * as styles from '../elements/transactions-history-section/transactions-history-section.module.css';
 
 import { el } from 'redom';
 import createPlotSkeleton from './create-plot-skeleton';

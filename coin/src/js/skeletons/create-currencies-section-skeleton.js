@@ -1,4 +1,4 @@
-import * as styles from '../elements/currencies-section/currencies.module.css';
+import * as styles from '../elements/currencies-section/currencies-section.module.css';
 
 import { el } from 'redom';
 import createTableSkeleton from './create-table-skeleton';

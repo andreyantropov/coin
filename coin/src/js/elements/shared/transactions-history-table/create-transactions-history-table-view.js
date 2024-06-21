@@ -1,4 +1,4 @@
-import * as styles from './table.module.css';
+import * as styles from './transactions-history-table.module.css';
 
 import { el } from 'redom';
 import Transaction from './transaction/transaction';
