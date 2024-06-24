@@ -57,7 +57,7 @@ export default function createAccountDataSectionView({
       );
       plot.replaceWith(
         createBalancePlotView({
-          cssClass: plot,
+          cssClass: styles.plot,
           account: account,
           monthCount: 6,
           onClick: onTransactionsTableClick,
