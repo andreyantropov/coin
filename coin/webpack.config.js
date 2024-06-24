@@ -105,6 +105,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Coin.',
+      favicon: './favicon.png',
       template: 'src/index.html',
     }),
     new MiniCssExtractPlugin({
@@ -119,6 +120,7 @@ module.exports = {
             ignore: ['**/svg/**'],
           },
         },
+        { from: './favicon.png', to: '' },
       ],
     }),
     new SVGSpritemapPlugin('src/assets/img/icons/**/*.svg', {
