@@ -30,26 +30,6 @@ const router = new Navigo('/', { linksSelector: 'a', hash: true });
 const header = document.getElementById('header');
 const main = document.getElementById('main');
 
-const checkAuth = (done) => {
-  const isAuthenticated = localStorage.getItem('coin-auth-token');
-
-  if (!isAuthenticated) {
-    router.navigate('/auth');
-  } else {
-    done();
-  }
-};
-
-const checkNotAuth = (done) => {
-  const isAuthenticated = localStorage.getItem('coin-auth-token');
-
-  if (isAuthenticated) {
-    router.navigate('/');
-  } else {
-    done();
-  }
-};
-
 const renderHeaderView = (activeRoute) => {
   header.innerHTML = '';
   const headerContainer = createHeaderView([
@@ -65,14 +45,20 @@ const renderHeaderView = (activeRoute) => {
   mount(header, headerContainer);
 };
 
-const renderAccountsSkeleton = () => {
-  const skeleton = createAccountsSectionSkeleton();
+const renderSkeleton = (skeletonCreator) => {
+  const skeleton = skeletonCreator();
   main.innerHTML = '';
   mount(main, skeleton);
 };
 
-const renderAccountsView = (accountList) => {
-  const section = createAccountsSectionView({
+const renderView = (viewCreator, data) => {
+  const section = viewCreator(data);
+  main.innerHTML = '';
+  mount(main, section);
+};
+
+const renderAccountsSectionView = (accountList) => {
+  renderView(createAccountsSectionView, {
     accountList: accountList,
     onAccountBtnClick: (id) => {
       router.navigate(`/accounts/${id}`);
@@ -108,23 +94,16 @@ const renderAccountsView = (accountList) => {
     onNewBtnClick: async () => {
       const newAccount = await API.createAccount();
       accountList.push(newAccount);
-      localStorage.setItem('coin-account-list', JSON.stringify(accountList));
+      localStorage.setItem(
+        'coin-account-list',
+        JSON.stringify(accountList)
+      );
     },
   });
-  main.innerHTML = '';
-  mount(main, section);
-};
+}
 
-const renderAccountsDataSkeleton = () => {
-  const skeleton = createAccountDataSectionSkeleton();
-  main.innerHTML = '';
-  mount(main, skeleton);
-};
-
-const renderAccountsDataView = (account) => {
-  const numbers =
-    JSON.parse(localStorage.getItem('coin-recipient-accounts')) ?? [];
-  const section = createAccountDataSectionView({
+const renderAccauntDataSectionView = (account, numbers) => {
+  renderView(createAccountDataSectionView, {
     account: account,
     numbers: numbers,
     onBackBtnClick: () => {
@@ -159,38 +138,22 @@ const renderAccountsDataView = (account) => {
       router.navigate(`/history/${account.account}`);
     },
   });
-  main.innerHTML = '';
-  mount(main, section);
-};
+}
 
-const renderHistorySkeleton = () => {
-  const skeleton = createTransactionsHistorySectionSkeleton();
-  main.innerHTML = '';
-  mount(main, skeleton);
-};
-
-const renderHistoryView = (account) => {
-  const section = createTransactionsHistorySectionView({
-    account: account,
+const renderTransactionsHistorySectionView = (account) => {
+  renderView(createTransactionsHistorySectionView, {
+    account,
     onBackBtnClick: () => {
       router.navigate(`/accounts/${account.account}`);
     },
   });
-  main.innerHTML = '';
-  mount(main, section);
-};
+}
 
-const renderCurrenciesSkeleton = () => {
-  const skeleton = createCurrenciesSectionSkeleton();
-  main.innerHTML = '';
-  mount(main, skeleton);
-};
-
-const renderCurrenciesView = (currenciesList) => {
-  const section = createCurrenciesSectionView({
+const renderCurrenciesSectionView = (currenciesList, websocket) => {
+  renderView(createCurrenciesSectionView, {
     allCurrenciesList: currenciesList,
-    currenciesList: currenciesList,
-    webSocket: API.currencyRate(),
+    currenciesList,
+    webSocket: websocket,
     onCurrencyFormSubmit: async (from, to, amount) => {
       const res = await API.buyCurrency(from, to, amount);
       currenciesList.length = 0;
@@ -208,36 +171,38 @@ const renderCurrenciesView = (currenciesList) => {
       }).showToast();
     },
   });
-  main.innerHTML = '';
-  mount(main, section);
-};
+}
 
-const renderBanksSkeleton = () => {
-  const skeleton = createMapSectionSkeleton();
-  main.innerHTML = '';
-  mount(main, skeleton);
-};
+const renderMapSectionView = (markerList) => {
+  renderView(createMapSectionView, { markerList });
+}
 
-const renderBanksView = (markerList) => {
-  const section = createMapSectionView({
-    markerList: markerList,
-  });
-  main.innerHTML = '';
-  mount(main, section);
-};
-
-const renderAuthView = () => {
-  header.innerHTML = '';
-  const headerContainer = createHeaderView([]);
-  mount(header, headerContainer);
-
-  main.innerHTML = '';
-  const section = createAuthFormView({
+const renderAuthFormView = () => {
+  renderView(createAuthFormView, {
     onAuthSubmit: async (login, password) => {
       if (await API.login(login, password)) router.navigate('/');
     },
   });
-  mount(main, section);
+}
+
+const checkAuth = (done) => {
+  const isAuthenticated = localStorage.getItem('coin-auth-token');
+
+  if (!isAuthenticated) {
+    router.navigate('/auth');
+  } else {
+    done();
+  }
+};
+
+const checkNotAuth = (done) => {
+  const isAuthenticated = localStorage.getItem('coin-auth-token');
+
+  if (isAuthenticated) {
+    router.navigate('/');
+  } else {
+    done();
+  }
 };
 
 router
@@ -246,14 +211,14 @@ router
       checkAuth(async () => {
         try {
           renderHeaderView('/');
-          renderAccountsSkeleton();
+          renderSkeleton(createAccountsSectionSkeleton);
           let accountList =
             JSON.parse(localStorage.getItem('coin-account-list')) ?? [];
           if (accountList != []) {
-            renderAccountsView(accountList);
+            renderAccountsSectionView(accountList);
           }
           accountList = await API.getAccountList();
-          renderAccountsView(accountList);
+          renderAccountsSectionView(accountList);
         } catch (error) {
           Toastify({
             ...toastConfig,
@@ -268,9 +233,11 @@ router
         try {
           const id = data.id;
           renderHeaderView('');
-          renderAccountsDataSkeleton();
+          renderSkeleton(createAccountDataSectionSkeleton);
+          const numbers =
+            JSON.parse(localStorage.getItem('coin-recipient-accounts')) ?? [];
           let account = await API.getAccount(id);
-          renderAccountsDataView(account);
+          renderAccauntDataSectionView(account, numbers);
         } catch (error) {
           Toastify({
             ...toastConfig,
@@ -283,11 +250,10 @@ router
     '/history/:id': ({ data }) => {
       checkAuth(async () => {
         try {
-          const id = data.id;
           renderHeaderView('');
-          renderHistorySkeleton();
-          let account = await API.getAccount(id);
-          renderHistoryView(account);
+          renderSkeleton(createTransactionsHistorySectionSkeleton);
+          const account = await API.getAccount(data.id);
+          renderTransactionsHistorySectionView(account);
         } catch (error) {
           Toastify({
             ...toastConfig,
@@ -301,9 +267,10 @@ router
       checkAuth(async () => {
         try {
           renderHeaderView('/currencies');
-          renderCurrenciesSkeleton();
+          renderSkeleton(createCurrenciesSectionSkeleton);
           let currenciesList = await API.getCurrenciesList();
-          renderCurrenciesView(currenciesList);
+          const websocket = API.currencyRate();
+          renderCurrenciesSectionView(currenciesList, websocket);
         } catch (error) {
           Toastify({
             ...toastConfig,
@@ -317,14 +284,14 @@ router
       checkAuth(async () => {
         try {
           renderHeaderView('/banks');
-          renderBanksSkeleton();
+          renderSkeleton(createMapSectionSkeleton);
           let markerList =
             JSON.parse(localStorage.getItem('coin-marker-list')) ?? [];
           if (markerList != []) {
-            renderBanksView(markerList);
+            renderMapSectionView(markerList);
           }
           markerList = await API.getBankList();
-          renderBanksView(markerList);
+          renderMapSectionView(markerList);
           localStorage.setItem('coin-marker-list', JSON.stringify(markerList));
         } catch (error) {
           Toastify({
@@ -338,7 +305,11 @@ router
     '/auth': () => {
       checkNotAuth(() => {
         try {
-          renderAuthView();
+          header.innerHTML = '';
+          const headerContainer = createHeaderView([]);
+          mount(header, headerContainer);
+
+          renderAuthFormView();
         } catch (error) {
           Toastify({
             ...toastConfig,

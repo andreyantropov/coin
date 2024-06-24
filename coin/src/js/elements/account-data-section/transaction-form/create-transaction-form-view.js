@@ -112,7 +112,6 @@ export default function createTransactionFormView({
   autocomplete({
     input: accountControl,
     fetch: function (num, update) {
-      console.log(numbers)
       const suggestions = numbers.filter((n) => n.label.startsWith(num));
       update(suggestions);
     },
