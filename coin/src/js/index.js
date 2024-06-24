@@ -185,6 +185,14 @@ const renderAuthFormView = () => {
   });
 }
 
+const showError = (errorMessage) => {
+  Toastify({
+    ...toastConfig,
+    text: errorMessage,
+  }).showToast();
+  main.innerHTML = '';
+}
+
 const checkAuth = (done) => {
   const isAuthenticated = localStorage.getItem('coin-auth-token');
 
@@ -220,11 +228,7 @@ router
           accountList = await API.getAccountList();
           renderAccountsSectionView(accountList);
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -239,11 +243,7 @@ router
           let account = await API.getAccount(id);
           renderAccauntDataSectionView(account, numbers);
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -255,11 +255,7 @@ router
           const account = await API.getAccount(data.id);
           renderTransactionsHistorySectionView(account);
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -272,11 +268,7 @@ router
           const websocket = API.currencyRate();
           renderCurrenciesSectionView(currenciesList, websocket);
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -294,11 +286,7 @@ router
           renderMapSectionView(markerList);
           localStorage.setItem('coin-marker-list', JSON.stringify(markerList));
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -311,11 +299,7 @@ router
 
           renderAuthFormView();
         } catch (error) {
-          Toastify({
-            ...toastConfig,
-            text: error.message,
-          }).showToast();
-          main.innerHTML = '';
+          showError(error.message);
         }
       });
     },
@@ -324,11 +308,7 @@ router
         API.logout();
         router.navigate('/auth');
       } catch (error) {
-        Toastify({
-          ...toastConfig,
-          text: error.message,
-        }).showToast();
-        main.innerHTML = '';
+        showError(error.message);
       }
     },
   })
