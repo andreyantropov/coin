@@ -28,7 +28,7 @@
     grid-area: transaction-amount-input;
 }
 
-.card {
+.cardImg {
     grid-area: transaction-card;
     justify-self: end;
     max-height: 52px;

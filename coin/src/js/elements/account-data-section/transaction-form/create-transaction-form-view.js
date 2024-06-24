@@ -15,7 +15,7 @@ export default function createTransactionFormView({
   const mailIcon = getSprite('./img/icons.svg#icon-mail', 'icon_mail');
 
   const cardImg = el('img', {
-    class: `hidden`,
+    class: `${formStyles.cardImg} ${styles.cardImg} hidden`,
     src: '',
     alt: 'Платежная система',
   });

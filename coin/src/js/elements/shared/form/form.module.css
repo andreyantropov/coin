@@ -36,6 +36,10 @@
   color: var(--danger-color);
 }
 
+.cardImg {
+    max-width: 75px;
+}
+
 @media (max-width: 768px) {
     .form {
         grid-template-columns: 1fr;
