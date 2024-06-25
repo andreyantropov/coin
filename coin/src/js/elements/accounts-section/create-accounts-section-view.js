@@ -8,30 +8,23 @@ export default function createAccountsSectionView({
   onSortSelectChange,
   onNewBtnClick,
 }) {
-  let accountListEl = createAccountsListView({
-    accountList: accountList,
-    onAccountBtnClick: onAccountBtnClick,
+  const accountListEl = createAccountsListView({
+    accountList,
+    onAccountBtnClick,
   });
   const menu = createAccountMenuView({
-    onNewBtnClick: onNewBtnClick,
+    onNewBtnClick,
     onSortSelectChange: (value) => {
       onSortSelectChange(value);
       accountListEl.innerHTML = createAccountsListView({
-        accountList: accountList,
-        onAccountBtnClick: onAccountBtnClick,
+        accountList,
+        onAccountBtnClick,
       }).innerHTML;
     },
   });
 
-  const wrapper = el('div', { class: `wrapper` }, [
-    menu,
-    accountListEl,
-  ]);
-  const accountContainer = el(
-    'div',
-    { class: `container` },
-    [wrapper]
-  );
+  const wrapper = el('div', { class: `wrapper` }, [menu, accountListEl]);
+  const accountContainer = el('div', { class: `container` }, [wrapper]);
   const section = el('section', [accountContainer]);
 
   return section;

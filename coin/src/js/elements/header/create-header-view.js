@@ -1,6 +1,6 @@
+import { el } from 'redom';
 import * as styles from './header.module.css';
 
-import { el } from 'redom';
 import NavItem from './nav-item/nav-item';
 
 export default function createHeaderView(navItems) {
@@ -17,10 +17,11 @@ export default function createHeaderView(navItems) {
     ]),
   ]);
 
-  const wrapper = el('div', { class: `${styles.wrapper} wrapper` }, [logo, nav]);
-  const container = el('div', { class: `container` }, [
-    wrapper,
+  const wrapper = el('div', { class: `${styles.wrapper} wrapper` }, [
+    logo,
+    nav,
   ]);
+  const container = el('div', { class: `container` }, [wrapper]);
 
   return container;
 }

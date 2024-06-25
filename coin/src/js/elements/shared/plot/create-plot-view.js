@@ -1,5 +1,3 @@
-import * as styles from './plot.module.css';
-
 import { el } from 'redom';
 import {
   Chart,
@@ -9,15 +7,26 @@ import {
   BarElement,
   Title,
 } from 'chart.js';
-import { getTransactionsForPeriod, groupTransactionsByMonth, groupBalanceByMonth, } from '../../../utils/chart-data-utils';
+import * as styles from './plot.module.css';
+import {
+  getTransactionsForPeriod,
+  groupTransactionsByMonth,
+  groupBalanceByMonth,
+} from '../../../utils/chart-data-utils';
 import chartConfig from '../../../configs/chart-config';
 
-export function createBalancePlotView(
-  { cssClass, account, monthCount, onClick, }
-) {
+export function createBalancePlotView({
+  cssClass,
+  account,
+  monthCount,
+  onClick,
+}) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
-  const lastTransactions = getTransactionsForPeriod(account.transactions, monthCount);
+  const lastTransactions = getTransactionsForPeriod(
+    account.transactions,
+    monthCount
+  );
   const groupedTransactions = groupTransactionsByMonth(
     account.account,
     lastTransactions,
@@ -28,15 +37,20 @@ export function createBalancePlotView(
   const labels = balanceList.map((item) => item.month);
   const data = balanceList.map((item) => item.amount);
 
-  const chartCanvas = el('canvas', { class: `${cssClass} ${styles.plot}`, onclick: () => { onClick(); } });
+  const chartCanvas = el('canvas', {
+    class: `${cssClass} ${styles.plot}`,
+    onclick: () => {
+      onClick();
+    },
+  });
   const chart = new Chart(chartCanvas, {
     ...chartConfig,
     data: {
-      labels: labels,
+      labels,
       datasets: [
         {
           label: 'Баланс',
-          data: data,
+          data,
           backgroundColor: 'rgba(17, 106, 204, 1)',
           borderColor: 'rgba(17, 106, 204, 1)',
           borderWidth: 1,
@@ -58,12 +72,18 @@ export function createBalancePlotView(
   return chartCanvas;
 }
 
-export function createTransactionsPlotView(
-  { cssClass, account, monthCount, onClick, }
-) {
+export function createTransactionsPlotView({
+  cssClass,
+  account,
+  monthCount,
+  onClick,
+}) {
   Chart.register(CategoryScale, LinearScale, BarController, BarElement, Title);
 
-  const lastTransactions = getTransactionsForPeriod(account.transactions, monthCount);
+  const lastTransactions = getTransactionsForPeriod(
+    account.transactions,
+    monthCount
+  );
   const groupedTransactions = groupTransactionsByMonth(
     account.account,
     lastTransactions,
@@ -71,15 +91,23 @@ export function createTransactionsPlotView(
   );
 
   const labels = groupedTransactions.map((item) => item.month);
-  const data = groupedTransactions.map((item) => { return { positive: item.positive, negative: item.negative, } });
-  const positiveData = data.map(item => item.positive);
-  const negativeData = data.map(item => item.negative);
+  const data = groupedTransactions.map((item) => ({
+    positive: item.positive,
+    negative: item.negative,
+  }));
+  const positiveData = data.map((item) => item.positive);
+  const negativeData = data.map((item) => item.negative);
 
-  const chartCanvas = el('canvas', { class: `${cssClass} ${styles.plot}`, onclick: () => { onClick(); } });
+  const chartCanvas = el('canvas', {
+    class: `${cssClass} ${styles.plot}`,
+    onclick: () => {
+      onClick();
+    },
+  });
   const chart = new Chart(chartCanvas, {
     ...chartConfig,
     data: {
-      labels: labels,
+      labels,
       datasets: [
         {
           label: 'Пополнение',
@@ -113,6 +141,3 @@ export function createTransactionsPlotView(
 
   return chartCanvas;
 }
-
-
-

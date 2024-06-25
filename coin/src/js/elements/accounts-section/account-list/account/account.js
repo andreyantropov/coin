@@ -1,6 +1,6 @@
+import { el } from 'redom';
 import * as styles from './account.module.css';
 
-import { el } from 'redom';
 import formatDate from '../../../../utils/format-date';
 import formatMoney from '../../../../utils/format-money';
 
@@ -45,7 +45,7 @@ export default class Account {
             onclick: () => this.onClick(),
           }),
         ]),
-      ],
+      ]
     );
     return li;
   }

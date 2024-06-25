@@ -17,7 +17,7 @@ export function groupTransactionsByMonth(id, transactionList, monthCount) {
       positive: 0,
       negative: 0,
       amount: 0,
-      month: month,
+      month,
     });
     today.setMonth(today.getMonth() - 1);
   }

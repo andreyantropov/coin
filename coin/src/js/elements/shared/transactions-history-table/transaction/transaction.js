@@ -1,6 +1,6 @@
+import { el } from 'redom';
 import * as styles from './transaction.module.css';
 
-import { el } from 'redom';
 import formatDate from '../../../../utils/format-date';
 import formatMoney from '../../../../utils/format-money';
 
@@ -48,6 +48,8 @@ export default class Transaction {
   }
 
   getFormattedAmount() {
-    return this._to === this._accountId ? `+ ${ formatMoney(this._amount) } ₽` : `- ${ formatMoney(this._amount) } ₽`
+    return this._to === this._accountId
+      ? `+ ${formatMoney(this._amount)} ₽`
+      : `- ${formatMoney(this._amount)} ₽`;
   }
 }

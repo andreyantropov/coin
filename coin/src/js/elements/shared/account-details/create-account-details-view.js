@@ -1,6 +1,6 @@
-import * as styles from'./account-details.module.css';
-
 import { el } from 'redom';
+import * as styles from './account-details.module.css';
+
 import formatMoney from '../../../utils/format-money';
 import getSprite from '../../../utils/get-sprite';
 
@@ -29,14 +29,10 @@ export default function createAccountDetailsView({
   const accountId = el('span', `№ ${id}`, {
     class: styles.number,
   });
-  const balanceContainer = el(
-    'div',
-    { class: `${styles.balance}` },
-    [
-      el('h4', 'Баланс', { class: styles.balanceTitle }),
-      el('span', formatMoney(balance), { class: styles.balanceValue }),
-    ]
-  );
+  const balanceContainer = el('div', { class: `${styles.balance}` }, [
+    el('h4', 'Баланс', { class: styles.balanceTitle }),
+    el('span', formatMoney(balance), { class: styles.balanceValue }),
+  ]);
   const primaryDataContainer = el(
     'div',
     { class: `${cssClass} ${styles.details}` },

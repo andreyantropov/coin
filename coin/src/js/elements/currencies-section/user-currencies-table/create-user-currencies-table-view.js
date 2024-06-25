@@ -1,9 +1,12 @@
+import { el } from 'redom';
 import * as styles from './user-currencies-table.module.css';
 
-import { el } from 'redom';
-import Currency from "./currency/currency";
+import Currency from './currency/currency';
 
-export default function createUserCurrenciesTableView({ cssClass, currenciesList }) {
+export default function createUserCurrenciesTableView({
+  cssClass,
+  currenciesList,
+}) {
   const dictionary = el('dictionary', { class: styles.table }, [
     el('caption', 'Ваши валюты', { class: styles.caption }),
     el('tbody', { class: styles.tbody }, [
@@ -14,8 +17,10 @@ export default function createUserCurrenciesTableView({ cssClass, currenciesList
     ]),
   ]);
 
-  const dictionaryContainer = el('div', { class: `${cssClass} ${styles.dictionary}` }, [
-    dictionary,
-  ]);
+  const dictionaryContainer = el(
+    'div',
+    { class: `${cssClass} ${styles.dictionary}` },
+    [dictionary]
+  );
   return dictionaryContainer;
 }

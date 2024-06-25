@@ -8,8 +8,8 @@ export default class API {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        login: login,
-        password: password,
+        login,
+        password,
       }),
     });
     if (!response.ok) {
@@ -110,9 +110,9 @@ export default class API {
           Authorization: `Basic ${token}`,
         },
         body: JSON.stringify({
-          from: from,
-          to: to,
-          amount: amount,
+          from,
+          to,
+          amount,
         }),
       });
       if (!response.ok) {
@@ -181,9 +181,9 @@ export default class API {
           Authorization: `Basic ${token}`,
         },
         body: JSON.stringify({
-          from: from,
-          to: to,
-          amount: amount,
+          from,
+          to,
+          amount,
         }),
       });
       if (!response.ok) {

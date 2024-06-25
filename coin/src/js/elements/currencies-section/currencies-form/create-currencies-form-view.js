@@ -1,36 +1,47 @@
-import * as formStyles from  '../../shared/form/form.module.css';
+import { el } from 'redom';
+import * as formStyles from '../../shared/form/form.module.css';
 import * as styles from './currencies-form.module.css';
 
-import { el } from 'redom';
-
-export default function createCurrenciesFormView({ cssClass, options, onSubmit }) {
-  const title = el('h3', 'Обмен валюты', { class: `${formStyles.title} ${styles.title}` });
-  const error = el('span', 'Некорректная сумма перевода: укажите неотрицательное число', { class: `${formStyles.error} hidden ${styles.error}`, });
+export default function createCurrenciesFormView({
+  cssClass,
+  options,
+  onSubmit,
+}) {
+  const title = el('h3', 'Обмен валюты', {
+    class: `${formStyles.title} ${styles.title}`,
+  });
+  const error = el(
+    'span',
+    'Некорректная сумма перевода: укажите неотрицательное число',
+    { class: `${formStyles.error} hidden ${styles.error}` }
+  );
   const fromLabel = el('label', 'Из', {
     class: `${formStyles.label} ${styles.label_from} label`,
   });
-  const fromControl = el('select', {
-    class: `${formStyles.control} ${styles.control_from} control control_select`,
-    required: true,
-  }, [
-    options.map(element => {
-      return el('option', element.code, { class: 'option' });
-    }),
-  ]);
+  const fromControl = el(
+    'select',
+    {
+      class: `${formStyles.control} ${styles.control_from} control control_select`,
+      required: true,
+    },
+    [options.map((element) => el('option', element.code, { class: 'option' }))]
+  );
   const toLabel = el('label', 'в', {
     class: `${formStyles.label} ${styles.label_to} label`,
   });
-  const toControl = el('select', {
-    class: `${formStyles.control} ${styles.control_to} control control_select`,
-    required: true,
-  }, [
-    options.map(element => {
-      return el('option', element.code, { class: 'option' });
-    }),
-  ]);
-  const exchangeContainer = el('div', { class: `${formStyles.inputContainer} ${styles.inputContainer_exchange}` }, [
-    fromLabel, fromControl, toLabel, toControl,
-  ]);
+  const toControl = el(
+    'select',
+    {
+      class: `${formStyles.control} ${styles.control_to} control control_select`,
+      required: true,
+    },
+    [options.map((element) => el('option', element.code, { class: 'option' }))]
+  );
+  const exchangeContainer = el(
+    'div',
+    { class: `${formStyles.inputContainer} ${styles.inputContainer_exchange}` },
+    [fromLabel, fromControl, toLabel, toControl]
+  );
   const amountLabel = el('label', 'Сумма перевода', {
     class: `${formStyles.label} ${styles.label_amount} label`,
   });
@@ -42,9 +53,11 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
       error.classList.add('hidden');
     },
   });
-  const amountContainer = el('div', { class: `${formStyles.inputContainer} ${styles.inputContainer_amount}` }, [
-    amountLabel, amountControl,
-  ]);
+  const amountContainer = el(
+    'div',
+    { class: `${formStyles.inputContainer} ${styles.inputContainer_amount}` },
+    [amountLabel, amountControl]
+  );
   const submitBtn = el('button', 'Обменять', {
     class: `primary-btn btn-reset ${styles.submit}`,
   });
@@ -68,9 +81,7 @@ export default function createCurrenciesFormView({ cssClass, options, onSubmit }
         onSubmit(from, to, amount);
       },
     },
-    [
-      title, exchangeContainer, amountContainer, submitBtn, error,
-    ],
+    [title, exchangeContainer, amountContainer, submitBtn, error]
   );
 
   return form;

@@ -1,9 +1,8 @@
-import * as formStyles from '../../shared/form/form.module.css';
-import * as styles from './transaction-form.module.css';
-
 import { el } from 'redom';
 import { getCreditCardNameByNumber } from 'creditcard.js';
 import autocomplete from 'autocompleter';
+import * as styles from './transaction-form.module.css';
+import * as formStyles from '../../shared/form/form.module.css';
 import getSprite from '../../../utils/get-sprite';
 
 export default function createTransactionFormView({
@@ -22,7 +21,9 @@ export default function createTransactionFormView({
   const title = el('h3', 'Новый перевод', {
     class: `${formStyles.title} ${styles.title}`,
   });
-  const error = el('span', 'Некорректный номер счета или сумма перевода', { class: `${formStyles.error} hidden ${styles.error}`, });
+  const error = el('span', 'Некорректный номер счета или сумма перевода', {
+    class: `${formStyles.error} hidden ${styles.error}`,
+  });
   const accountLabel = el('label', 'Номер счета получателя', {
     class: `${formStyles.label} ${styles.label_account} label`,
   });
@@ -79,20 +80,21 @@ export default function createTransactionFormView({
         e.preventDefault();
 
         const to = accountControl.value.trim();
-        const amount = amountControl
-          .value.trim();
+        const amount = amountControl.value.trim();
 
-          if (!to || !amount) {
-            error.textContent = 'Некорректный номер счета или сумма перевода: заполните все поля';
-            error.classList.remove('hidden');
-            return;
-          }
+        if (!to || !amount) {
+          error.textContent =
+            'Некорректный номер счета или сумма перевода: заполните все поля';
+          error.classList.remove('hidden');
+          return;
+        }
 
-          if (isNaN(amount) || parseFloat(amount) <= 0) {
-            error.textContent = 'Некорректная сумма перевода: укажите неотрицательное число';
-            error.classList.remove('hidden');
-            return;
-          }
+        if (isNaN(amount) || parseFloat(amount) <= 0) {
+          error.textContent =
+            'Некорректная сумма перевода: укажите неотрицательное число';
+          error.classList.remove('hidden');
+          return;
+        }
 
         onSubmit(id, to, amount);
       },
@@ -111,11 +113,11 @@ export default function createTransactionFormView({
 
   autocomplete({
     input: accountControl,
-    fetch: function (num, update) {
+    fetch(num, update) {
       const suggestions = numbers.filter((n) => n.label.startsWith(num));
       update(suggestions);
     },
-    onSelect: function (item) {
+    onSelect(item) {
       accountControl.value = item.label;
     },
   });

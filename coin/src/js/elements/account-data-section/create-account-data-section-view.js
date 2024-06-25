@@ -1,11 +1,11 @@
-import * as styles from './account-data-section.module.css';
-
 import { el } from 'redom';
 import Sortable from 'sortablejs';
+import * as styles from './account-data-section.module.css';
 import createTransactionFormView from './transaction-form/create-transaction-form-view.js';
 import { createBalancePlotView } from '../shared/plot/create-plot-view.js';
 import createTransactionsHistoryTableView from '../shared/transactions-history-table/create-transactions-history-table-view.js';
 import createAccountDetailsView from '../shared/account-details/create-account-details-view.js';
+import { ANIMATION_DURATION, ACCOUNT_DATA_MONTH_COUNT } from '../../const.js';
 
 export default function createAccountDataSectionView({
   account,
@@ -19,24 +19,24 @@ export default function createAccountDataSectionView({
     title: 'Просмотр счёта',
     id: account.account,
     balance: account.balance,
-    onBackBtnClick: onBackBtnClick,
+    onBackBtnClick,
   });
 
   const plot = createBalancePlotView({
     cssClass: styles.plot,
-    account: account,
-    monthCount: 6,
+    account,
+    monthCount: ACCOUNT_DATA_MONTH_COUNT,
     onClick: onTransactionsTableClick,
   });
   const table = createTransactionsHistoryTableView({
     cssClass: '',
-    account: account,
+    account,
     onClick: onTransactionsTableClick,
   });
   const transactionForm = createTransactionFormView({
     cssClass: '',
     id: account.account,
-    numbers: numbers,
+    numbers,
     onSubmit: async (from, to, amount) => {
       await onTransactionFormSubmit(from, to, amount);
       details.replaceWith(
@@ -45,21 +45,21 @@ export default function createAccountDataSectionView({
           title: 'Просмотр счёта',
           id: account.account,
           balance: account.balance,
-          onBackBtnClick: onBackBtnClick,
+          onBackBtnClick,
         })
       );
       table.replaceWith(
         createTransactionsHistoryTableView({
           cssClass: '',
-          account: account,
+          account,
           onClick: onTransactionsTableClick,
         })
       );
       plot.replaceWith(
         createBalancePlotView({
           cssClass: styles.plot,
-          account: account,
-          monthCount: 6,
+          account,
+          monthCount: ACCOUNT_DATA_MONTH_COUNT,
           onClick: onTransactionsTableClick,
         })
       );
@@ -72,33 +72,23 @@ export default function createAccountDataSectionView({
   ]);
 
   const sortableTopContainer = new Sortable(topContainer, {
-    animation: 150,
+    animation: ANIMATION_DURATION,
     group: {
       name: 'account-data-top-group',
     },
   });
 
-  const content = el('div', { class: styles.content }, [
-    topContainer,
-    table,
-  ]);
+  const content = el('div', { class: styles.content }, [topContainer, table]);
 
   const sortableContent = new Sortable(content, {
-    animation: 150,
+    animation: ANIMATION_DURATION,
     group: {
       name: 'account-data-content-group',
     },
   });
 
-  const wrapper = el('div', { class: `wrapper` }, [
-    details,
-    content,
-  ]);
-  const accountContainer = el(
-    'div',
-    { class: `container` },
-    [wrapper]
-  );
+  const wrapper = el('div', { class: `wrapper` }, [details, content]);
+  const accountContainer = el('div', { class: `container` }, [wrapper]);
   const section = el('section', [accountContainer]);
 
   return section;

@@ -1,12 +1,21 @@
-import * as formStyles from  '../shared/form/form.module.css';
-import * as styles from './auth-form.module.css'
-
 import { el } from 'redom';
+import * as formStyles from '../shared/form/form.module.css';
+import * as styles from './auth-form.module.css';
+
+import { AUTH_MIN_LOGIN_LENGTH, AUTH_MIN_PASSWORD_LENGTH } from '../../const';
 
 export default function createAuthFormView({ onAuthSubmit }) {
-  const title = el('h2', 'Вход в аккаунт', { class: `${formStyles.title} ${styles.title}` });
-  const error = el('span', 'Некорректный логин или пароль: пароли и логины длиной менее 6 символов и с пробелами не поддерживаются', { class: `${formStyles.error} hidden ${styles.error}`, });
-  const loginLabel = el('label', 'Логин', { class: `${formStyles.label} ${styles.label_login} label` });
+  const title = el('h2', 'Вход в аккаунт', {
+    class: `${formStyles.title} ${styles.title}`,
+  });
+  const error = el(
+    'span',
+    'Некорректный логин или пароль: пароли и логины длиной менее 6 символов и с пробелами не поддерживаются',
+    { class: `${formStyles.error} hidden ${styles.error}` }
+  );
+  const loginLabel = el('label', 'Логин', {
+    class: `${formStyles.label} ${styles.label_login} label`,
+  });
   const loginControl = el('input', {
     class: `${formStyles.control} ${styles.control_login} control auth-login`,
     type: 'text',
@@ -40,7 +49,12 @@ export default function createAuthFormView({ onAuthSubmit }) {
         const login = loginControl.value.trim();
         const password = passwordControl.value.trim();
 
-        if (login.length < 6 || password.length < 6 || login.includes(' ') || password.includes(' ')) {
+        if (
+          login.length < AUTH_MIN_LOGIN_LENGTH ||
+          password.length < AUTH_MIN_PASSWORD_LENGTH ||
+          login.includes(' ') ||
+          password.includes(' ')
+        ) {
           error.classList.remove('hidden');
           return;
         }
@@ -49,8 +63,14 @@ export default function createAuthFormView({ onAuthSubmit }) {
       },
     },
     [
-      title, loginLabel, loginControl, passwordLabel, passwordControl, submitBtn, error,
-    ],
+      title,
+      loginLabel,
+      loginControl,
+      passwordLabel,
+      passwordControl,
+      submitBtn,
+      error,
+    ]
   );
 
   return form;

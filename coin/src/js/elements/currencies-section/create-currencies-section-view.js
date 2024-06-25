@@ -1,10 +1,10 @@
-import * as styles from './currencies-section.module.css';
-
 import { el } from 'redom';
 import Sortable from 'sortablejs';
+import * as styles from './currencies-section.module.css';
 import createUserCurrenciesTableView from './user-currencies-table/create-user-currencies-table-view';
 import createCurrenciesFormView from './currencies-form/create-currencies-form-view';
 import createCurrenciesRateTableView from './currencies-rate-table/create-currencies-rate-table-view';
+import { ANIMATION_DURATION } from '../../const';
 
 export default function createCurrenciesSectionView({
   allCurrenciesList,
@@ -14,11 +14,11 @@ export default function createCurrenciesSectionView({
 }) {
   const userCurrencies = createUserCurrenciesTableView({
     cssClass: `${styles.table_user}`,
-    currenciesList: currenciesList,
+    currenciesList,
   });
   const rate = createCurrenciesRateTableView({
     cssClass: `${styles.table_rate}`,
-    webSocket: webSocket,
+    webSocket,
   });
   const form = createCurrenciesFormView({
     cssClass: '',
@@ -28,7 +28,7 @@ export default function createCurrenciesSectionView({
       userCurrencies.replaceWith(
         createUserCurrenciesTableView({
           cssClass: `${styles.table_user}`,
-          currenciesList: currenciesList,
+          currenciesList,
         })
       );
     },
@@ -40,7 +40,7 @@ export default function createCurrenciesSectionView({
   ]);
 
   const sortableLeftContainer = new Sortable(leftContainer, {
-    animation: 150,
+    animation: ANIMATION_DURATION,
     group: {
       name: 'currencies-left-group',
     },
@@ -52,17 +52,13 @@ export default function createCurrenciesSectionView({
   ]);
 
   const sortableWrapper = new Sortable(wrapper, {
-    animation: 150,
+    animation: ANIMATION_DURATION,
     group: {
       name: 'currencies-wrapper-group',
     },
   });
 
-  const accountContainer = el(
-    'div',
-    { class: `container` },
-    [wrapper]
-  );
+  const accountContainer = el('div', { class: `container` }, [wrapper]);
   const section = el('section', [accountContainer]);
 
   return section;

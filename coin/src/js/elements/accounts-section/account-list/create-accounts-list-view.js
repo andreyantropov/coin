@@ -1,8 +1,8 @@
-import * as styles from './account-list.module.css';
-
 import { el } from 'redom';
 import Sortable from 'sortablejs';
+import * as styles from './account-list.module.css';
 import Account from './account/account';
+import { ACCOUNT_DATA_MONTH_COUNT } from '../../../const';
 
 export default function createAccountsListView({
   accountList,
@@ -21,7 +21,7 @@ export default function createAccountsListView({
   ]);
 
   const sortable = new Sortable(ul, {
-    animation: 150,
+    animation: ACCOUNT_DATA_MONTH_COUNT,
     group: {
       name: 'account-list-group',
     },

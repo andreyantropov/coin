@@ -59,7 +59,7 @@ const renderView = (viewCreator, data) => {
 
 const renderAccountsSectionView = (accountList) => {
   renderView(createAccountsSectionView, {
-    accountList: accountList,
+    accountList,
     onAccountBtnClick: (id) => {
       router.navigate(`/accounts/${id}`);
     },
@@ -75,16 +75,17 @@ const renderAccountsSectionView = (accountList) => {
           accountList.sort((a, b) => {
             if (!a.transactions[0] && !b.transactions[0]) {
               return 0;
-            } else if (!a.transactions[0]) {
-              return -1;
-            } else if (!b.transactions[0]) {
-              return 1;
-            } else {
-              return (
-                new Date(a.transactions[0].date) -
-                new Date(b.transactions[0].date)
-              );
             }
+            if (!a.transactions[0]) {
+              return -1;
+            }
+            if (!b.transactions[0]) {
+              return 1;
+            }
+            return (
+              new Date(a.transactions[0].date) -
+              new Date(b.transactions[0].date)
+            );
           });
           break;
         default:
@@ -94,18 +95,15 @@ const renderAccountsSectionView = (accountList) => {
     onNewBtnClick: async () => {
       const newAccount = await API.createAccount();
       accountList.push(newAccount);
-      localStorage.setItem(
-        'coin-account-list',
-        JSON.stringify(accountList)
-      );
+      localStorage.setItem('coin-account-list', JSON.stringify(accountList));
     },
   });
-}
+};
 
 const renderAccauntDataSectionView = (account, numbers) => {
   renderView(createAccountDataSectionView, {
-    account: account,
-    numbers: numbers,
+    account,
+    numbers,
     onBackBtnClick: () => {
       router.navigate('/');
     },
@@ -138,7 +136,7 @@ const renderAccauntDataSectionView = (account, numbers) => {
       router.navigate(`/history/${account.account}`);
     },
   });
-}
+};
 
 const renderTransactionsHistorySectionView = (account) => {
   renderView(createTransactionsHistorySectionView, {
@@ -147,7 +145,7 @@ const renderTransactionsHistorySectionView = (account) => {
       router.navigate(`/accounts/${account.account}`);
     },
   });
-}
+};
 
 const renderCurrenciesSectionView = (currenciesList, websocket) => {
   renderView(createCurrenciesSectionView, {
@@ -171,11 +169,11 @@ const renderCurrenciesSectionView = (currenciesList, websocket) => {
       }).showToast();
     },
   });
-}
+};
 
 const renderMapSectionView = (markerList) => {
   renderView(createMapSectionView, { markerList });
-}
+};
 
 const renderAuthFormView = () => {
   renderView(createAuthFormView, {
@@ -183,7 +181,7 @@ const renderAuthFormView = () => {
       if (await API.login(login, password)) router.navigate('/');
     },
   });
-}
+};
 
 const showError = (errorMessage) => {
   Toastify({
@@ -191,7 +189,7 @@ const showError = (errorMessage) => {
     text: errorMessage,
   }).showToast();
   main.innerHTML = '';
-}
+};
 
 const checkAuth = (done) => {
   const isAuthenticated = localStorage.getItem('coin-auth-token');
@@ -235,12 +233,12 @@ router
     '/accounts/:id': ({ data }) => {
       checkAuth(async () => {
         try {
-          const id = data.id;
+          const { id } = data;
           renderHeaderView('');
           renderSkeleton(createAccountDataSectionSkeleton);
           const numbers =
             JSON.parse(localStorage.getItem('coin-recipient-accounts')) ?? [];
-          let account = await API.getAccount(id);
+          const account = await API.getAccount(id);
           renderAccauntDataSectionView(account, numbers);
         } catch (error) {
           showError(error.message);
@@ -264,7 +262,7 @@ router
         try {
           renderHeaderView('/currencies');
           renderSkeleton(createCurrenciesSectionSkeleton);
-          let currenciesList = await API.getCurrenciesList();
+          const currenciesList = await API.getCurrenciesList();
           const websocket = API.currencyRate();
           renderCurrenciesSectionView(currenciesList, websocket);
         } catch (error) {
