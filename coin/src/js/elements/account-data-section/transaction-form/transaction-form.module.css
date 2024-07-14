@@ -1,0 +1,60 @@
+.form {
+    grid-template-areas:
+        'transaction-title .'
+        'transaction-account-lbl transaction-account-input'
+        'transaction-amount-lbl transaction-amount-input'
+        'transaction-card transaction-submit-btn'
+        '. transaction-error';
+    min-width: 600px;
+}
+
+.title {
+    grid-area: transaction-title;
+}
+
+.label_account {
+    grid-area: transaction-account-lbl;
+}
+
+.control_account {
+    grid-area: transaction-account-input;
+}
+
+.label_amount {
+    grid-area: transaction-amount-lbl;
+}
+
+.control_amount {
+    grid-area: transaction-amount-input;
+}
+
+.cardImg {
+    grid-area: transaction-card;
+    justify-self: end;
+    max-height: 52px;
+}
+
+.submit {
+    grid-area: transaction-submit-btn;
+    max-width: 60%;
+}
+
+.error {
+  grid-area: transaction-error;
+  max-width: 245px;
+}
+
+@media (max-width: 768px) {
+    .form {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            'transaction-title'
+            'transaction-account-lbl'
+            'transaction-account-input'
+            'transaction-amount-lbl'
+            'transaction-amount-input'
+            'transaction-submit-btn'
+            'transaction-error';
+        min-width: 0;
+    }
+}

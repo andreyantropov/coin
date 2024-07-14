@@ -1,0 +1,105 @@
+.skeleton {
+    position: relative;
+    background-color: var(--skeleton-dark-color);
+    border-radius: 12px;
+    overflow: hidden;
+    animation: shimmer 1.5s linear infinite;
+}
+
+.skeleton-container {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 32px;
+    border-radius: 50px;
+    background-color: var(--skeleton-color);
+}
+
+.skeleton-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 60px;
+}
+
+.skeleton-plot {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    padding: 32px;
+    padding-bottom: 0;
+    border-radius: 50px;
+    background-color: var(--skeleton-color);
+}
+
+.skeleton-map {
+    height: 800px;
+}
+
+.skeleton-img {
+    height: 200px;
+}
+
+.skeleton-title {
+    margin-bottom: 32px;
+    height: 40px;
+}
+
+.skeleton-title-sm {
+    margin-bottom: 16px;
+    width: 75%;
+    height: 40px;
+}
+
+.skeleton-paragraph {
+    height: 20px;
+}
+
+.skeleton-paragraph-sm {
+    height: 20px;
+    width: 50%;
+}
+
+.skeleton-bar {
+    border-radius: 4px;
+    width: 64px;
+    height: 120px;
+}
+
+.skeleton-bar-lg {
+    border-radius: 4px;
+    width: 64px;
+    height: 180px;
+}
+
+.skeleton-bar-sm {
+    border-radius: 4px;
+    width: 64px;
+    height: 60px;
+}
+
+.skeleton::before {
+    content: '';
+    position: absolute;
+    left: -150px;
+    top: 0;
+    display: block;
+    width: 150px;
+    height: 100%;
+    background: linear-gradient(to right, transparent 0%, #E8E8E8 50%, transparent 100%);
+    animation: load 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite;
+}
+
+.account-data-top-container-skeleton .skeleton-container,
+.account-data-top-container-skeleton .skeleton-plot {
+    width: 100%;
+}
+
+@keyframes load {
+    from {
+        left: -150px;
+    }
+
+    to {
+        left: 100%;
+    }
+}

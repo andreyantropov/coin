@@ -1,0 +1,73 @@
+.account {
+    display: flex;
+    flex-direction: column;
+    padding: 25px;
+    border-radius: 9px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.25);
+}
+
+.title {
+    margin: 0;
+    margin-bottom: 15px;
+    font-family: var(--third-family);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 122%;
+    letter-spacing: -0.01em;
+    color: var(--text-primary-color);
+}
+
+.balance {
+    display: inline-block;
+    margin-bottom: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.transaction {
+    display: flex;
+    flex-direction: column;
+}
+
+.subtitle {
+    margin: 0;
+    margin-bottom: 2px;
+    font-family: var(--second-family);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}
+
+.date {
+    font-family: var(--second-family);
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    color: var(--text-primary-color);
+}
+
+@media (max-width: 576px) {
+    .title {
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+
+    .balance {
+        font-size: 12px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}

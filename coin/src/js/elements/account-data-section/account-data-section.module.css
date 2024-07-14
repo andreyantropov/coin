@@ -1,0 +1,25 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.topContainer {
+    display: flex;
+    gap: 30px;
+}
+
+.plot {
+    width: 100% !important;
+    height: 363px !important;
+}
+
+@media (max-width: 1366px) {
+    .topContainer {
+        flex-direction: column;
+    }
+
+    .plot {
+        height: 600px !important;
+    }
+}

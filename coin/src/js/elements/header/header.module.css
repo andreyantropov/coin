@@ -1,0 +1,32 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    padding: 30px 0;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.navList {
+    display: flex;
+    gap: 30px;
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        justify-content: center;
+    }
+
+    .logo {
+        display: none;
+    }
+
+    .nav {
+        overflow: scroll;
+    }
+
+    .navList {
+        justify-content: space-between;
+    }
+}
