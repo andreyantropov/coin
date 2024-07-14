@@ -1,0 +1,45 @@
+.form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    grid-template-columns: 80px 1fr;
+    grid-template-areas:
+        '. auth-title'
+        'auth-login-lbl auth-login-input'
+        'auth-password-lbl auth-password-input'
+        '. auth-submit-btn'
+        '. auth-error';
+    transform: translate(-50%, -50%);
+}
+
+.title {
+    grid-area: auth-title;
+    font-size: 34px;
+}
+
+.label_login {
+    grid-area: auth-login-lbl;
+}
+
+.control_login {
+    grid-area: auth-login-input;
+}
+
+.label_password {
+    grid-area: auth-password-lbl;
+}
+
+.control_password {
+    grid-area: auth-password-input;
+}
+
+.submit {
+    grid-area: auth-submit-btn;
+    max-width: 33%;
+}
+
+.error {
+  grid-area: auth-error;
+  display: inline-block;
+  max-width: 245px;
+}

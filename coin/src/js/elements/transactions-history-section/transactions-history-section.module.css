@@ -1,0 +1,10 @@
+.content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.plot {
+    width: 100% !important;
+    height: 600px !important;
+}

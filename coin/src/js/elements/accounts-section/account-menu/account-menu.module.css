@@ -1,0 +1,47 @@
+.menu {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    display: inline-block;
+    margin: 0;
+    margin-right: 30px;
+}
+
+.select {
+    margin-right: auto;
+}
+
+@media (max-width: 1024px) {
+    .menu {
+        flex-wrap: wrap;
+    }
+
+    .title {
+        margin-right: 0;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .title {
+        margin-bottom: 0;
+    }
+
+    .select {
+        margin-right: 0;
+        width: 100%;
+    }
+
+    .newBtn {
+        width: 100%;
+    }
+}
